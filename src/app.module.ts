@@ -6,8 +6,7 @@ import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
-import { AdminModule } from './Admin/admin.module';
-import { ModeratorModule } from './Moderator/moderator.module';
+
 
 @Module({
   imports: [
@@ -32,8 +31,6 @@ import { ModeratorModule } from './Moderator/moderator.module';
       })
     }),
     UserModule,
-    AdminModule,
-    ModeratorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
