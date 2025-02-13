@@ -5,6 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './social/auth.module';
+import { GoogleAuthticationModule } from './social/google-authtication.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         autoLoadEntities: configService.get('database.autoload')
       })
     }),
+    AuthModule,
+    GoogleAuthticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
