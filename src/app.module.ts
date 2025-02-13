@@ -7,6 +7,7 @@ import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './social/auth.module';
 import { GoogleAuthticationModule } from './social/google-authtication.module';
+import { UserModule } from './users/user.module';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { GoogleAuthticationModule } from './social/google-authtication.module';
       })
     }),
     AuthModule,
-    GoogleAuthticationModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
