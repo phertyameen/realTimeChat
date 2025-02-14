@@ -6,6 +6,7 @@ import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 
 @Module({
@@ -31,6 +32,7 @@ import { UserModule } from './users/user.module';
       })
     }),
     UserModule,
+    MailerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

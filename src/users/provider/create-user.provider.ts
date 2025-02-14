@@ -8,6 +8,7 @@ import {
 import { User } from '../user.entitly';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../DTOs/create-user.dto';
+import { MailProvider } from 'src/mail/providers/mail.provider';
   
   
   
@@ -15,6 +16,8 @@ import { CreateUserDto } from '../DTOs/create-user.dto';
   export class CreateUserProvider {
     constructor(
       @InjectRepository(User) private userRepository: Repository<User>,
+
+      private readonly mailService:MailProvider,
       
     ) {}
     public async createUsers(createUserDto: CreateUserDto) {
@@ -55,6 +58,12 @@ import { CreateUserDto } from '../DTOs/create-user.dto';
           },
         );
       }
+
+      try {
+        await this.mailService.WelcomeEmail(newUser)
+    } catch (error) {
+        throw new RequestTimeoutException(error)
+    }
 
       return [newUser];
     }
