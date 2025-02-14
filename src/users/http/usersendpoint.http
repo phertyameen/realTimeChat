@@ -2,17 +2,17 @@
 GET http://localhost:3000/users
 
 
-DELETE http://localhost:3000/users?id=5
+DELETE http://localhost:3000/users?id=1
 
 
 POST http://localhost:3000/users
 Content-Type: application/json
 {
-    "firstName": "testingserver",
-    "lastName" : "toseeDb",
-    "email": "Realtimeusers@gmail.com",
-    "password": "@Password3433385"
-    
+    "firstName": "Fatima",
+    "lastName" : "Aminu",
+    "email": "fatimaaminu14@gmail.com",
+    "password": "33385",
+    "confirmpassword": "password333485"
 }
 
 PATCH http://localhost:3000/users
@@ -20,8 +20,8 @@ Content-Type: application/json
 {
     "id" : 1,
     "firstName" : "successfully ",
-    "lastName" : "edited",
-    "email" : "firstUser@gmail.com",
+    "lastName" : "ttestingedite",
+    "email" : "user1@gmail.com",
     "password" : "@Password869605"
 }
 
