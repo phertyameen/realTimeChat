@@ -3,6 +3,7 @@ GET http://localhost:3000/users
 
 
 DELETE http://localhost:3000/users?id=1
+DELETE http://localhost:3000/users?id=1
 
 
 POST http://localhost:3000/users
@@ -20,8 +21,8 @@ Content-Type: application/json
 {
     "id" : 1,
     "firstName" : "successfully ",
-    "lastName" : "edited",
-    "email" : "firstUser@gmail.com",
+    "lastName" : "ttestingedite",
+    "email" : "user1@gmail.com",
     "password" : "@Password869605"
 }
 
