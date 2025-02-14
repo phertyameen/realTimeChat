@@ -18,7 +18,11 @@ const config = new DocumentBuilder()
 const document = SwaggerModule.createDocument(app, config)
 SwaggerModule.setup('api', app, document)
 
+// app.useGlobalInterceptors(new DataResponseInterceptor)
+
   await app.listen(process.env.PORT ?? 3000);
+
+  // enable cors
   app.enableCors()
 }
 bootstrap();

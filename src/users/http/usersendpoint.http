@@ -8,11 +8,10 @@ DELETE http://localhost:3000/users?id=1
 POST http://localhost:3000/users
 Content-Type: application/json
 {
-    "firstName": "Fatima",
-    "lastName" : "Aminu",
-    "email": "fatimaaminu14@gmail.com",
-    "password": "33385",
-    "confirmpassword": "password333485"
+    "firstName": "test",
+    "lastName" : "test",
+    "email": "test3@gmail.com",
+    "password": "password3"
 }
 
 PATCH http://localhost:3000/users
