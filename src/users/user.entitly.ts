@@ -17,11 +17,11 @@ export class User {
   email: string;
 
   // @Exclude()
-  @Column('varchar', { nullable: false })
+  @Column('varchar', { nullable: true })
   password?: string;
 
   @Column({ type: 'enum', enum: userRole, default: userRole.USER })
-  userRole: userRole;
+  userRole?: userRole;
 
   @Column('varchar', { length: 225, nullable: true })
   googleId?: string;

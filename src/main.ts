@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Request, Response, NextFunction } from 'express';
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger"
 
 async function bootstrap() {
@@ -20,9 +21,22 @@ SwaggerModule.setup('api', app, document)
 
 // app.useGlobalInterceptors(new DataResponseInterceptor)
 
-  await app.listen(process.env.PORT ?? 3000);
-
   // enable cors
-  app.enableCors()
+  app.enableCors({
+    origin: 'http://localhost:3500', // Your frontend URL
+    credentials: true, // Allow cookies
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+
+  // Set custom headers to avoid COOP issues
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    next();
+  });
+
+  await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

@@ -35,10 +35,14 @@ export class GoogleAuthenticationService implements OnModuleInit {
   }
   public async authenticate(googleTokenDto: GoogleTokenDto) {
     try {
+      console.log("Received Token:", googleTokenDto.token);
+
       // verify the google token sent by user
       const loginTicket = await this.oAuthClient.verifyIdToken({
         idToken: googleTokenDto.token,
       });
+
+      console.log("Google Token Payload:", loginTicket.getPayload());
 
       // extract the payload from google jwt token
       const {
@@ -64,7 +68,8 @@ export class GoogleAuthenticationService implements OnModuleInit {
       });
       return this.generateTokensProvider.generateTokens(newUser);
     } catch (error) {
-      throw new UnauthorizedException(error);
+      console.error("Google Auth Error:", error);
+      throw new UnauthorizedException('failed to authenticate with google');
     }
     // if any of the step fails, send an unauthorised exception
   }

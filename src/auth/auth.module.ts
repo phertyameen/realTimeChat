@@ -13,6 +13,7 @@ import { RefreshTokensProvider } from './providers/refresh-tokens.provider';
 import { UserModule } from 'src/users/user.module';
 import { AuthController } from './auth.controller';
 import { GoogleAuthenticationService } from './social/providers/google-authentication.service';
+import { GoogleAuthenticationController } from './social/google-authentication.controller';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { GoogleAuthenticationService } from './social/providers/google-authentic
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync(jwtConfig.asProvider()),
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, GoogleAuthenticationController],
   providers: [
     AuthService,
     {
