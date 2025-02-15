@@ -25,7 +25,7 @@ export class CreateUserProvider {
     @Inject(forwardRef(() => HashingProvider))
     private readonly hashingProvider: HashingProvider,
   ) {}
-  public async createUsers(createUserDto: CreateUserDto) {
+  public async createUsers(createUserDto: CreateUserDto): Promise<User> {
     // check if user already exits
     let existingUser = undefined;
 
@@ -70,6 +70,6 @@ export class CreateUserProvider {
       );
     }
 
-    return [newUser];
+    return newUser;
   }
 }

@@ -76,7 +76,7 @@ export class CreateUserDto {
         'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
     },
   )
-  password: string;
+  password?: string;
 
   @ApiProperty({
     type: 'string',
@@ -87,7 +87,7 @@ export class CreateUserDto {
   @IsString()
   @MaxLength(225)
   @Validate(MatchPasswordsConstraint)
-  confirmpassword: string;
+  confirmpassword?: string;
 
   @IsEnum(userRole)
   @IsOptional()

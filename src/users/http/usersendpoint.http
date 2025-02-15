@@ -10,8 +10,8 @@ Content-Type: application/json
 {
     "firstName": "test",
     "lastName" : "test",
-    "email": "test3@gmail.com",
-    "password": "password3"
+    "email": "aminubabafatima8@gmail.com",
+    "password": "password2"
 }
 
 PATCH http://localhost:3000/users
