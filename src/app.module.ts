@@ -12,6 +12,8 @@ import { UserController } from './users/user.controller';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuardGuard } from './auth/guard/auth-guard/auth-guard.guard';
 import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
+import { MessagesModule } from './messages/messages.module';
+import { ChatroomsModule } from './chatrooms/chatrooms.module';
 
 @Module({
   imports: [
@@ -32,14 +34,17 @@ import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
         database: configService.get('database.name'),
         blog: configService.get('database.blog'),
         synchronize: configService.get('database.synchronize'),
-        autoLoadEntities: configService.get('database.autoload')
-      })
+        autoLoadEntities: configService.get('database.autoload'),
+      }),
     }),
     AuthModule,
     UserModule,
+    MessagesModule,
+    ChatroomsModule
   ],
   controllers: [AppController, AuthController, UserController],
-  providers: [AppService,
+  providers: [
+    AppService,
     // {
     //   provide: APP_GUARD,
     //   useClass: AuthGuardGuard,
