@@ -1,7 +1,6 @@
 
 GET http://localhost:3000/users
 
-
 DELETE http://localhost:3000/users?id=1
 
 
@@ -17,11 +16,11 @@ Content-Type: application/json
 PATCH http://localhost:3000/users
 Content-Type: application/json
 {
-    "id" : 1,
-    "firstName" : "successfully ",
-    "lastName" : "ttestingedite",
-    "email" : "user1@gmail.com",
-    "password" : "@Password869605"
+   "id": 29,
+    "firstName": "test2",
+    "lastName": "test2",
+    "email": "aminubabafat@gmail.com",
+    "userRole": "user"
 }
 
 
