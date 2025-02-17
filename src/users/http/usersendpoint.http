@@ -1,18 +1,16 @@
 
+DELETE http://localhost:3000/users?id=1
+
 GET http://localhost:3000/users
-
-
-DELETE http://localhost:3000/users?id=1
-DELETE http://localhost:3000/users?id=1
 
 
 POST http://localhost:3000/users
 Content-Type: application/json
 {
-    "firstName": "testingggmailSerivce",
-    "lastName" : "checkmaillltrap",
-    "email": "kamal@gmail.com",
-    "password": "@Password75"
+    "firstName": "testingGoolgeId",
+    "lastName" : "checkserver",
+    "email": "random@gmail.com",
+    "password": "@Password75455"
     
 }
 

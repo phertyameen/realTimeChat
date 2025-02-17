@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // import { GoogleAuthticationModule } from './social/google-authtication.module';
 import { UserModule } from './users/user.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { PaginationModule } from './common/pagination.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
     // AuthModule,
     UserModule,
     MailerModule,
+    PaginationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
