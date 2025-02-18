@@ -1,0 +1,26 @@
+
+
+GET http://localhost:3000/users/33
+
+DELETE http://localhost:3000/users?id=33
+
+
+POST http://localhost:3000/users
+Content-Type: application/json
+{
+    "firstName": "test",
+    "lastName" : "test",
+    "email": "aminubabafatima4@gmail.com",
+    "password": "@Ppassword2",
+    "confirmpassword": "@Ppassword2"
+}
+
+PATCH http://localhost:3000/users
+Content-Type: application/json
+{
+   "id": 33,
+    "firstName": "test2",
+    "lastName": "test2",
+    "email": "aminubabafatima4@gmail.com",
+    "userRole": "user"
+}

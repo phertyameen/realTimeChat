@@ -1,21 +1,21 @@
-import { ChatRoom } from 'src/chatrooms/chatroom.entity';
-import { User } from 'src/users/user.entitly';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
+// import { ChatRoom } from 'src/chatrooms/chatroom.entity';
+// import { User } from 'src/users/user.entitly';
+// import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
 
-@Entity()
-export class Message {
-  @PrimaryGeneratedColumn()
-  id: string;
+// @Entity()
+// export class Message {
+//   @PrimaryGeneratedColumn()
+//   id: string;
 
-  @ManyToOne(() => ChatRoom, (chatRoom) => chatRoom.id)
-  chatRoom: ChatRoom;
+//   @ManyToOne(() => ChatRoom, (chatRoom) => chatRoom.id)
+//   chatRoom: ChatRoom;
 
-  @ManyToOne(() => User, (user) => user.id)
-  sender: User;
+//   @ManyToOne(() => User, (user) => user.id)
+//   sender: User;
 
-  @Column()
-  text: string;
+//   @Column()
+//   text: string;
 
-  @CreateDateColumn()
-  timestamp: Date;
-}
+//   @CreateDateColumn()
+//   timestamp: Date;
+// }
