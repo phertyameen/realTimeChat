@@ -1,14 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn } from 'typeorm';
 import { User } from 'src/users/user.entitly'; 
 import { ChatRoomType } from './enums/chatroomType';
 
-
-@Entity()
+@Entity('chat_rooms')
 export class ChatRoom {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn() 
+  id: number;
 
-  @Column()
+  @Column('varchar', { length: 100 })
   name: string;
 
   @Column({
@@ -19,17 +18,6 @@ export class ChatRoom {
   type: ChatRoomType;
 
   @ManyToMany(() => User, (user) => user.chatRooms)
-  @JoinTable({
-    name: 'chat_room_users',
-    joinColumn: {
-      name: 'chat_room_id',
-      referencedColumnName: 'id'
-    },
-    inverseJoinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id'
-    }
-  })
   users: User[];
 
   @CreateDateColumn()
