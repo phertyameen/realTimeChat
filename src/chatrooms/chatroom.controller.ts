@@ -1,22 +1,46 @@
-// import { Controller, Post, Get, Delete, Body, Param } from '@nestjs/common';
-// import { ChatRoomsService } from './providers/chatrooms/chatrooms.service';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { ChatRoomService } from './providers/chatrooms/chatrooms.service'; 
+import { CreateChatRoomDto } from './DTOs/create-chat-room.dto'; 
+import { UpdateChatRoomDto } from './DTOs/update-chat-room.dto'; 
+// import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
-// @Controller('chatroom')
-// export class ChatRoomsController {
-//   constructor(private readonly chatRoomService: ChatRoomsService) {}
+@Controller('chat-rooms')
+// @UseGuards(JwtAuthGuard)
+export class ChatRoomController {
+  constructor(private readonly chatRoomService: ChatRoomService) {}
 
-//   @Post()
-//   create(@Body() { name, userIds, type }) {
-//     return this.chatRoomService.create(name, userIds, type);
-//   }
+  @Post()
+  create(@Body() createChatRoomDto: CreateChatRoomDto) {
+    return this.chatRoomService.create(createChatRoomDto);
+  }
 
-//   @Get(':userId')
-//   findAll(@Param('userId') userId: string) {
-//     return this.chatRoomService.findAll(userId);
-//   }
+  @Get()
+  findAll() {
+    return this.chatRoomService.findAll();
+  }
 
-//   @Delete(':id')
-//   delete(@Param('id') id: string) {
-//     return this.chatRoomService.delete(id);
-//   }
-// }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.chatRoomService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateChatRoomDto: UpdateChatRoomDto) {
+    return this.chatRoomService.update(id, updateChatRoomDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.chatRoomService.remove(id);
+  }
+
+  @Post(':id/users/:userId')
+  addUser(@Param('id') id: string, @Param('userId') userId: string) {
+    return this.chatRoomService.addUserToChatRoom(id, userId);
+  }
+
+  @Delete(':id/users/:userId')
+  removeUser(@Param('id') id: string, @Param('userId') userId: string) {
+    return this.chatRoomService.removeUserFromChatRoom(id, userId);
+  }
+}
