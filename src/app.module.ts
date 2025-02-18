@@ -5,9 +5,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { AuthModule } from './social/auth.module';
-// import { GoogleAuthticationModule } from './social/google-authtication.module';
 import { UserModule } from './users/user.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
+import { UserController } from './users/user.controller';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { AuthGuardGuard } from './auth/guard/auth-guard/auth-guard.guard';
+import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
+import { MessagesModule } from './messages/messages.module';
+import { ChatroomsModule } from './chatrooms/chatrooms.module';
 
 @Module({
   imports: [
@@ -28,13 +34,26 @@ import { UserModule } from './users/user.module';
         database: configService.get('database.name'),
         blog: configService.get('database.blog'),
         synchronize: configService.get('database.synchronize'),
-        autoLoadEntities: configService.get('database.autoload')
-      })
+        autoLoadEntities: configService.get('database.autoload'),
+      }),
     }),
-    // AuthModule,
+    AuthModule,
     UserModule,
+    MessagesModule,
+    ChatroomsModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, AuthController, UserController],
+  providers: [
+    AppService,
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AuthGuardGuard,
+    // },
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: DataResponseInterceptor
+    // },
+    // AccessTokenGuard,
+  ],
 })
 export class AppModule {}
