@@ -1,22 +1,37 @@
-// import { User } from 'src/users/user.entitly';
-// import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable } from 'typeorm';
-// import { chatroom } from './enums/chatroomType';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, CreateDateColumn } from 'typeorm';
+import { User } from 'src/users/user.entitly'; 
+import { ChatRoomType } from './enums/chatroomType';
 
-// @Entity()
-// export class ChatRoom {
-//   @PrimaryGeneratedColumn('uuid')
-//   id: string;
 
-//   @Column()
-//   name: string;
+@Entity()
+export class ChatRoom {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-//   @Column({ default: 'GROUP' }) // 'private' or 'group'
-//   type: chatroom;
+  @Column()
+  name: string;
 
-//   @ManyToMany(() => User, (user) => user.chatRooms)
-//   @JoinTable()
-//   users: User[];
+  @Column({
+    type: 'enum',
+    enum: ChatRoomType,
+    default: ChatRoomType.GROUP
+  })
+  type: ChatRoomType;
 
-//   @CreateDateColumn()
-//   createdAt: Date;
-// }
+  @ManyToMany(() => User, (user) => user.chatRooms)
+  @JoinTable({
+    name: 'chat_room_users',
+    joinColumn: {
+      name: 'chat_room_id',
+      referencedColumnName: 'id'
+    },
+    inverseJoinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id'
+    }
+  })
+  users: User[];
+
+  @CreateDateColumn()
+  createdAt: Date;
+}
