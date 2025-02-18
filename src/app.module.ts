@@ -6,6 +6,8 @@ import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { PaginationModule } from './common/pagination.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthController } from './auth/auth.controller';
 import { UserController } from './users/user.controller';
@@ -39,6 +41,8 @@ import { ChatroomsModule } from './chatrooms/chatrooms.module';
     }),
     AuthModule,
     UserModule,
+    MailerModule,
+    PaginationModule,
     MessagesModule,
     ChatroomsModule
   ],
