@@ -9,7 +9,7 @@ import { EditUserDto } from '../DTOs/patch-user.dto';
 import { GetuserParamDto } from '../DTOs/getUserparamdto';
 import { FindOneByGoogleIdProvider } from './find-one-by-googleId';
 import { CreateGoogleUserProvider } from './googleUserProvider';
-import { GoogleInterface } from 'src/social/interfaces/user.interface';
+import { GoogleInterface } from 'src/auth/social/interfaces/user.interface';
 
 @Injectable()
 export class UserService {
@@ -17,16 +17,16 @@ export class UserService {
     /*
      *inject User entity
      */
-    @InjectRepository(User) 
+    @InjectRepository(User)
     private userRepository: Repository<User>,
 
     private readonly createUserProvider: CreateUserProvider,
 
-    private readonly findOneByemail : FindOneByEmail,
+    private readonly findOneByemail: FindOneByEmail,
 
     private readonly findOneByGoogleIdProvider: FindOneByGoogleIdProvider,
 
-    private readonly createGoogleUserProvider: CreateGoogleUserProvider
+    private readonly createGoogleUserProvider: CreateGoogleUserProvider,
   ) {}
 
   public findAll(
@@ -39,6 +39,10 @@ export class UserService {
 
   public async createUsers(createUserDto: CreateUserDto) {
     return this.createUserProvider.createUsers(createUserDto);
+  }
+
+  public FindOneById(id: number): Promise<User | null> {
+    return this.userRepository.findOneBy({ id });
   }
 
   public async GetOneByEmail(email: string) {
@@ -69,6 +73,6 @@ export class UserService {
   }
 
   public async createGoogleUser(googleUser: GoogleInterface) {
-    return this.createGoogleUserProvider.createGoogleUser(googleUser)
+    return this.createGoogleUserProvider.createGoogleUser(googleUser);
   }
 }
