@@ -6,31 +6,34 @@ import jwtConfig from '../authConfig/jwt.config';
 import { GenerateTokensProvider } from './generate-tokens.provider';
 import { UserService } from 'src/users/provider/user.service';
 
+/**Refresh token provider class */
 @Injectable()
 export class RefreshTokensProvider {
   constructor(
     /*
-     * injecting userService repo
+      injecting userService repo
      */
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
 
     /*
-     * inject jwtService
+     inject jwtService
      */
     private readonly jwtService: JwtService,
 
     /*
-     * inject jwtService
+      inject jwtService
      */
     @Inject(jwtConfig.KEY)
     private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,
 
     /* 
-     * inject generateTokenProvider
+      inject generateTokenProvider
      */
     private readonly generateTokenProvider: GenerateTokensProvider
   ) {}
+
+    /**A method for validating refresh token */
   public async refreshTokens(refreshTokenDto: RefreshTokenDto) {
     // validate the refresh token using jwt
    const { sub } = await this.jwtService.verifyAsync(

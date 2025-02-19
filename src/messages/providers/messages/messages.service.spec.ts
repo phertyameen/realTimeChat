@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MessagesService } from './messages.service';
 
+/**Message service  */
 describe('MessagesService', () => {
   let service: MessagesService;
 
