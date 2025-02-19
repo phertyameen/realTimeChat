@@ -29,7 +29,7 @@ Content-Type: application/json
 
 # Create a new chat room
 POST {{host}}/chat-rooms
-Authorization: Bearer {add token here}
+Authorization: Bearer  {{authToken}}
 Content-Type: application/json
 
 {
@@ -41,19 +41,19 @@ Content-Type: application/json
 ###
 
 # Get all chat rooms
-GET {{host}}/chatrooms
-Authorization: Bearer {{authToken}}
+GET {{host}}/chat-rooms
+Authorization: Bearer  {{authToken}}
 
 ###
 
 # Get specific chat room
-GET {{host}}/chatrooms/1
-Authorization: Bearer {{authToken}}
+GET {{host}}/chat-rooms/1
+Authorization: Bearer  {{authToken}}
 
 ###
 
 # Update chat room
-PATCH {{host}}/chatrooms/1
+PATCH {{host}}/chat-rooms/1
 Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
@@ -64,5 +64,5 @@ Content-Type: application/json
 ###
 
 # Delete chat room
-DELETE {{host}}/chatrooms/1
+DELETE {{host}}/chat-rooms/1
 Authorization: Bearer {{authToken}}
