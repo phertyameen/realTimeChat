@@ -42,19 +42,19 @@ Content-Type: application/json
 
 # Get all chat rooms
 GET {{host}}/chat-rooms
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoicXdAbWFpbC5jb20iLCJpYXQiOjE3Mzk5NzUyNDIsImV4cCI6MTczOTk3ODg0MiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.sKrAqqOIH1dFpdh8yIn1tzkjLjmwkHOGpRvoFLGWsKE
+Authorization: Bearer {token}
 
 ###
 
 # Get specific chat room
 GET {{host}}/chat-rooms/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoicXdAbWFpbC5jb20iLCJpYXQiOjE3Mzk5NzUyNDIsImV4cCI6MTczOTk3ODg0MiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.sKrAqqOIH1dFpdh8yIn1tzkjLjmwkHOGpRvoFLGWsKE
+Authorization: Bearer {token}
 
 ###
 
 # Update chat room
 PATCH {{host}}/chat-rooms/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoicXdAbWFpbC5jb20iLCJpYXQiOjE3Mzk5NzUyNDIsImV4cCI6MTczOTk3ODg0MiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.sKrAqqOIH1dFpdh8yIn1tzkjLjmwkHOGpRvoFLGWsKE
+Authorization: Bearer {token}
 Content-Type: application/json
 
 {
@@ -65,4 +65,4 @@ Content-Type: application/json
 
 # Delete chat room
 DELETE {{host}}/chat-rooms/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoicXdAbWFpbC5jb20iLCJpYXQiOjE3Mzk5NzUyNDIsImV4cCI6MTczOTk3ODg0MiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.sKrAqqOIH1dFpdh8yIn1tzkjLjmwkHOGpRvoFLGWsKE
+Authorization: Bearer {token}
