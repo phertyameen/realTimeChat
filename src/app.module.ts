@@ -6,14 +6,16 @@ import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './users/user.module';
+// import { MailerModule } from '@nestjs-modules/mailer';
+import { PaginationModule } from './common/pagination.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthController } from './auth/auth.controller';
 import { UserController } from './users/user.controller';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuardGuard } from './auth/guard/auth-guard/auth-guard.guard';
 import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
-import { MessagesModule } from './messages/messages.module';
-import { ChatroomsModule } from './chatrooms/chatrooms.module';
+// import { MessagesModule } from './messages/messages.module';
+import { ChatModule } from './chatrooms/chatrooms.module';
 
 @Module({
   imports: [
@@ -39,8 +41,10 @@ import { ChatroomsModule } from './chatrooms/chatrooms.module';
     }),
     AuthModule,
     UserModule,
-    MessagesModule,
-    ChatroomsModule
+    // MailerModule,
+    PaginationModule,
+    // MessagesModule,
+    ChatModule
   ],
   controllers: [AppController, AuthController, UserController],
   providers: [

@@ -71,7 +71,7 @@ export class GoogleAuthenticationService implements OnModuleInit {
         family_name: lastName,
       } = loginTicket.getPayload();
 
-      // find the user in the database using googleid
+      // find the user in the database using googleId
       const user = await this.userService.findOneByGoogleId(googleId);
 
       // if user exist, generate token
@@ -87,9 +87,9 @@ export class GoogleAuthenticationService implements OnModuleInit {
       });
       return this.generateTokensProvider.generateTokens(newUser);
     } catch (error) {
+      // if any of the step fails, send an unauthorised exception
       console.error("Google Auth Error:", error);
       throw new UnauthorizedException('failed to authenticate with google');
     }
-    // if any of the step fails, send an unauthorised exception
   }
 }

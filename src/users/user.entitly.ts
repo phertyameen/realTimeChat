@@ -1,8 +1,8 @@
-// import { Exclude } from 'class-transformer';
+import { Exclude } from 'class-transformer';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { userRole } from './Enums/userRole.enum';
-import { ChatRoom } from 'src/chatrooms/chatroom.entity';
-import { Message } from 'src/messages/message.entity';
+import { ChatRoom } from '../chatrooms/chatroom.entity';
+// import { Message } from 'src/messages/message.entity';
 
 /**
   User entity representing the user table in the database.
@@ -37,11 +37,7 @@ export class User {
   @Column('varchar', { unique: true, nullable: false })
   email: string;
 
-  /**
-    @description Encrypted password of the user. Can be null if the user signs up via Google.
-    @example "hashedpassword123"
-   */
-  // @Exclude()
+  @Exclude()
   @Column('varchar', { nullable: true })
   password?: string;
 
@@ -67,10 +63,7 @@ export class User {
   @JoinTable() // This creates a junction table to link users and chat rooms
   chatRooms: ChatRoom[];
 
-  /**
-   One-to-Many relationship between users and messages.
-   A user can send multiple messages.
-   */
-  @OneToMany(() => Message, (message) => message.sender)
-  messages: Message[];
+  // One-to-Many relationship with Message
+  // @OneToMany(() => Message, (message) => message.sender)
+  // messages: Message[];
 }
