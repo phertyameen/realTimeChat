@@ -15,7 +15,7 @@ import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuardGuard } from './auth/guard/auth-guard/auth-guard.guard';
 import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
 // import { MessagesModule } from './messages/messages.module';
-// import { ChatroomsModule } from './chatrooms/chatrooms.module';
+import { ChatModule } from './chatrooms/chatrooms.module';
 
 @Module({
   imports: [
@@ -44,7 +44,7 @@ import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
     // MailerModule,
     PaginationModule,
     // MessagesModule,
-    // ChatroomsModule
+    ChatModule
   ],
   controllers: [AppController, AuthController, UserController],
   providers: [
