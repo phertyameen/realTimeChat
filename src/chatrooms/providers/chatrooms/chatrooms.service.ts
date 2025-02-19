@@ -1,11 +1,12 @@
+// src/chatrooms/providers/chatrooms/chatrooms.service.ts
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ChatRoom } from '../../../chatrooms/chatroom.entity'; 
-import { CreateChatRoomDto } from '../../../chatrooms/DTOs/create-chat-room.dto';
-import { UpdateChatRoomDto } from '../../../chatrooms/DTOs/update-chat-room.dto';
-import { User } from '../../../users/user.entitly'; 
-import { ChatRoomType } from 'src/chatrooms/enums/chatroomType';
+import { ChatRoom } from '../../chatroom.entity';
+import { CreateChatRoomDto } from '../../DTOs/create-chat-room.dto';
+import { UpdateChatRoomDto } from '../../DTOs/update-chat-room.dto';
+import { User } from 'src/users/user.entitly';
+import { ChatRoomType } from '../../enums/chatroomType';
 
 @Injectable()
 export class ChatRoomService {
@@ -16,24 +17,24 @@ export class ChatRoomService {
     private userRepository: Repository<User>,
   ) {}
 
-  
   async create(createChatRoomDto: CreateChatRoomDto): Promise<ChatRoom> {
-    const users = await this.userRepository.findByIds(createChatRoomDto.userIds);
+    // Find users by their numeric IDs
+    const users = await this.userRepository.findByIds(
+      createChatRoomDto.userIds.map(id => Number(id))
+    );
     
     if (users.length !== createChatRoomDto.userIds.length) {
-      throw new BadRequestException('One or more users not found');
+      throw new NotFoundException('One or more users not found');
     }
 
-    if (createChatRoomDto.type === ChatRoomType.PRIVATE && users.length !== 2) {
-      throw new BadRequestException('Private chat rooms must have exactly 2 users');
-    }
-
+    // Create new chat room
     const chatRoom = this.chatRoomRepository.create({
-      ...createChatRoomDto,
-      users,
+      name: createChatRoomDto.name,
+      type: createChatRoomDto.type || ChatRoomType.GROUP,
+      users: users
     });
 
-    return this.chatRoomRepository.save(chatRoom);
+    return await this.chatRoomRepository.save(chatRoom);
   }
 
   async findAll(): Promise<ChatRoom[]> {
@@ -42,9 +43,9 @@ export class ChatRoomService {
     });
   }
 
-  async findOne(id: string): Promise<ChatRoom> {
+  async findOne(id: number): Promise<ChatRoom> {
     const chatRoom = await this.chatRoomRepository.findOne({
-      where: { id },
+      where: { id: Number(id) },
       relations: ['users'],
     });
 
@@ -55,11 +56,13 @@ export class ChatRoomService {
     return chatRoom;
   }
 
-  async update(id: string, updateChatRoomDto: UpdateChatRoomDto): Promise<ChatRoom> {
+  async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise<ChatRoom> {
     const chatRoom = await this.findOne(id);
     
     if (updateChatRoomDto.userIds) {
-      const users = await this.userRepository.findByIds(updateChatRoomDto.userIds);
+      const users = await this.userRepository.findByIds(
+        updateChatRoomDto.userIds.map(id => Number(id))
+      );
       
       if (users.length !== updateChatRoomDto.userIds.length) {
         throw new BadRequestException('One or more users not found');
@@ -76,17 +79,19 @@ export class ChatRoomService {
     return this.chatRoomRepository.save(chatRoom);
   }
 
-  async remove(id: string): Promise<void> {
-    const result = await this.chatRoomRepository.delete(id);
+  async remove(id: number): Promise<void> {
+    const result = await this.chatRoomRepository.delete(Number(id));
     
     if (result.affected === 0) {
       throw new NotFoundException(`Chat room with ID ${id} not found`);
     }
   }
 
-  async addUserToChatRoom(chatRoomId: string, userId: string): Promise<ChatRoom> {
+  async addUserToChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
     const chatRoom = await this.findOne(chatRoomId);
-    const user = await this.userRepository.findOne({ where: { id: Number(userId) }});
+    const user = await this.userRepository.findOne({ 
+      where: { id: Number(userId) }
+    });
 
     if (!user) {
       throw new NotFoundException(`User with ID ${userId} not found`);
@@ -100,7 +105,7 @@ export class ChatRoomService {
     return this.chatRoomRepository.save(chatRoom);
   }
 
-  async removeUserFromChatRoom(chatRoomId: string, userId: string): Promise<ChatRoom> {
+  async removeUserFromChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
     const chatRoom = await this.findOne(chatRoomId);
 
     if (chatRoom.type === ChatRoomType.PRIVATE) {
