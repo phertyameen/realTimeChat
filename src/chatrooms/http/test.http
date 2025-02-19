@@ -9,9 +9,9 @@ Content-Type: application/json
 {
     "firstName": "QxFatima",
     "lastName": "QxAminu",
-    "email": "qw@mail.com",
-    "password": "qw@xPassword123",
-    "confirmpassword": "qw@xPassword123",
+    "email": "qwa@mail.com",
+    "password": "qwa@xPassword123",
+    "confirmpassword": "qwa@xPassword123",
     "userRole": "admin"
 }
 # @name login
@@ -19,8 +19,8 @@ POST {{host}}/auth/signIn
 Content-Type: application/json
 
 {
-    "email": "qw@mail.com",
-    "password": "qw@xPassword123"
+    "email": "qwa@mail.com",
+    "password": "qwa@xPassword123"
 }
 
 ###
@@ -29,13 +29,13 @@ Content-Type: application/json
 
 # Create a new chat room
 POST {{host}}/chat-rooms
-Authorization: Bearer {add token here}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM2LCJlbWFpbCI6InF3YUBtYWlsLmNvbSIsImlhdCI6MTczOTk3ODAzOCwiZXhwIjoxNzM5OTgxNjM4LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.BUK-ZZcz3TMM8VEUD8jcC5RWFtpub3jjHla8sXQQiJE
 Content-Type: application/json
 
 {
     "name": "Test Group Chat",
     "type": "group",
-    "userIds": [1, 3]
+    "userIds": [34, 35]
 }
 
 ###
