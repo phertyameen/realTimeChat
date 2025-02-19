@@ -1,5 +1,6 @@
-import { IsString, IsEnum, IsArray, IsUUID, IsOptional } from 'class-validator';
+import { IsString, IsEnum, IsArray, IsUUID, IsOptional, IsNumber } from 'class-validator';
 import { ChatRoomType } from '../enums/chatroomType'; 
+import { Type } from 'class-transformer';
 
 export class CreateChatRoomDto {
   @IsString()
@@ -9,7 +10,9 @@ export class CreateChatRoomDto {
   @IsOptional()
   type?: ChatRoomType;
 
+
   @IsArray()
-  @IsUUID('4', { each: true })
-  userIds: string[];
+  @IsNumber({}, { each: true })
+  @Type(() => Number)
+  userIds: number[];
 }
