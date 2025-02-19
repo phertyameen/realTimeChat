@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable } from 'typeorm';
 import { User } from 'src/users/user.entitly'; 
 import { ChatRoomType } from './enums/chatroomType';
 
@@ -17,7 +17,20 @@ export class ChatRoom {
   })
   type: ChatRoomType;
 
-  @ManyToMany(() => User, (user) => user.chatRooms)
+  @ManyToMany(() => User, (user) => user.chatRooms, {
+    onDelete: 'CASCADE' // Automatically handles the relationship cleanup
+  })
+  @JoinTable({
+    name: 'user_chat_rooms',
+    joinColumn: {
+      name: 'chat_room_id',
+      referencedColumnName: 'id'
+    },
+    inverseJoinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id'
+    }
+  })
   users: User[];
 
   @CreateDateColumn()
