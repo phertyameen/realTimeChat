@@ -2,11 +2,12 @@ import { Exclude } from 'class-transformer';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { userRole } from './Enums/userRole.enum';
 import { ChatRoom } from '../chatrooms/chatroom.entity';
+import { Message } from 'src/messages/message.entity';
 // import { Message } from 'src/messages/message.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column('varchar', { length: 100, nullable: false })
@@ -34,6 +35,6 @@ export class User {
   chatRooms: ChatRoom[];
 
   // One-to-Many relationship with Message
-  // @OneToMany(() => Message, (message) => message.sender)
-  // messages: Message[];
+  @OneToMany(() => Message, (message) => message.sender, { cascade: true })
+  messages: Message[]; // ✅ Make sure this exists
 }
