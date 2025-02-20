@@ -3,8 +3,8 @@ GET http://localhost:3000/messages
 POST http://localhost:3000/message
 Content-Type: application/json
 {
-  "chatRoomId": "123e4567-e89b-12d3-a456-426614174000",
-  "senderId": "987e6543-e89b-12d3-a456-426614174999",
+  "chatRoomId": 1,
+  "senderId": 1,
   "text": "Hello, this is my first message!"
 }
 

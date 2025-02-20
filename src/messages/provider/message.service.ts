@@ -13,31 +13,31 @@ export class MessageService {
     @InjectRepository(User) private usersRepo: Repository<User>,
   ) {}
 
-  // ✅ Create a new message and SAVE it in DB
+  //  Create a new message and SAVE it in DB
   async create(chatRoomId: string, senderId: string, text: string): Promise<Message> {
-    // 1️⃣ Find the chat room
-    const chatRoom = await this.chatRoomsRepo.findOne({ where: { id: chatRoomId } });
+    // 1️ Find the chat room
+    const chatRoom = await this.chatRoomsRepo.findOne({ where: { id: chatRoomId as any } });
     if (!chatRoom) {
       throw new NotFoundException('Chat room not found');
     }
 
-    // 2️⃣ Find the sender
+    // 2️ Find the sender
     const sender = await this.usersRepo.findOne({ where: { id: senderId as any } });
     if (!sender) {
       throw new NotFoundException('Sender not found');
     }
 
-    // 3️⃣ Create and save the message in the DB
+    // 3️ Create and save the message in the DB
     const message = this.messagesRepo.create({ chatRoom, sender, text });
     return await this.messagesRepo.save(message);
   }
 
-  // ✅ Find all messages in a chat room
+  //  Find all messages in a chat room
   async findAll(chatRoomId: string): Promise<Message[]> {
-    return await this.messagesRepo.find({ where: { chatRoom: { id: chatRoomId } }, relations: ['sender'] });
+    return await this.messagesRepo.find({ where: { chatRoom: { id: chatRoomId as any} }, relations: ['sender'] });
   }
 
-  // ✅ Delete a message
+  //  Delete a message
   async delete(messageId: string): Promise<void> {
     const result = await this.messagesRepo.delete(messageId);
     if (result.affected === 0) {
@@ -45,7 +45,7 @@ export class MessageService {
     }
   }
 
-  // ✅ Update a message text
+  //  Update a message text
   async update(messageId: string, newText: string): Promise<Message> {
     const message = await this.messagesRepo.findOne({ where: { id: messageId } });
     if (!message) {
