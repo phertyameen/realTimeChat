@@ -13,9 +13,9 @@ import { AuthController } from './auth/auth.controller';
 import { UserController } from './users/user.controller';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuardGuard } from './auth/guard/auth-guard/auth-guard.guard';
-import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
 // import { MessagesModule } from './messages/messages.module';
 import { ChatModule } from './chatrooms/chatrooms.module';
+import { MessageModule } from './messages/messages.module';
 import { WebSocketModule } from './web-socket/web-socket.module';
 import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway';
 
@@ -43,10 +43,10 @@ import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway
     }),
     AuthModule,
     UserModule,
-    // MailerModule,
     PaginationModule,
-    // MessagesModule,
     ChatModule,
+    MessageModule,
+    // MessagesModule,
     WebSocketModule
   ],
   controllers: [AppController, AuthController, UserController],

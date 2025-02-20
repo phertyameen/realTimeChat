@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -60,20 +60,13 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">real-time-chat-api documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">real-time-chat-api documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -82,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -128,13 +121,6 @@
             </p>
 
 
-                <p class="comment">
-                <h3>Description</h3>
-                </p>
-                <p class="comment">
-                    <p>Access Token Guard to protect routes by verifying JWT tokens.</p>
-
-                </p>
 
 
 
@@ -158,7 +144,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#extractTokenFromHeader" >extractTokenFromHeader</a>
+                                <a href="#extractRequestFromHeader" >extractRequestFromHeader</a>
                             </li>
                         </ul>
                     </td>
@@ -183,14 +169,12 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:16</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Constructor to inject dependencies.</p>
-</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -199,7 +183,6 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -214,12 +197,6 @@
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <ul>
-<li>The JWT service for token operations.</li>
-</ul>
-
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>jwtConfiguration</td>
@@ -232,12 +209,6 @@
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <ul>
-<li>The JWT configuration settings.</li>
-</ul>
-
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -275,16 +246,14 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="39"
-                                    class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:39</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:24</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Determines whether a request has access based on the JWT token.</p>
-</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -295,7 +264,6 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -310,12 +278,6 @@
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>The execution context containing request details.</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -325,8 +287,7 @@
 
                         </div>
                             <div class="io-description">
-                                <p>A boolean indicating if the request is authorized.</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -336,34 +297,32 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="extractTokenFromHeader"></a>
+                    <a name="extractRequestFromHeader"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>extractTokenFromHeader</b></span>
-                        <a href="#extractTokenFromHeader"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>extractRequestFromHeader</b></span>
+                        <a href="#extractRequestFromHeader"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>extractTokenFromHeader(request: Request)</code>
+                    <code>extractRequestFromHeader(request: Request)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:47</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Extracts the JWT token from the request header.</p>
-</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -374,7 +333,6 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -389,23 +347,16 @@
                                             </td>
 
 
-                                            <td>
-                                                    <ul>
-<li>The incoming HTTP request.</li>
-</ul>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>string | undefined</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The extracted token or undefined if not found.</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -416,14 +367,13 @@
 
 
         <div class="tab-pane fade  tab-source-code" id="source">
-            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { 
+            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   CanActivate,
   ExecutionContext,
   Inject,
   Injectable,
   UnauthorizedException,
 } from &#x27;@nestjs/common&#x27;;
-import { ApiBearerAuth, ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { ConfigType } from &#x27;@nestjs/config&#x27;;
 import { JwtService } from &#x27;@nestjs/jwt&#x27;;
 import { Request } from &#x27;express&#x27;;
@@ -431,65 +381,43 @@ import { Observable } from &#x27;rxjs&#x27;;
 import jwtConfig from &#x27;src/auth/authConfig/jwt.config&#x27;;
 import { REQUEST_USER_KEY } from &#x27;src/auth/constants/auth.constant&#x27;;
 
-/**
- * Access Token Guard to protect routes by verifying JWT tokens.
- */
-@ApiBearerAuth()
-@ApiTags(&#x27;Auth&#x27;)
 @Injectable()
 export class AccessTokenGuard implements CanActivate {
-  /**
-   * Constructor to inject dependencies.
-   * @param jwtService - The JWT service for token operations.
-   * @param jwtConfiguration - The JWT configuration settings.
-   */
   constructor(
     private readonly jwtService: JwtService,
+
     @Inject(jwtConfig.KEY)
     private readonly jwtConfiguration: ConfigType&lt;typeof jwtConfig&gt;,
   ) {}
 
-  /**
-   * Determines whether a request has access based on the JWT token.
-   * @param context - The execution context containing request details.
-   * @returns A boolean indicating if the request is authorized.
-   */
   async canActivate(context: ExecutionContext): Promise&lt;boolean&gt; {
-    // Extract the request from the execution context
-    const request &#x3D; context.switchToHttp().getRequest&lt;Request&gt;();
-    
+    //Extract the request from the execution context
+    const request &#x3D; context.switchToHttp().getRequest();
     // Extract the token from the header
-    const token &#x3D; this.extractTokenFromHeader(request);
-    
+    const token &#x3D; this.extractRequestFromHeader(request);
     // Validate the token
     if (!token) {
-      throw new UnauthorizedException(&#x27;Token not found&#x27;);
+      throw new UnauthorizedException();
     }
-    
     try {
-      const payload &#x3D; await this.jwtService.verifyAsync(token, this.jwtConfiguration);
+      const payload &#x3D; await this.jwtService.verifyAsync(
+        token,
+        this.jwtConfiguration,
+      );
+
       request[REQUEST_USER_KEY] &#x3D; payload;
       console.log(payload);
     } catch (error) {
-      throw new UnauthorizedException(&#x27;Invalid or expired token&#x27;);
+      throw new UnauthorizedException(error);
     }
-    
     return true;
   }
 
-  /**
-   * Extracts the JWT token from the request header.
-   * @param request - The incoming HTTP request.
-   * @returns The extracted token or undefined if not found.
-   */
-  private extractTokenFromHeader(request: Request): string | undefined {
-    const authHeader &#x3D; request.headers.authorization;
-    if (!authHeader) return undefined;
-    const [, token] &#x3D; authHeader.split(&#x27; &#x27;);
+  private extractRequestFromHeader(request: Request) {
+    const [_, token] &#x3D; request.headers.authorization?.split(&#x27; &#x27;) ?? [];
     return token;
   }
-}
-</code></pre>
+}</code></pre>
         </div>
 </div>
 
@@ -533,6 +461,19 @@ export class AccessTokenGuard implements CanActivate {
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
 
@@ -544,7 +485,6 @@ export class AccessTokenGuard implements CanActivate {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 
