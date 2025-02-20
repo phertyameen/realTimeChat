@@ -5,6 +5,7 @@ import { ChatRoomController } from './chatroom.controller';
 import { ChatRoomService } from './providers/chatrooms/chatrooms.service'; 
 import { User } from '../users/user.entitly'; 
 
+/**chatroom module */
 @Module({
   imports: [
     TypeOrmModule.forFeature([ChatRoom, User]),

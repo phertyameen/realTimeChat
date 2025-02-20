@@ -1,32 +1,43 @@
-import {
-  BadRequestException,
-  forwardRef,
-  Inject,
-  Injectable,
-  RequestTimeoutException,
-} from '@nestjs/common';
+import {   BadRequestException,   forwardRef,   Inject,   Injectable,   RequestTimeoutException, } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from '../user.entitly';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../DTOs/create-user.dto';
 import { HashingProvider } from 'src/auth/providers/hashing';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
+/**
+ * Service responsible for handling user creation
+ */
+@ApiTags('Users')
 @Injectable()
 export class CreateUserProvider {
+  /**
+   * Constructor to inject dependencies.
+   * @param userRepository - Repository for User entity
+   * @param hashingProvider - Service for password hashing
+   */
   constructor(
-    /*
-     * Inject userRepository
-     */
+    /** Inject userRepository */
     @InjectRepository(User) private userRepository: Repository<User>,
 
-    /*
-     * Inject hashingProvider
-     */
+    /** Inject hashingProvider */
     @Inject(forwardRef(() => HashingProvider))
     private readonly hashingProvider: HashingProvider,
   ) {}
+
+  /**
+   * Creates a new user in the system
+   * @param createUserDto - DTO containing user data.
+   * @returns The newly created user.
+   * @throws BadRequestException If the user already exists.
+   * @throws RequestTimeoutException If there is an issue connecting to the database.
+   */
+  @ApiOperation({ summary: 'Create a new user' })
+  @ApiResponse({ status: 201, description: 'User successfully created.', type: User })
+  @ApiResponse({ status: 400, description: 'User already exists.' })
+  @ApiResponse({ status: 408, description: 'Database connection issue.' })
   public async createUsers(createUserDto: CreateUserDto): Promise<User> {
-    // check if user already exits
     let existingUser = undefined;
 
     try {
@@ -34,18 +45,17 @@ export class CreateUserProvider {
         where: { email: createUserDto.email },
       });
     } catch (error) {
-      // you might save/log your  error
       throw new RequestTimeoutException(
         'Unable to process your request at the moment, Please try later',
         {
           description: 'Error connecting to your database',
-          cause: 'the user is having network issues',
+          cause: 'The user is having network issues',
         },
       );
     }
-    // Handle Error
+
     if (existingUser) {
-      throw new BadRequestException('User already exist');
+      throw new BadRequestException('User already exists');
     }
 
     const hashedPassword = await this.hashingProvider.hashPassword(
@@ -57,15 +67,14 @@ export class CreateUserProvider {
       password: hashedPassword,
     });
 
-    // Create the user
     try {
-      this.userRepository.save(newUser);
+      await this.userRepository.save(newUser);
     } catch (error) {
       throw new RequestTimeoutException(
         'Unable to process your request at the moment, Please try later',
         {
           description: 'Error connecting to your database',
-          cause: 'the user is having network issues',
+          cause: 'The user is having network issues',
         },
       );
     }

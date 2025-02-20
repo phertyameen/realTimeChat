@@ -6,9 +6,21 @@ import { GenerateTokensProvider } from 'src/auth/providers/generate-tokens.provi
 import { UserService } from 'src/users/provider/user.service';
 import { GoogleTokenDto } from '../dtos/google-token.dto';
 
+/**
+ Google Authentication Service
+  Handles authentication using Google OAuth tokens.
+ */
 @Injectable()
+/** OAuth2 client for handling Google authentication */
 export class GoogleAuthenticationService implements OnModuleInit {
+  /**inject oAuthClient */
   private oAuthClient: OAuth2Client;
+  /**
+   Constructor to inject dependencies.
+    @param userService - Service to handle user-related operations
+    @param jwtConfigurattion - Configuration object for JWT
+   @param generateTokensProvider - Service to generate authentication tokens
+   */
   constructor(
     /**
      * inject userService
@@ -16,13 +28,11 @@ export class GoogleAuthenticationService implements OnModuleInit {
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
 
-    /**
-     * inject jwtconfig
-     */
+       /** Inject JWT configuration */
     @Inject(jwtConfig.KEY)
     private readonly jwtConfigurattion: ConfigType<typeof jwtConfig>,
     /**
-     * inject generateTokensProvider
+      inject generateTokensProvider
      */
     private readonly generateTokensProvider: GenerateTokensProvider,
   ) {}
@@ -33,6 +43,15 @@ export class GoogleAuthenticationService implements OnModuleInit {
 
     this.oAuthClient = new OAuth2Client(client_id, client_secret);
   }
+
+  /**
+    Authenticates a user using a Google token.
+    @param googleTokenDto - DTO containing the Google ID token
+    @returns The generated authentication tokens for the user
+    @throws UnauthorizedException if authentication fails
+   */
+
+    /**Authenticate method */
   public async authenticate(googleTokenDto: GoogleTokenDto) {
     try {
       console.log("Received Token:", googleTokenDto.token);

@@ -6,27 +6,37 @@ import { ActiveUserData } from '../interface/activeInterface';
 import { UserService } from 'src/users/provider/user.service';
 import { User } from 'src/users/user.entitly';
 
+/**
+ * Injectable service for generating tokens.
+ */
 @Injectable()
 export class GenerateTokensProvider {
   constructor(
-    /*
-     * injecting userService repo
+    /**
+     * Injecting userService repository.
      */
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
 
-    /*
-     *injecting jwtService
+    /**
+     * Injecting JwtService.
      */
     private readonly jwtService: JwtService,
 
-    /*
-     * injecting jwtConfig
+    /**
+     * Injecting jwtConfig.
      */
     @Inject(jwtConfig.KEY)
     private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,
   ) {}
 
+  /**
+   * Signs a token with a given user ID, expiration time, and optional payload.
+   * @param userId - The ID of the user.
+   * @param expiresIn - The expiration time for the token.
+   * @param payload - Additional data to include in the token.
+   * @returns A signed JWT token.
+   */
   public async signToken<T>(userId: number, expiresIn: number, payload?: T) {
     return await this.jwtService.signAsync(
       {
@@ -42,15 +52,24 @@ export class GenerateTokensProvider {
     );
   }
 
+  /**
+   * Generates access and refresh tokens for a given user.
+   * @param user - The user entity for whom tokens are generated.
+   * @returns An object containing access token, refresh token, and user details.
+   */
   public async generateTokens(user: User) {
     const [accessToken, refreshToken] = await Promise.all([
-    // generate access token
-    this.signToken(user.id, this.jwtConfiguration.ttl, {email: user.email}),
+      /**
+       * Generate access token.
+       */
+      this.signToken(user.id, this.jwtConfiguration.ttl, { email: user.email }),
 
-    // generate refresh token
-    this.signToken(user.id, this.jwtConfiguration.ttl)
-    ])
-    
-    return {'accessToken': accessToken, 'refreshToken': refreshToken, user}
+      /**
+       * Generate refresh token.
+       */
+      this.signToken(user.id, this.jwtConfiguration.ttl),
+    ]);
+
+    return { accessToken, refreshToken, user };
   }
 }

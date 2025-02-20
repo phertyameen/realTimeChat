@@ -13,7 +13,7 @@
     </head>
     <body>
           <script>
-               // Blocking script to avaoid flickering dark mode
+               // Blocking script to avoid flickering dark mode
                // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
@@ -60,20 +60,13 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="./" class="navbar-brand">real-time-chat-api documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">real-time-chat-api documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -82,7 +75,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="hidden-xs menu">
+               <div class="d-none d-md-block menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -125,25 +118,337 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="low">
+        <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
                 <a href="./controllers/AppController.html">src/app.controller.ts</a>
             </td>
             <td>controller</td>
             <td>AppController</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/2)</span>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
-        <tr class="low">
+        <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
                 <a href="./injectables/AppService.html">src/app.service.ts</a>
             </td>
             <td>injectable</td>
             <td>AppService</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/AuthController.html">src/auth/auth.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>AuthController</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#AUTH_TYPE_KEY">src/auth/constants/auth.constant.ts</a>
+            </td>
+            <td>variable</td>
+            <td>AUTH_TYPE_KEY</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#REQUEST_USER_KEY">src/auth/constants/auth.constant.ts</a>
+            </td>
+            <td>variable</td>
+            <td>REQUEST_USER_KEY</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#ActiveUser">src/auth/decorators/activeUser.decorator.ts</a>
+            </td>
+            <td>variable</td>
+            <td>ActiveUser</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#Auth">src/auth/decorators/auth.decorator.ts</a>
+            </td>
+            <td>variable</td>
+            <td>Auth</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/RefreshTokenDto.html">src/auth/dtos/refreshTokenDto.ts</a>
+            </td>
+            <td>class</td>
+            <td>RefreshTokenDto</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/SignInDto.html">src/auth/dtos/userDto.ts</a>
+            </td>
+            <td>class</td>
+            <td>SignInDto</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./guards/AccessTokenGuard.html">src/auth/guard/access-token/access-token.guard.ts</a>
+            </td>
+            <td>guard</td>
+            <td>AccessTokenGuard</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./guards/AuthGuardGuard.html">src/auth/guard/auth-guard/auth-guard.guard.ts</a>
+            </td>
+            <td>guard</td>
+            <td>AuthGuardGuard</td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(4/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ActiveUserData.html">src/auth/interface/activeInterface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ActiveUserData</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AuthService.html">src/auth/providers/auth.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AuthService</td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(3/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/BcryptProvider.html">src/auth/providers/bcrypt.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>BcryptProvider</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/GenerateTokensProvider.html">src/auth/providers/generate-tokens.provider.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>GenerateTokensProvider</td>
+            <td align="right" data-sort="75">
+                <span class="coverage-percent">75 %</span>
+                <span class="coverage-count">(3/4)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/HashingProvider.html">src/auth/providers/hashing.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>HashingProvider</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/RefreshTokensProvider.html">src/auth/providers/refresh-tokens.provider.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>RefreshTokensProvider</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(2/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/SignInProvider.html">src/auth/providers/sign-in.provider.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>SignInProvider</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(2/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/GoogleTokenDto.html">src/auth/social/dtos/google-token.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>GoogleTokenDto</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/GoogleAuthenticationController.html">src/auth/social/google-authentication.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>GoogleAuthenticationController</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/GoogleInterface.html">src/auth/social/interfaces/user.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>GoogleInterface</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/GoogleAuthenticationService.html">src/auth/social/providers/google-authentication.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>GoogleAuthenticationService</td>
+            <td align="right" data-sort="80">
+                <span class="coverage-percent">80 %</span>
+                <span class="coverage-count">(4/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/CreateChatRoomDto.html">src/chatrooms/DTOs/create-chat-room.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>CreateChatRoomDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/UpdateChatRoomDto.html">src/chatrooms/DTOs/update-chat-room.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>UpdateChatRoomDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/ChatRoomController.html">src/chatrooms/chatroom.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>ChatRoomController</td>
+            <td align="right" data-sort="25">
+                <span class="coverage-percent">25 %</span>
+                <span class="coverage-count">(2/8)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./entitys/ChatRoom.html">src/chatrooms/chatroom.entity.ts</a>
+            </td>
+            <td>entity</td>
+            <td>ChatRoom</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ChatRoomService.html">src/chatrooms/providers/chatrooms/chatrooms.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ChatRoomService</td>
+            <td align="right" data-sort="11">
+                <span class="coverage-percent">11 %</span>
+                <span class="coverage-count">(1/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/DataResponseInterceptor.html">src/common/interceptor/data-response/data-response.interceptor.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>DataResponseInterceptor</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/2)</span>
@@ -152,13 +457,253 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/functions.html#bootstrap">src/main.ts</a>
+                <a href="./classes/Paginated.html">src/common/pagination/Interfaces/paginatedInterface.ts</a>
+            </td>
+            <td>class</td>
+            <td>Paginated</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/PaginationProvider.html">src/common/pagination/Provider/pagination.provider.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>PaginationProvider</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/PaginationQueryDto.html">src/common/pagination/pagination-query.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>PaginationQueryDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/MailProvider.html">src/mail/providers/mail.provider.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>MailProvider</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/functions.html#bootstrap">src/main.ts</a>
             </td>
             <td>function</td>
             <td>bootstrap</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./entitys/Message.html">src/messages/message.entity.ts</a>
+            </td>
+            <td>entity</td>
+            <td>Message</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/MessageController.html">src/messages/messages.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>MessageController</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/MessageService.html">src/messages/provider/message.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>MessageService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/CreateUserDto.html">src/users/DTOs/create-user.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>CreateUserDto</td>
+            <td align="right" data-sort="88">
+                <span class="coverage-percent">88 %</span>
+                <span class="coverage-count">(8/9)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/MatchPasswordsConstraint.html">src/users/DTOs/create-user.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>MatchPasswordsConstraint</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(2/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/GetuserParamDto.html">src/users/DTOs/getUserparamdto.ts</a>
+            </td>
+            <td>class</td>
+            <td>GetuserParamDto</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/EditUserDto.html">src/users/DTOs/patch-user.dto.ts</a>
+            </td>
+            <td>class</td>
+            <td>EditUserDto</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(2/2)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/CreateUserProvider.html">src/users/provider/create-user.provider.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>CreateUserProvider</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/FindOneByEmail.html">src/users/provider/find-one-by-email.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>FindOneByEmail</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(3/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/FindOneByGoogleIdProvider.html">src/users/provider/find-one-by-googleId.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>FindOneByGoogleIdProvider</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(2/3)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/CreateGoogleUserProvider.html">src/users/provider/googleUserProvider.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>CreateGoogleUserProvider</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(2/3)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/UserService.html">src/users/provider/user.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>UserService</td>
+            <td align="right" data-sort="90">
+                <span class="coverage-percent">90 %</span>
+                <span class="coverage-count">(9/10)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./controllers/UserController.html">src/users/user.controller.ts</a>
+            </td>
+            <td>controller</td>
+            <td>UserController</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(5/5)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./entitys/User.html">src/users/user.entitly.ts</a>
+            </td>
+            <td>entity</td>
+            <td>User</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ServerToClientEvents.html">src/web-socket/interfaces/websockets-message.interface.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ServerToClientEvents</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/WebsocketGateway.html">src/web-socket/websocketEvents/websocket.gateway.ts</a>
+            </td>
+            <td>class</td>
+            <td>WebsocketGateway</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
     </tbody>
@@ -200,6 +745,19 @@
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
 
@@ -211,7 +769,6 @@
        <script src="./js/libs/es6-shim.min.js"></script>
        <script src="./js/libs/EventDispatcher.js"></script>
        <script src="./js/libs/promise.min.js"></script>
-       <script src="./js/libs/zepto.min.js"></script>
 
        <script src="./js/compodoc.js"></script>
 

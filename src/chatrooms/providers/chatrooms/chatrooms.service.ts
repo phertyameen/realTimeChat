@@ -8,6 +8,9 @@ import { UpdateChatRoomDto } from '../../DTOs/update-chat-room.dto';
 import { User } from 'src/users/user.entitly';
 import { ChatRoomType } from '../../enums/chatroomType';
 
+/**
+ * Chatroom service class
+ */
 @Injectable()
 export class ChatRoomService {
   constructor(

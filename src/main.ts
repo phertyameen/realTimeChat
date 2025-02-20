@@ -4,9 +4,21 @@ import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger"
 import { Request, Response, NextFunction } from 'express';
 import { ValidationPipe } from '@nestjs/common';
 
+/** 
+  The main entry point of the application. 
+ It initializes the NestJS application, sets up global configurations, 
+ and starts the server.
+ */
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  /**
+    Sets up global validation using `ValidationPipe`.
+     `whitelist: true` removes properties that do not have validation decorators.
+     `forbidNonWhitelisted: true` throws an error if non-whitelisted properties are found.
+     `transform: true` enables automatic transformation of input data.
+    -`enableImplicitConversion: true` allows automatic type conversion.
+   */
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
     forbidNonWhitelisted: true,
@@ -50,7 +62,9 @@ SwaggerModule.setup('api', app, document)
     allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
-  // Set custom headers to avoid COOP issues
+  /**
+    Sets custom security headers to prevent COOP issues.
+   */
   app.use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
     res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');

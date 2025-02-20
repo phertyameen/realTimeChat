@@ -4,26 +4,28 @@ import { HashingProvider } from './hashing';
 import { GenerateTokensProvider } from './generate-tokens.provider';
 import { UserService } from 'src/users/provider/user.service';
 
+/**Sign in provider class */
 @Injectable()
 export class SignInProvider {
     constructor(
         /* 
-         * injecting userService repo
+          injecting userService repo
          */
         @Inject(forwardRef(() => UserService))
         private readonly userService: UserService,
 
         /* 
-         * injecting hashing dependency
+          injecting hashing dependency
          */
         private readonly hashingProvider: HashingProvider,
         
         /* 
-         * injecting generateTokenProvider
+          injecting generateTokenProvider
          */
         private readonly generateTokenProvider: GenerateTokensProvider
     ){}
-    public async SignIn(signInDto: SignInDto) {
+        /**A method to check if user exist in db */
+        public async SignIn(signInDto: SignInDto) {
         // check if user exist in db
         // throw error if user doesnt exist
         let user = await this.userService.GetOneByEmail(signInDto.email)
@@ -32,7 +34,7 @@ export class SignInProvider {
             throw new UnauthorizedException('email or password is incorrect');
         }
         
-        // conpare password
+        /**conpare password */
         let isCheckedPassword: boolean = false
 
         try {
