@@ -20,17 +20,6 @@ export class ChatRoom {
   @ManyToMany(() => User, (user) => user.chatRooms, {
     onDelete: 'CASCADE' // Automatically handles the relationship cleanup
   })
-  @JoinTable({
-    name: 'user_chat_rooms',
-    joinColumn: {
-      name: 'chat_room_id',
-      referencedColumnName: 'id'
-    },
-    inverseJoinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id'
-    }
-  })
   users: User[];
 
   @CreateDateColumn()
