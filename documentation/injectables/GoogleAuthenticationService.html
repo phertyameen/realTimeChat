@@ -519,7 +519,7 @@ export class GoogleAuthenticationService implements OnModuleInit {
         family_name: lastName,
       } &#x3D; loginTicket.getPayload();
 
-      // find the user in the database using googleid
+      // find the user in the database using googleId
       const user &#x3D; await this.userService.findOneByGoogleId(googleId);
 
       // if user exist, generate token
@@ -535,10 +535,10 @@ export class GoogleAuthenticationService implements OnModuleInit {
       });
       return this.generateTokensProvider.generateTokens(newUser);
     } catch (error) {
+      // if any of the step fails, send an unauthorised exception
       console.error(&quot;Google Auth Error:&quot;, error);
       throw new UnauthorizedException(&#x27;failed to authenticate with google&#x27;);
     }
-    // if any of the step fails, send an unauthorised exception
   }
 }</code></pre>
     </div>

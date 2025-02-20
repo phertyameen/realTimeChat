@@ -86,7 +86,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -96,13 +96,9 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >MatchPasswordsConstraint</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >PaginationProvider</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -126,26 +122,11 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/auth/guard/access-token/access-token.guard.ts</code>
+            <code>src/common/pagination/Provider/pagination.provider.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>ValidatorConstraint: Custom validation class to ensure that
-the confirmPassword field matches the password field.</p>
 
-            </p>
-
-
-            <p class="comment">
-                <h3>Implements</h3>
-            </p>
-            <p class="comment">
-                        <code>ValidatorConstraintInterface</code>
-            </p>
 
 
             <section data-compodoc="block-index">
@@ -162,10 +143,9 @@ the confirmPassword field matches the password field.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#defaultMessage" >defaultMessage</a>
-                            </li>
-                            <li>
-                                <a href="#validate" >validate</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#paginatedQuery" >paginatedQuery</a>
                             </li>
                         </ul>
                     </td>
@@ -179,7 +159,54 @@ the confirmPassword field matches the password field.</p>
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(request: Request)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/common/pagination/Provider/pagination.provider.ts:10</a></div>
+                            </td>
+                        </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>request</td>
+                                                  
+                                                        <td>
+                                                                    <code>Request</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section data-compodoc="block-methods">
     
@@ -190,27 +217,38 @@ the confirmPassword field matches the password field.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="defaultMessage"></a>
+                    <a name="paginatedQuery"></a>
                     <span class="name">
-                        <span ><b>defaultMessage</b></span>
-                        <a href="#defaultMessage"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>paginatedQuery</b></span>
+                        <a href="#paginatedQuery"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>defaultMessage(args: ValidationArguments)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>paginatedQuery(paginationQueryDto: <a href="../classes/PaginationQueryDto.html" target="_self">PaginationQueryDto</a>, repository: Repository<T>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/common/pagination/Provider/pagination.provider.ts:18</a></div>
                         </td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
 
             <tr>
                 <td class="col-md-4">
@@ -228,9 +266,21 @@ the confirmPassword field matches the password field.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>args</td>
+                                                <td>paginationQueryDto</td>
                                             <td>
-                                                        <code>ValidationArguments</code>
+                                                            <code><a href="../classes/PaginationQueryDto.html" target="_self" >PaginationQueryDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>repository</td>
+                                            <td>
+                                                        <code>Repository&lt;T&gt;</code>
                                             </td>
 
                                             <td>
@@ -243,86 +293,7 @@ the confirmPassword field matches the password field.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="validate"></a>
-                    <span class="name">
-                        <span ><b>validate</b></span>
-                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>validate(confirmPassword: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, args: ValidationArguments)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/auth/guard/access-token/access-token.guard.ts:30</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>confirmPassword</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>args</td>
-                                            <td>
-                                                        <code>ValidationArguments</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/Paginated.html" target="_self" >Promise&lt;Paginated&lt;T&gt;&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -334,162 +305,93 @@ the confirmPassword field matches the password field.</p>
     </table>
 </section>
 
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  IsString,
-  IsEmail,
-  IsNotEmpty,
-  IsEnum,
-  IsOptional,
-  Validate,
-  MaxLength,
-  Matches,
-  ValidatorConstraint,
-  ValidatorConstraintInterface,
-  ValidationArguments,
-} from &#x27;class-validator&#x27;;
-import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
-import { Column } from &#x27;typeorm&#x27;;
-import { userRole } from &#x27;../Enums/userRole.enum&#x27;;
-import { Transform } from &#x27;class-transformer&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &quot;@nestjs/common&quot;;
+import { PaginationQueryDto } from &quot;../pagination-query.dto&quot;;
+import { ObjectLiteral, Repository } from &quot;typeorm&quot;;
+import { Request } from &quot;express&quot;;
+import { REQUEST } from &quot;@nestjs/core&quot;
+import { Paginated } from &quot;../Interfaces/paginatedInterface&quot;;
 
-/**
- * ValidatorConstraint: Custom validation class to ensure that
- * the confirmPassword field matches the password field.
- */
-@ValidatorConstraint({ name: &#x27;MatchPasswords&#x27;, async: false })
-/**
- * MatchPasswordsConstraint class that implements ValidatorConstraintInterface
- */
 
-/**MatchPasswordConstraint implementing ValidatorConstraintInterface */
-class MatchPasswordsConstraint implements ValidatorConstraintInterface {
-  validate(confirmPassword: string, args: ValidationArguments): boolean {
-    const object &#x3D; args.object as CreateUserDto;
+@Injectable()
+export class PaginationProvider {
 
-    /** Ensure password is present before checking match */
-    if (!object.password) return false;
-    return confirmPassword &#x3D;&#x3D;&#x3D; object.password;
-  }
+    constructor (
+        @Inject(REQUEST)
+        private readonly request:Request,
+    ) {}
+    
 
-  defaultMessage(args: ValidationArguments): string {
-    return &#x27;Password and confirm password do not match&#x27;;
-  }
-}
+    public async paginatedQuery&lt;T extends ObjectLiteral&gt; (paginationQueryDto:PaginationQueryDto, repository:Repository&lt;T&gt;,): Promise&lt;Paginated&lt;T&gt;&gt; {
 
-/**
- * CreateUserDto class representing the user creation request payload.
- */
+        const result &#x3D; await repository.find({
 
-export class CreateUserDto {
-  /**
-   * First name of the user.
-   */
-  @ApiProperty({
-    type: &#x27;string&#x27;,
-    example: &#x27;Fatima&#x27;,
-    description: &#x27;First name field&#x27;,
-  })
-  @IsString()
-  @IsNotEmpty()
-  @MaxLength(100)
-  firstName: string;
+            //skip: number of post
+            //take: number of post to show per page
+            skip: paginationQueryDto.limit * (paginationQueryDto.page - 1),
+            take: paginationQueryDto.limit,
+        })
 
-  /**
-   * Last name of the user.
-   */
-  @ApiProperty({
-    type: &#x27;string&#x27;,
-    example: &#x27;Aminu&#x27;,
-    description: &#x27;Last name field&#x27;,
-  })
-  @IsString()
-  @IsOptional()
-  @MaxLength(100)
-  lastName: string;
 
-  /**
-   * Email field (must be unique).
-   */
-  @ApiProperty({
-    type: &#x27;string&#x27;,
-    example: &#x27;fatimaaminu@mail.com&#x27;,
-    description: &#x27;Email field&#x27;,
-  })
-  @IsEmail()
-  @MaxLength(150)
-  @Column({ unique: true, length: 150 })
-  email: string;
+        // create a requestUrl 
+        // i.e http://localhost:3000/resource 
+        // the http is this.requestprotocol
+        const baseUrl &#x3D; this.request.protocol; + &quot;://&quot; + this.request.headers.host + &quot;/&quot;
 
-  /**
-   * Password field with specific validation rules.
-   */
-  @ApiProperty({
-    type: &#x27;string&#x27;,
-    example: &#x27;@Password123&#x27;,
-    description: &#x27;Password should contain numbers, alphabets, and uppercase.&#x27;,
-  })
-  @IsString()
-  @MaxLength(225)
-  @Matches(
-    /^(?&#x3D;.*[!@#$%^&amp;])(?&#x3D;.*[a-z])(?&#x3D;.*[A-Z])(?&#x3D;.*[0-9])[a-zA-Z0-9!@#$%^&amp;*]{8,16}$/,
-    {
-      message:
-        &#x27;Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.&#x27;,
-    },
-  )
-  password?: string;
+        const newUrl &#x3D; new URL(this.request.url, baseUrl)
 
-  /**
-   * Confirm password field, must match the password.
-   */
-  @ApiProperty({
-    type: &#x27;string&#x27;,
-    example: &#x27;@Password123&#x27;,
-    description:
-      &#x27;Password should contain numbers, alphabets, and uppercase and should be the same as the password.&#x27;,
-  })
-  @IsString()
-  @MaxLength(225)
-  @Validate(MatchPasswordsConstraint)
-  confirmpassword?: string;
+        console.log(baseUrl);
+        // line 34 give u http://localhost:3000/resource  as result on your terminal
+        console.log(newUrl)
 
-  /**
-   * User role (default is USER if not provided).
-   */
-  @ApiProperty({
-    enum: userRole,
-    example: userRole.USER,
-    description: &#x27;User role (default is USER if not provided).&#x27;,
-  })
-  @IsEnum(userRole)
-  @IsOptional()
-  @Transform(({ value }) &#x3D;&gt; value ?? userRole.USER)
-  userRole?: userRole;
+       const totalItems &#x3D; await repository.count()
 
-  /**
-   * Google ID (used for OAuth authentication).
-   */
-  @ApiProperty({
-    type: &#x27;string&#x27;,
-    example: &#x27;poiuytrdspoiuytrewa\zxcvbnmml;poiuytrdsdcvbnm]&#x27;,
-    description: &#x27;This is autogenerated from Google when you sign up with Google.&#x27;,
-  })
-  @IsString()
-  @IsOptional()
-  @MaxLength(225)
-  googleId?: string;
-}
-</code></pre>
+       const totalpage &#x3D; Math.ceil(totalItems / paginationQueryDto.limit)
+
+       const nextpage &#x3D; paginationQueryDto.page &#x3D;&#x3D;&#x3D; 1 ? paginationQueryDto.page: paginationQueryDto.page +1
+
+       const prevpage &#x3D; paginationQueryDto.page &#x3D;&#x3D;&#x3D; 1 ? paginationQueryDto.page: paginationQueryDto.page -1
+
+
+        const finalResponse: Paginated&lt;T&gt; &#x3D; {
+            data: result,
+            meta: {
+                itemsPerPage: paginationQueryDto.limit,
+                totalItems: totalItems,
+                currentPage: paginationQueryDto.page,
+                totalPage : totalpage
+            }, 
+            link: {
+                first: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;1&#x60;,
+
+                last: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;${totalpage}&#x60;,
+   
+               current: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${paginationQueryDto.page}&#x60;,
+   
+               next: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${nextpage}&#x60;,
+   
+               previous: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${prevpage}&#x60;
+   
+            }
+        }
+
+        return finalResponse
+
+
+    }
+
+}</code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -524,8 +426,8 @@ export class CreateUserDto {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'MatchPasswordsConstraint-1.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'PaginationProvider.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

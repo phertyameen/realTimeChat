@@ -173,9 +173,6 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#messages" >messages</a>
-                            </li>
-                            <li>
                                     <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#password" >password</a>
@@ -233,7 +230,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/users/user.entitly.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/users/user.entitly.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -361,7 +358,7 @@ This allows a user to be part of multiple chat rooms.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/users/user.entitly.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/users/user.entitly.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -461,51 +458,9 @@ This allows a user to be part of multiple chat rooms.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="messages"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>messages</b></span>
-                        <a href="#messages"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/Message.html" target="_self" >Message[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @OneToMany(undefined, message &#x3D;&gt; message.sender)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/users/user.entitly.ts:75</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>One-to-Many relationship between users and messages.
-A user can send multiple messages.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="password"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>password</b></span>
@@ -524,21 +479,16 @@ A user can send multiple messages.</p>
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;varchar&#x27;, {nullable: true})<br />
+                            @Exclude()<br />@Column(&#x27;varchar&#x27;, {nullable: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/users/user.entitly.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/users/user.entitly.ts:42</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -572,7 +522,7 @@ A user can send multiple messages.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/users/user.entitly.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/users/user.entitly.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -589,11 +539,11 @@ A user can send multiple messages.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">// import { Exclude } from &#x27;class-transformer&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Exclude } from &#x27;class-transformer&#x27;;
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany } from &#x27;typeorm&#x27;;
 import { userRole } from &#x27;./Enums/userRole.enum&#x27;;
-import { ChatRoom } from &#x27;src/chatrooms/chatroom.entity&#x27;;
-import { Message } from &#x27;src/messages/message.entity&#x27;;
+import { ChatRoom } from &#x27;../chatrooms/chatroom.entity&#x27;;
+// import { Message } from &#x27;src/messages/message.entity&#x27;;
 
 /**
   User entity representing the user table in the database.
@@ -628,11 +578,7 @@ export class User {
   @Column(&#x27;varchar&#x27;, { unique: true, nullable: false })
   email: string;
 
-  /**
-    @description Encrypted password of the user. Can be null if the user signs up via Google.
-    @example &quot;hashedpassword123&quot;
-   */
-  // @Exclude()
+  @Exclude()
   @Column(&#x27;varchar&#x27;, { nullable: true })
   password?: string;
 
@@ -658,12 +604,9 @@ export class User {
   @JoinTable() // This creates a junction table to link users and chat rooms
   chatRooms: ChatRoom[];
 
-  /**
-   One-to-Many relationship between users and messages.
-   A user can send multiple messages.
-   */
-  @OneToMany(() &#x3D;&gt; Message, (message) &#x3D;&gt; message.sender)
-  messages: Message[];
+  // One-to-Many relationship with Message
+  // @OneToMany(() &#x3D;&gt; Message, (message) &#x3D;&gt; message.sender)
+  // messages: Message[];
 }
 </code></pre>
     </div>
