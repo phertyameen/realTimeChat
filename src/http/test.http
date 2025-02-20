@@ -1,0 +1,68 @@
+@host = http://localhost:3000
+
+
+### Successful Signup
+# @name signup
+POST {{host}}/users
+Content-Type: application/json
+
+{
+    "firstName": "QxFatima",
+    "lastName": "QxAminu",
+    "email": "qw@mail.com",
+    "password": "qw@xPassword123",
+    "confirmpassword": "qw@xPassword123",
+    "userRole": "admin"
+}
+# @name login
+POST {{host}}/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "qw@mail.com",
+    "password": "qw@xPassword123"
+}
+
+###
+
+@authToken = {{login.response.body.access_token}}
+
+# Create a new chat room
+POST {{host}}/chat-rooms
+Authorization: Bearer  {{authToken}}
+Content-Type: application/json
+
+{
+    "name": "Test Group Chat",
+    "type": "group",
+    "userIds": [1, 3]
+}
+
+###
+
+# Get all chat rooms
+GET {{host}}/chat-rooms
+Authorization: Bearer  {{authToken}}
+
+###
+
+# Get specific chat room
+GET {{host}}/chat-rooms/1
+Authorization: Bearer  {{authToken}}
+
+###
+
+# Update chat room
+PATCH {{host}}/chat-rooms/1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "name": "Updated Chat Room Name"
+}
+
+###
+
+# Delete chat room
+DELETE {{host}}/chat-rooms/1
+Authorization: Bearer {{authToken}}

@@ -1,13 +1,26 @@
-import {   IsString,   IsEmail,   IsNotEmpty,   IsEnum,   IsOptional,   Validate,   MaxLength,   Matches,   ValidatorConstraint,   ValidatorConstraintInterface,   ValidationArguments, } from 'class-validator';
+import {
+  IsString,
+  IsEmail,
+  IsNotEmpty,
+  IsEnum,
+  IsOptional,
+  Validate,
+  MaxLength,
+  Matches,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+  ValidationArguments,
+  IsArray,
+  ValidateNested,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Column } from 'typeorm';
 import { userRole } from '../Enums/userRole.enum';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
+import { ChatRoom } from 'src/chatrooms/chatroom.entity';
 
-/**
- * ValidatorConstraint: Custom validation class to ensure that
- * the confirmPassword field matches the password field.
- */
+// custum validation to compare passwords
+
 @ValidatorConstraint({ name: 'MatchPasswords', async: false })
 export class MatchPasswordsConstraint implements ValidatorConstraintInterface {
   /**
@@ -131,4 +144,17 @@ export class CreateUserDto {
   @IsOptional()
   @MaxLength(225)
   googleId?: string;
+
+  @ApiProperty({
+    type: 'array',
+    required: true,
+    items: {
+      type: 'Chatroom',
+    },
+  })
+  @IsNotEmpty()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ChatRoom)
+  chatRooms: ChatRoom[];
 }

@@ -1,7 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
-import { ChatRoomService } from './providers/chatrooms/chatrooms.service'; 
-import { CreateChatRoomDto } from './DTOs/create-chat-room.dto'; 
-import { UpdateChatRoomDto } from './DTOs/update-chat-room.dto'; 
+// src/chatrooms/chatroom.controller.ts
+import { 
+  Controller, 
+  Get, 
+  Post, 
+  Body, 
+  Patch, 
+  Param, 
+  Delete, 
+  UseGuards,
+  ParseIntPipe
+} from '@nestjs/common';
+import { ChatRoomService } from './providers/chatrooms/chatrooms.service';
+import { CreateChatRoomDto } from './DTOs/create-chat-room.dto';
+import { UpdateChatRoomDto } from './DTOs/update-chat-room.dto';
 // import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('chat-rooms')
@@ -21,28 +32,37 @@ export class ChatRoomController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.chatRoomService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateChatRoomDto: UpdateChatRoomDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateChatRoomDto: UpdateChatRoomDto
+  ) {
     return this.chatRoomService.update(id, updateChatRoomDto);
   }
 
   /**chat room to delete a post */
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.chatRoomService.remove(id);
   }
 
   @Post(':id/users/:userId')
-  addUser(@Param('id') id: string, @Param('userId') userId: string) {
+  addUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('userId', ParseIntPipe) userId: number
+  ) {
     return this.chatRoomService.addUserToChatRoom(id, userId);
   }
 
   @Delete(':id/users/:userId')
-  removeUser(@Param('id') id: string, @Param('userId') userId: string) {
+  removeUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('userId', ParseIntPipe) userId: number
+  ) {
     return this.chatRoomService.removeUserFromChatRoom(id, userId);
   }
 }

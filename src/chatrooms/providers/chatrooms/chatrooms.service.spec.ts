@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+// import { ChatRoomService } from './chat-room.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { ChatRoom } from '../../../chatrooms/chatroom.entity';
 import { User } from '../../../users/user.entitly';
@@ -6,6 +7,7 @@ import { Repository } from 'typeorm';
 import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { ChatRoomType } from 'src/chatrooms/enums/chatroomType';
 import { ChatRoomService } from './chatrooms.service';
+import { CreateChatRoomDto } from 'src/chatrooms/DTOs/create-chat-room.dto';
 
 const mockChatRoomRepository = {
   create: jest.fn(),

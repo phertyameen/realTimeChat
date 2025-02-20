@@ -1,0 +1,68 @@
+@host = http://localhost:3000
+
+
+### Successful Signup
+# @name signup
+POST {{host}}/users
+Content-Type: application/json
+
+{
+    "firstName": "QxFatima",
+    "lastName": "QxAminu",
+    "email": "qwa@mail.com",
+    "password": "qwa@xPassword123",
+    "confirmpassword": "qwa@xPassword123",
+    "userRole": "admin"
+}
+# @name login
+POST {{host}}/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "qwa@mail.com",
+    "password": "qwa@xPassword123"
+}
+
+###
+
+@authToken = {{login.response.body.access_token}}
+
+# Create a new chat room
+POST {{host}}/chat-rooms
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM2LCJlbWFpbCI6InF3YUBtYWlsLmNvbSIsImlhdCI6MTczOTk3ODAzOCwiZXhwIjoxNzM5OTgxNjM4LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.BUK-ZZcz3TMM8VEUD8jcC5RWFtpub3jjHla8sXQQiJE
+Content-Type: application/json
+
+{
+    "name": "Test Group Chat",
+    "type": "group",
+    "userIds": [34, 35]
+}
+
+###
+
+# Get all chat rooms
+GET {{host}}/chat-rooms
+Authorization: Bearer {token}
+
+###
+
+# Get specific chat room
+GET {{host}}/chat-rooms/1
+Authorization: Bearer {token}
+
+###
+
+# Update chat room
+PATCH {{host}}/chat-rooms/1
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+    "name": "Updated Chat Room Name -musa"
+}
+
+###
+
+# Delete chat room
+DELETE {{host}}/chat-rooms/1
+Authorization: Bearer {token}

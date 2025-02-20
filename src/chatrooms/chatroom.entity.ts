@@ -1,21 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable } from 'typeorm';
 import { User } from 'src/users/user.entitly'; 
 import { ChatRoomType } from './enums/chatroomType';
 
-
-/**chat room entity */
-@Entity()
+/**Chatroom entity */
+@Entity('chat_rooms')
 export class ChatRoom {
-  /**Unique identifier */
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  /**unique identifier */
+  @PrimaryGeneratedColumn() 
+  id: number;
 
-  /**
-    name of the user.
-   */
-  @Column()
+  @Column('varchar', { length: 100 })
   name: string;
 
+  /**chatroomtype  of type enum */
   @Column({
     type: 'enum',
     enum: ChatRoomType,
@@ -23,18 +20,8 @@ export class ChatRoom {
   })
   type: ChatRoomType;
 
-    /**Many-many relationship between the user and the chat room */
-  @ManyToMany(() => User, (user) => user.chatRooms)
-  @JoinTable({
-    name: 'chat_room_users',
-    joinColumn: {
-      name: 'chat_room_id',
-      referencedColumnName: 'id'
-    },
-    inverseJoinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id'
-    }
+  @ManyToMany(() => User, (user) => user.chatRooms, {
+    onDelete: 'CASCADE' // Automatically handles the relationship cleanup
   })
   users: User[];
 

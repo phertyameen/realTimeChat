@@ -16,6 +16,8 @@ import { AuthGuardGuard } from './auth/guard/auth-guard/auth-guard.guard';
 import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
 // import { MessagesModule } from './messages/messages.module';
 import { ChatModule } from './chatrooms/chatrooms.module';
+import { WebSocketModule } from './web-socket/web-socket.module';
+import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway';
 
 @Module({
   imports: [
@@ -44,11 +46,13 @@ import { ChatModule } from './chatrooms/chatrooms.module';
     // MailerModule,
     PaginationModule,
     // MessagesModule,
-    ChatModule
+    ChatModule,
+    WebSocketModule
   ],
   controllers: [AppController, AuthController, UserController],
   providers: [
     AppService,
+    WebsocketGateway,
     // {
     //   provide: APP_GUARD,
     //   useClass: AuthGuardGuard,
