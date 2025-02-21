@@ -5,7 +5,7 @@ import { MessageService } from './provider/message.service';
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
 
-  //  POST: Send a new message
+    // POST: Send a new message
   @Post()
   async create(@Body() body: { chatRoomId: string; senderId: string; text: string }) {
     return await this.messageService.create(body.chatRoomId, body.senderId, body.text);

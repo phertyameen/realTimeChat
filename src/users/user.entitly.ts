@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMan
 import { userRole } from './Enums/userRole.enum';
 import { ChatRoom } from '../chatrooms/chatroom.entity';
 import { Message } from 'src/messages/message.entity';
-// import { Message } from 'src/messages/message.entity';
+
 
 @Entity()
 export class User {
@@ -36,5 +36,5 @@ export class User {
 
   // One-to-Many relationship with Message
   @OneToMany(() => Message, (message) => message.sender, { cascade: true })
-  messages: Message[]; // ✅ Make sure this exists
+  messages: Message[]; 
 }
