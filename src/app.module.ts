@@ -46,7 +46,7 @@ import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway
     UserModule,
     PaginationModule,
     ChatModule,
-    MessageModule
+    MessageModule,
     // MessagesModule,
     ChatModule,
     WebSocketModule

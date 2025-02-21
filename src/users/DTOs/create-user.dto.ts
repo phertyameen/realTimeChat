@@ -118,5 +118,5 @@ export class CreateUserDto {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ChatRoom)
-  chatRooms: ChatRoom[];
+  chatRooms?: ChatRoom[];
 }
