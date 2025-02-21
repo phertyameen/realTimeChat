@@ -44,7 +44,7 @@ SwaggerModule.setup('api', app, document)
 
   // enable cors
   app.enableCors({
-    origin: 'http://localhost:3500', // Your frontend URL
+    origin: '*', // All locations
     credentials: true, // Allow cookies
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'],
