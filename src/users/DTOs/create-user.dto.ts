@@ -114,7 +114,7 @@ export class CreateUserDto {
       type: 'Chatroom',
     },
   })
-  @IsNotEmpty()
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ChatRoom)

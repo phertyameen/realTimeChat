@@ -8,9 +8,9 @@ DELETE http://localhost:3000/users?id=33
 POST http://localhost:3000/users
 Content-Type: application/json
 {
-    "firstName": "test",
+    "firstName": "messagetotest",
     "lastName" : "test",
-    "email": "gfgh@gmail.com",
+    "email": "messagetotest@gmail.com",
     "password": "@Ppassword2",
     "confirmpassword": "@Ppassword2"
 }
