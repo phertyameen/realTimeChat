@@ -13,6 +13,9 @@ import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
 import { CreateMessageDto } from './dtos/create-message.dto';
 import { UpdateMessageDto } from './dtos/update-message.dto';
 
+/**
+ * message routes
+ */
 @Controller('message')
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
@@ -30,19 +33,25 @@ export class MessageController {
     return await this.messageService.create(createMessageDto, user);
   }
 
-  // GET: Get all messages in a chat room
+  /**
+   * Get all messages in a chat room
+   */
   @Get(':chatRoomId')
   async findAll(@Param('chatRoomId') chatRoomId: string) {
     return await this.messageService.findAll(chatRoomId);
   }
 
-  // DELETE: Delete a message by ID
+  /**
+   * Delete a message by ID
+   */
   @Delete(':messageId')
   async delete(@Param('messageId') messageId: string) {
     return await this.messageService.delete(messageId);
   }
 
-  // PATCH: Update a message text by ID
+  /**
+   * Update a message text by ID
+   */
   @Patch(':messageId')
   async update(
     @Param('messageId') messageId: string,

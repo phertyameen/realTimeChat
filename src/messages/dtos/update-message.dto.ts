@@ -1,9 +1,12 @@
 import { PartialType } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsInt, IsNotEmpty } from "class-validator";
 import { CreateMessageDto } from "./create-message.dto";
 
+/**
+   * update message dto
+   */
 export class UpdateMessageDto extends PartialType(CreateMessageDto) {
-    @IsString()
-    @IsNotEmpty({ message: 'Message text cannot be empty' })
-    text: string;
+    @IsInt()
+    @IsNotEmpty()
+    id: number;
 }
