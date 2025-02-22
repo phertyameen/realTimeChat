@@ -19,6 +19,8 @@ import { ChatModule } from './chatrooms/chatrooms.module';
 import { MessageModule } from './messages/messages.module';
 import { WebSocketModule } from './web-socket/web-socket.module';
 import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway';
+import jwtConfig from './auth/authConfig/jwt.config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -42,6 +44,8 @@ import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway
         autoLoadEntities: configService.get('database.autoload'),
       }),
     }),
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule.registerAsync(jwtConfig.asProvider()),
     AuthModule,
     UserModule,
     PaginationModule,
@@ -55,15 +59,15 @@ import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway
   providers: [
     AppService,
     WebsocketGateway,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: AuthGuardGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuardGuard,
+    },
     // {
     //   provide: APP_INTERCEPTOR,
     //   useClass: DataResponseInterceptor
     // },
-    // AccessTokenGuard,
+    AccessTokenGuard,
   ],
 })
 export class AppModule {}
