@@ -16,6 +16,11 @@ import { AuthGuardGuard } from './auth/guard/auth-guard/auth-guard.guard';
 import { AccessTokenGuard } from './auth/guard/access-token/access-token.guard';
 // import { MessagesModule } from './messages/messages.module';
 import { ChatModule } from './chatrooms/chatrooms.module';
+import { MessageModule } from './messages/messages.module';
+import { WebSocketModule } from './web-socket/web-socket.module';
+import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway';
+import jwtConfig from './auth/authConfig/jwt.config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -39,25 +44,30 @@ import { ChatModule } from './chatrooms/chatrooms.module';
         autoLoadEntities: configService.get('database.autoload'),
       }),
     }),
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule.registerAsync(jwtConfig.asProvider()),
     AuthModule,
     UserModule,
-    // MailerModule,
     PaginationModule,
+    ChatModule,
+    MessageModule,
     // MessagesModule,
-    ChatModule
+    ChatModule,
+    WebSocketModule
   ],
   controllers: [AppController, AuthController, UserController],
   providers: [
     AppService,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: AuthGuardGuard,
-    // },
+    WebsocketGateway,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuardGuard,
+    },
     // {
     //   provide: APP_INTERCEPTOR,
     //   useClass: DataResponseInterceptor
     // },
-    // AccessTokenGuard,
+    AccessTokenGuard,
   ],
 })
 export class AppModule {}

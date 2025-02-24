@@ -10,11 +10,14 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
   ValidationArguments,
+  IsArray,
+  ValidateNested,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Column } from 'typeorm';
 import { userRole } from '../Enums/userRole.enum';
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
+import { ChatRoom } from 'src/chatrooms/chatroom.entity';
 
 // custum validation to compare passwords
 
@@ -103,4 +106,17 @@ export class CreateUserDto {
   @IsOptional()
   @MaxLength(225)
   googleId?: string;
+
+  @ApiProperty({
+    type: 'array',
+    required: true,
+    items: {
+      type: 'Chatroom',
+    },
+  })
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ChatRoom)
+  chatRooms?: ChatRoom[];
 }

@@ -19,11 +19,13 @@ POST {{host}}/users
 Content-Type: application/json
 
 {
-    "firstName": "Chat",
-    "lastName": "Member",
-    "email": "chatmember@example.com",
-    "password": "@Password123",
-    "confirmpassword": "@Password123"
+
+    "firstName": "QxFatima",
+    "lastName": "QxAminu",
+    "email": "qwa@mail.com",
+    "password": "qwa@xPassword123",
+    "confirmpassword": "qwa@xPassword123",
+    "userRole": "admin"
 }
 
 ### Login as user 1 (owner)
@@ -32,8 +34,9 @@ POST {{host}}/auth/signIn
 Content-Type: application/json
 
 {
-    "email": "chatowner@example.com",
-    "password": "@Password123"
+
+    "email": "qwa@mail.com",
+    "password": "qwa@xPassword123"
 }
 
 ### Store user 1's token and ID
@@ -57,13 +60,14 @@ Content-Type: application/json
 ### 1. Create chat room as user 1 (owner)
 # @name createChatRoom
 POST {{host}}/chat-rooms
-Authorization: Bearer {{user1Token}}
+
+Authorization: Bearer token
 Content-Type: application/json
 
 {
     "name": "Test Owner Permissions",
     "type": "group",
-    "userIds": [{{user1Id}}, {{user2Id}}]
+    "userIds": [34, 35]
 }
 
 ### Store chat room ID

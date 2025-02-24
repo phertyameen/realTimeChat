@@ -14,7 +14,7 @@ import { GoogleInterface } from 'src/auth/social/interfaces/user.interface';
 @Injectable()
 export class UserService {
   constructor(
-    /*
+    /**
      *inject User entity
      */
     @InjectRepository(User)
