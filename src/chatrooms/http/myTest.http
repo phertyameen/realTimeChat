@@ -1,0 +1,129 @@
+@host = http://localhost:3000
+
+### Sign up user 1 (will be the chat owner)
+# @name signupUser1
+POST {{host}}/users
+Content-Type: application/json
+
+{
+    "firstName": "Chat",
+    "lastName": "Owner",
+    "email": "chatowner@example.com",
+    "password": "@Password123",
+    "confirmpassword": "@Password123"
+}
+
+### Sign up user 2 (regular member)
+# @name signupUser2
+POST {{host}}/users
+Content-Type: application/json
+
+{
+    "firstName": "Chat",
+    "lastName": "Member",
+    "email": "chatmember@example.com",
+    "password": "@Password123",
+    "confirmpassword": "@Password123"
+}
+
+### Login as user 1 (owner)
+# @name loginUser1
+POST {{host}}/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "chatowner@example.com",
+    "password": "@Password123"
+}
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+### Store user 1's token and ID
+@user1Token = {{loginUser1.response.body.accessToken}}
+@user1Id = {{loginUser1.response.body.user.id}}
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiY2hhdG1lbWJlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MDQyNDc1MywiZXhwIjoxNzQwNDI4MzUzLCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.mjAKANARJmdBw7nj8mQyqMuis_ojJJzYt3xpdLm1aJg
+### Login as user 2 (member)
+# @name loginUser2
+POST {{host}}/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "chatmember@example.com",
+    "password": "@Password123"
+}
+
+### Store user 2's token and ID
+@user2Token = {{loginUser2.response.body.accessToken}}
+@user2Id = {{loginUser2.response.body.user.id}}
+
+### 1. Create chat room as user 1 (owner)
+# @name createChatRoom
+POST {{host}}/chat-rooms
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+Content-Type: application/json
+
+{
+    "name": "Test Owner Permissions",
+    "type": "group",
+    "userIds": [6, 7]
+}
+
+### Store chat room ID
+@chatRoomId = {{createChatRoom.response.body.id}}
+
+### 2. Get all chat rooms as user 1
+GET {{host}}/chat-rooms
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+
+### 3. Get specific chat room as user 1
+GET {{host}}/chat-rooms/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+
+### 4. Update chat room as user 1 (owner)
+PATCH {{host}}/chat-rooms/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+Content-Type: application/json
+
+{
+    "name": "Updated Room Name"
+}
+
+### 5. Sign up user 3 (to add to the chat)
+# @name signupUser3
+POST {{host}}/users
+Content-Type: application/json
+
+{
+    "firstName": "New",
+    "lastName": "Member",
+    "email": "newmember@example.com",
+    "password": "@Password123",
+    "confirmpassword": "@Password123"
+}
+
+### 6. Get user 3's ID
+# @name loginUser3
+POST {{host}}/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "newmember@example.com",
+    "password": "@Password123"
+}
+
+### Store user 3's ID
+@user3Id = {{loginUser3.response.body.user.id}}
+
+### 7. Add user 3 to chat room
+POST {{host}}/chat-rooms/8/users/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+
+### 8. Remove user 3 from chat room
+DELETE {{host}}/chat-rooms/8/users/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+
+### 9. Try to delete chat room as user 2 (should fail)
+DELETE {{host}}/chat-rooms/{{chatRoomId}}
+Authorization: Bearer {{user2Token}}
+
+### 10. Delete chat room as user 1 (owner)
+DELETE {{host}}/chat-rooms/8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
