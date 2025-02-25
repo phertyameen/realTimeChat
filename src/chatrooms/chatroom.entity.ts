@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from 'src/users/user.entitly'; 
 import { ChatRoomType } from './enums/chatroomType';
 
@@ -21,6 +21,13 @@ export class ChatRoom {
     onDelete: 'CASCADE' // Automatically handles the relationship cleanup
   })
   users: User[];
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'owner_id' })
+  owner: User;
+
+  @Column({ name: 'owner_id', nullable: true }) // Made nullable temporarily
+  ownerId: number;
 
   @CreateDateColumn()
   createdAt: Date;
