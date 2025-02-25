@@ -29,13 +29,13 @@ Content-Type: application/json
 
 # Create a new chat room
 POST {{host}}/chat-rooms
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM2LCJlbWFpbCI6InF3YUBtYWlsLmNvbSIsImlhdCI6MTczOTk3ODAzOCwiZXhwIjoxNzM5OTgxNjM4LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.BUK-ZZcz3TMM8VEUD8jcC5RWFtpub3jjHla8sXQQiJE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI4LCJpYXQiOjE3NDAzOTQ3NjAsImV4cCI6MTc0MDM5ODM2MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.TWDXXI7sLvHaY-c7K5mZsFbyMzKfYsSWV9Ib8knwcj0
 Content-Type: application/json
 
 {
     "name": "Test Group Chat",
     "type": "group",
-    "userIds": [34, 35]
+    "userIds": [4, 5]
 }
 
 ###
@@ -53,8 +53,8 @@ Authorization: Bearer {token}
 ###
 
 # Update chat room
-PATCH {{host}}/chat-rooms/1
-Authorization: Bearer {token}
+PATCH {{host}}/chat-rooms/13
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI4LCJpYXQiOjE3NDAzOTQ3NjAsImV4cCI6MTc0MDM5ODM2MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.TWDXXI7sLvHaY-c7K5mZsFbyMzKfYsSWV9Ib8knwcj0
 Content-Type: application/json
 
 {
@@ -64,5 +64,5 @@ Content-Type: application/json
 ###
 
 # Delete chat room
-DELETE {{host}}/chat-rooms/1
-Authorization: Bearer {token}
+DELETE {{host}}/chat-rooms/14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI4LCJpYXQiOjE3NDAzOTQ3NjAsImV4cCI6MTc0MDM5ODM2MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.TWDXXI7sLvHaY-c7K5mZsFbyMzKfYsSWV9Ib8knwcj0
