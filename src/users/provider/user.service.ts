@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../user.entitly';
 import { Repository } from 'typeorm';
@@ -10,6 +10,9 @@ import { GetuserParamDto } from '../DTOs/getUserparamdto';
 import { FindOneByGoogleIdProvider } from './find-one-by-googleId';
 import { CreateGoogleUserProvider } from './googleUserProvider';
 import { GoogleInterface } from 'src/auth/social/interfaces/user.interface';
+import { PaginationProvider } from 'src/common/pagination/Provider/pagination.provider';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { Paginated } from 'src/common/pagination/Interfaces/paginatedInterface';
 
 @Injectable()
 export class UserService {
@@ -27,14 +30,27 @@ export class UserService {
     private readonly findOneByGoogleIdProvider: FindOneByGoogleIdProvider,
 
     private readonly createGoogleUserProvider: CreateGoogleUserProvider,
+
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public findAll(
-    getUserParamDto: GetuserParamDto,
-    limit: number,
-    page: number,
-  ): Promise<User[]> {
-    return this.userRepository.find();
+  // Fetch paginated users
+  public async findAll(
+    paginationQueryDto: PaginationQueryDto,
+  ): Promise<Paginated<User>> {
+    return this.paginationProvider.paginatedQuery(
+      paginationQueryDto,
+      this.userRepository,
+    );
+  }
+
+  // Fetch a single user by ID
+  public async findOneById(id: number): Promise<User> {
+    const user = await this.userRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return user;
   }
 
   public async createUsers(createUserDto: CreateUserDto) {
