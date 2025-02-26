@@ -23,6 +23,9 @@ export class Message {
   @Column({ type: 'enum', enum: MessageType, default: MessageType.TEXT })
   messageType: MessageType;
 
+  @Column({ type: 'text', nullable: true }) // Store the uploaded file link
+  fileUrl?: string;
+
   @CreateDateColumn()
   timestamp: Date;
 }
