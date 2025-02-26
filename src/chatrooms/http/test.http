@@ -67,7 +67,7 @@ Content-Type: application/json
 {
     "name": "Test Owner Permissions",
     "type": "group",
-    "userIds": [34, 35]
+    "userIds": [4, 5]
 }
 
 ### Store chat room ID

@@ -10,7 +10,7 @@ Content-Type: application/json
 {
     "firstName": "messagetotest",
     "lastName" : "test",
-    "email": "messagetotest@gmail.com",
+    "email": "passwordtest4@gmail.com",
     "password": "@Ppassword2",
     "confirmpassword": "@Ppassword2"
 }
