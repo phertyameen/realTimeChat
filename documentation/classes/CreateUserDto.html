@@ -247,7 +247,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;array&#x27;, required: true, items: undefined})<br />@IsNotEmpty()<br />@IsArray()<br />@ValidateNested({each: true})<br />@Type(undefined)<br />
+                            @ApiProperty({type: &#x27;array&#x27;, required: true, items: undefined})<br />@IsOptional()<br />@IsArray()<br />@ValidateNested({each: true})<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
@@ -664,7 +664,7 @@ export class CreateUserDto {
       type: &#x27;Chatroom&#x27;,
     },
   })
-  @IsNotEmpty()
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() &#x3D;&gt; ChatRoom)
