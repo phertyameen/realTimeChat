@@ -57,7 +57,7 @@ Content-Type: application/json
 ### 1. Create chat room as user 1 (owner)
 # @name createChatRoom
 POST {{host}}/chat-rooms
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+Authorization: Bearer 
 Content-Type: application/json
 
 {

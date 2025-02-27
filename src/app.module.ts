@@ -22,6 +22,7 @@ import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway
 import jwtConfig from './auth/authConfig/jwt.config';
 import { JwtModule } from '@nestjs/jwt';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot({
