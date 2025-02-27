@@ -4,6 +4,7 @@ import { WebSocketGateway, WebSocketServer, SubscribeMessage, OnGatewayConnectio
 import { Server, Socket } from 'socket.io';
 // import { MessageService } from './message.service';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
+import { MessageType } from 'src/messages/enum/message-type ';
 import { MessageService } from 'src/messages/provider/message.service';
 
 @WebSocketGateway({ cors: true })
@@ -26,7 +27,7 @@ export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnec
 
     // Save the message to the database
     const savedMessage = await this.messageService.create(
-      { text: payload.text, chatRoomId: payload.chatRoomId },
+      { text: payload.text, chatRoomId: payload.chatRoomId, messageType: MessageType.FILE },
       payload.user,
       undefined,
     );
