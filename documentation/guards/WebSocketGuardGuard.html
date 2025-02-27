@@ -79,16 +79,21 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content guard">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Controllers</li>
-  <li class="breadcrumb-item" >AppController</li>
+    <li class="breadcrumb-item">Guards</li>
+    <li class="breadcrumb-item" >WebSocketGuardGuard</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -107,21 +112,20 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
-        <p class="comment">
+        <div class="tab-pane fade active in" id="info">
+            <p class="comment">
             <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app.controller.ts</code>
-        </p>
+            </p>
+            <p class="comment">
+                <code>src/auth/guard/web-socket-guard/web-socket-guard.guard.ts</code>
+            </p>
 
 
 
 
 
 
-
-            <section data-compodoc="block-index">
+                <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -135,8 +139,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
-                                <a href="#getHello" >getHello</a>
+                                <a href="#canActivate" >canActivate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#validateToken" >validateToken</a>
                             </li>
                         </ul>
                     </td>
@@ -150,7 +157,8 @@
     </table>
 </section>
 
-            <section data-compodoc="block-methods">
+
+                <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -159,76 +167,178 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="canActivate"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>getHello</b></span>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>canActivate</b></span>
+                        <a href="#canActivate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getHello()</code>
+<code>canActivate(context: ExecutionContext)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get()<br /></code>
-                </td>
-            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/app.controller.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="8"
+                                    class="link-to-prism">src/auth/guard/web-socket-guard/web-socket-guard.guard.ts:8</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>get met</p>
-</div>
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>context</td>
+                                            <td>
+                                                        <code>ExecutionContext</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>boolean | Promise | Observable</code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
-</section>    </div>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateToken"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>validateToken</b></span>
+                        <a href="#validateToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validateToken(client: Socket)</code>
+                </td>
+            </tr>
 
 
-    <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get } from &#x27;@nestjs/common&#x27;;
-import { AppService } from &#x27;./app.service&#x27;;
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/auth/guard/web-socket-guard/web-socket-guard.guard.ts:22</a></div>
+                        </td>
+                    </tr>
 
-@Controller()
-/**app controller class */
-export class AppController {
-  constructor(private readonly appService: AppService) {}
 
-  /**get met */
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>client</td>
+                                            <td>
+                                                        <code>Socket</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+        </div>
+
+
+        <div class="tab-pane fade  tab-source-code" id="source">
+            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CanActivate, ExecutionContext, Injectable, Logger } from &#x27;@nestjs/common&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { Socket } from &#x27;socket.io&#x27;;
+import { verify } from &#x27;jsonwebtoken&#x27;;
+
+@Injectable()
+export class WebSocketGuardGuard implements CanActivate {
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
+    if (context.getType() !&#x3D;&#x3D; &#x27;ws&#x27;) {
+      return true;
+    }
+
+    const client: Socket &#x3D; context.switchToWs().getClient();
+    const { authurisation } &#x3D; client.handshake.headers;
+
+    Logger.log({authurisation}, &#x27;i have the auth&#x27;)
+    return false;
+  }
+
+  static validateToken(client: Socket) {
+    const {authorisation} &#x3D; client.handshake.headers
+    Logger.log({authorisation})
+
+    const token &#x3D; Array.isArray(authorisation) ? authorisation[0].split(&#x27; &#x27;)[1] : authorisation.split(&#x27; &#x27;)[1];
+
+    const payload &#x3D; verify(token, &#x27;secret&#x27;)
+
+    return payload
   }
 }
 </code></pre>
-    </div>
+        </div>
 </div>
-
-
-
-
-
 
 
 
@@ -265,8 +375,8 @@ export class AppController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'guard';
+            var COMPODOC_CURRENT_PAGE_URL = 'WebSocketGuardGuard.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

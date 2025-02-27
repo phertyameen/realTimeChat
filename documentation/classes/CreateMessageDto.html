@@ -79,7 +79,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content entity">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -87,9 +87,15 @@
 
 
 
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Entities</li>
-  <li class="breadcrumb-item" >ChatRoom</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >CreateMessageDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -113,8 +119,10 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/chatrooms/chatroom.entity.ts</code>
+            <code>src/messages/dtos/create-message.dto.ts</code>
         </p>
+
+
 
 
 
@@ -133,32 +141,30 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#createdAt" >createdAt</a>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#audio" >audio</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#id" >id</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#name" >name</a>
+                                <a href="#chatRoomId" >chatRoomId</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
-                                <a href="#owner" >owner</a>
+                                    <span class="modifier">Optional</span>
+                                <a href="#fileUrl" >fileUrl</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#ownerId" >ownerId</a>
+                                    <span class="modifier"></span>
+                                <a href="#messageType" >messageType</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#type" >type</a>
-                            </li>
-                            <li>
                                     <span class="modifier"></span>
-                                <a href="#users" >users</a>
+                                    <span class="modifier">Optional</span>
+                                <a href="#text" >text</a>
                             </li>
                         </ul>
                     </td>
@@ -173,6 +179,7 @@
     </table>
 </section>
 
+
             <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -182,83 +189,13 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createdAt"></a>
+                    <a name="audio"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>createdAt</b></span>
-                        <a href="#createdAt"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @CreateDateColumn()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/chatrooms/chatroom.entity.ts:33</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="id"></a>
-                    <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>id</b></span>
-                        <a href="#id"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @PrimaryGeneratedColumn()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/chatrooms/chatroom.entity.ts:8</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="name"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>name</b></span>
-                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Optional</span>
+                        <span ><b>audio</b></span>
+                        <a href="#audio"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -273,13 +210,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;varchar&#x27;, {length: 100})<br />
+                            @IsString()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/chatrooms/chatroom.entity.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/messages/dtos/create-message.dto.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -290,18 +227,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="owner"></a>
+                    <a name="chatRoomId"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>owner</b></span>
-                        <a href="#owner"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>chatRoomId</b></span>
+                        <a href="#chatRoomId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -310,13 +246,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined)<br />@JoinColumn({name: &#x27;owner_id&#x27;})<br />
+                            @IsNotEmpty()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/chatrooms/chatroom.entity.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/messages/dtos/create-message.dto.ts:6</a></div>
                         </td>
                     </tr>
 
@@ -327,17 +263,19 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ownerId"></a>
+                    <a name="fileUrl"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>ownerId</b></span>
-                        <a href="#ownerId"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>fileUrl</b></span>
+                        <a href="#fileUrl"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -346,13 +284,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({name: &#x27;owner_id&#x27;, nullable: true})<br />
+                            @IsString()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/chatrooms/chatroom.entity.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/messages/dtos/create-message.dto.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -363,17 +301,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="type"></a>
+                    <a name="messageType"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>type</b></span>
-                        <a href="#type"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                        <span ><b>messageType</b></span>
+                        <a href="#messageType"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ChatRoomType" target="_self" >ChatRoomType</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#MessageType" target="_self" >MessageType</a></code>
 
                     </td>
                 </tr>
@@ -382,13 +321,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;enum&#x27;, enum: ChatRoomType, default: undefined})<br />
+                            @IsOptional()<br />@IsEnum(MessageType)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/chatrooms/chatroom.entity.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/messages/dtos/create-message.dto.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -399,17 +338,19 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="users"></a>
+                    <a name="text"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>users</b></span>
-                        <a href="#users"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>text</b></span>
+                        <a href="#text"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../entitys/User.html" target="_self" >User[]</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -418,13 +359,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToMany(undefined, user &#x3D;&gt; user.chatRooms, {onDelete: &#x27;CASCADE&#x27;})<br />
+                            @IsString()<br />@IsNotEmpty()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/chatrooms/chatroom.entity.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/messages/dtos/create-message.dto.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -432,52 +373,43 @@
         </tbody>
     </table>
 </section>
+
+
+
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable, ManyToOne, JoinColumn } from &#x27;typeorm&#x27;;
-import { User } from &#x27;src/users/user.entitly&#x27;; 
-import { ChatRoomType } from &#x27;./enums/chatroomType&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsEnum, IsNotEmpty, IsOptional, IsString } from &#x27;class-validator&#x27;;
+import { MessageType } from &#x27;../enum/message-type &#x27;;
 
-@Entity(&#x27;chat_rooms&#x27;)
-export class ChatRoom {
-  @PrimaryGeneratedColumn() 
-  id: number;
+export class CreateMessageDto {
+  @IsNotEmpty()
+  chatRoomId: string;
 
-  @Column(&#x27;varchar&#x27;, { length: 100 })
-  name: string;
+  @IsString()
+  @IsNotEmpty()
+  text?: string;
+  
+  @IsString()
+  @IsOptional()
+  audio?: string;
 
-  @Column({
-    type: &#x27;enum&#x27;,
-    enum: ChatRoomType,
-    default: ChatRoomType.GROUP
-  })
-  type: ChatRoomType;
+  @IsString()
+  @IsOptional()
+  fileUrl?: string;
 
-  @ManyToMany(() &#x3D;&gt; User, (user) &#x3D;&gt; user.chatRooms, {
-    onDelete: &#x27;CASCADE&#x27; // Automatically handles the relationship cleanup
-  })
-  users: User[];
-
-  @ManyToOne(() &#x3D;&gt; User)
-  @JoinColumn({ name: &#x27;owner_id&#x27; })
-  owner: User;
-
-  @Column({ name: &#x27;owner_id&#x27;, nullable: true }) // Made nullable temporarily
-  ownerId: number;
-
-  @CreateDateColumn()
-  createdAt: Date;
-}</code></pre>
+  @IsOptional()
+  @IsEnum(MessageType)
+  messageType: MessageType;
+}
+</code></pre>
     </div>
 </div>
-
-
-
-
-
-
 
 
 
@@ -512,8 +444,8 @@ export class ChatRoom {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
-            var COMPODOC_CURRENT_PAGE_URL = 'ChatRoom.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreateMessageDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

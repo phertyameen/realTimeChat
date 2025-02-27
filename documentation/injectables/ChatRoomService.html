@@ -263,8 +263,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="90"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:90</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -337,7 +337,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(createChatRoomDto: <a href="../classes/CreateChatRoomDto.html" target="_self">CreateChatRoomDto</a>)</code>
+                    <code>create(createChatRoomDto: <a href="../classes/CreateChatRoomDto.html" target="_self">CreateChatRoomDto</a>, currentUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -369,6 +369,18 @@
                                                 <td>createChatRoomDto</td>
                                             <td>
                                                             <code><a href="../classes/CreateChatRoomDto.html" target="_self" >CreateChatRoomDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>currentUserId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
 
                                             <td>
@@ -413,8 +425,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -452,8 +464,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -514,15 +526,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -550,6 +562,18 @@
 
                                             <td>
                                                     No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
                                             </td>
 
 
@@ -590,8 +614,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="108"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:108</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -671,8 +695,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -736,7 +760,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, BadRequestException } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { ChatRoom } from &#x27;../../chatroom.entity&#x27;;
@@ -754,8 +778,8 @@ export class ChatRoomService {
     private userRepository: Repository&lt;User&gt;,
   ) {}
 
-  async create(createChatRoomDto: CreateChatRoomDto): Promise&lt;ChatRoom&gt; {
-    // Find users by their numeric IDs
+  async create(createChatRoomDto: CreateChatRoomDto, currentUserId: number): Promise&lt;ChatRoom&gt; {
+    // Find users
     const users &#x3D; await this.userRepository.findByIds(
       createChatRoomDto.userIds.map(id &#x3D;&gt; Number(id))
     );
@@ -764,11 +788,21 @@ export class ChatRoomService {
       throw new NotFoundException(&#x27;One or more users not found&#x27;);
     }
 
+    // Make sure the current user is one of the chat participants
+    if (!createChatRoomDto.userIds.includes(currentUserId)) {
+      // Add the current user to the chat members if not already included
+      const currentUser &#x3D; await this.userRepository.findOne({ where: { id: currentUserId } });
+      if (currentUser) {
+        users.push(currentUser);
+      }
+    }
+
     // Create new chat room
     const chatRoom &#x3D; this.chatRoomRepository.create({
       name: createChatRoomDto.name,
-      type: createChatRoomDto.type || ChatRoomType.GROUP,
-      users: users
+      type: createChatRoomDto.type,
+      users: users,
+      ownerId: currentUserId
     });
 
     return await this.chatRoomRepository.save(chatRoom);
@@ -780,49 +814,64 @@ export class ChatRoomService {
     });
   }
 
-  async findOne(id: number): Promise&lt;ChatRoom&gt; {
-    const chatRoom &#x3D; await this.chatRoomRepository.findOne({
-      where: { id: Number(id) },
-      relations: [&#x27;users&#x27;],
-    });
+// Method for finding a chat room by ID
+async findOne(id: number): Promise&lt;ChatRoom&gt; {
+  const chatRoom &#x3D; await this.chatRoomRepository.findOne({
+    where: { id: Number(id) },
+    relations: [&#x27;users&#x27;, &#x27;owner&#x27;]
+  });
 
-    if (!chatRoom) {
-      throw new NotFoundException(&#x60;Chat room with ID ${id} not found&#x60;);
-    }
-
-    return chatRoom;
+  if (!chatRoom) {
+    throw new NotFoundException(&#x60;Chat room with ID ${id} not found&#x60;);
   }
 
-  async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise&lt;ChatRoom&gt; {
-    const chatRoom &#x3D; await this.findOne(id);
+  return chatRoom;
+}
+
+// Method for updating a chat room
+async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise&lt;ChatRoom&gt; {
+  const chatRoom &#x3D; await this.findOne(id);
+  
+  if (updateChatRoomDto.userIds) {
+    const users &#x3D; await this.userRepository.findByIds(
+      updateChatRoomDto.userIds.map(id &#x3D;&gt; Number(id))
+    );
     
-    if (updateChatRoomDto.userIds) {
-      const users &#x3D; await this.userRepository.findByIds(
-        updateChatRoomDto.userIds.map(id &#x3D;&gt; Number(id))
-      );
-      
-      if (users.length !&#x3D;&#x3D; updateChatRoomDto.userIds.length) {
-        throw new BadRequestException(&#x27;One or more users not found&#x27;);
-      }
-
-      if (chatRoom.type &#x3D;&#x3D;&#x3D; ChatRoomType.PRIVATE &amp;&amp; users.length !&#x3D;&#x3D; 2) {
-        throw new BadRequestException(&#x27;Private chat rooms must have exactly 2 users&#x27;);
-      }
-
-      chatRoom.users &#x3D; users;
+    if (users.length !&#x3D;&#x3D; updateChatRoomDto.userIds.length) {
+      throw new BadRequestException(&#x27;One or more users not found&#x27;);
     }
 
-    Object.assign(chatRoom, updateChatRoomDto);
-    return this.chatRoomRepository.save(chatRoom);
+    if (chatRoom.type &#x3D;&#x3D;&#x3D; ChatRoomType.PRIVATE &amp;&amp; users.length !&#x3D;&#x3D; 2) {
+      throw new BadRequestException(&#x27;Private chat rooms must have exactly 2 users&#x27;);
+    }
+
+    chatRoom.users &#x3D; users;
   }
 
-  async remove(id: number): Promise&lt;void&gt; {
-    const result &#x3D; await this.chatRoomRepository.delete(Number(id));
-    
-    if (result.affected &#x3D;&#x3D;&#x3D; 0) {
-      throw new NotFoundException(&#x60;Chat room with ID ${id} not found&#x60;);
-    }
+  // Update other fields
+  if (updateChatRoomDto.name) chatRoom.name &#x3D; updateChatRoomDto.name;
+  if (updateChatRoomDto.type) chatRoom.type &#x3D; updateChatRoomDto.type;
+
+  return this.chatRoomRepository.save(chatRoom);
+}
+
+async remove(id: number, userId?: number): Promise&lt;void&gt; {
+  const chatRoom &#x3D; await this.chatRoomRepository.findOne({
+    where: { id: Number(id) }
+  });
+  
+  if (!chatRoom) {
+    throw new NotFoundException(&#x60;Chat room with ID ${id} not found&#x60;);
   }
+
+  // Check owner permissions if userId is provided
+  if (userId &amp;&amp; chatRoom.ownerId &amp;&amp; chatRoom.ownerId !&#x3D;&#x3D; userId) {
+    throw new ForbiddenException(&#x27;You do not have permission to delete this chat room&#x27;);
+  }
+  
+  // Remove the chat room
+  await this.chatRoomRepository.remove(chatRoom);
+}
 
   async addUserToChatRoom(chatRoomId: number, userId: number): Promise&lt;ChatRoom&gt; {
     const chatRoom &#x3D; await this.findOne(chatRoomId);
@@ -842,16 +891,28 @@ export class ChatRoomService {
     return this.chatRoomRepository.save(chatRoom);
   }
 
-  async removeUserFromChatRoom(chatRoomId: number, userId: number): Promise&lt;ChatRoom&gt; {
-    const chatRoom &#x3D; await this.findOne(chatRoomId);
+// Method for removing a user from a chat room
+async removeUserFromChatRoom(chatRoomId: number, userId: number): Promise&lt;ChatRoom&gt; {
+  const chatRoom &#x3D; await this.findOne(chatRoomId);
 
-    if (chatRoom.type &#x3D;&#x3D;&#x3D; ChatRoomType.PRIVATE) {
-      throw new BadRequestException(&#x27;Cannot remove users from private chat rooms&#x27;);
-    }
-
-    chatRoom.users &#x3D; chatRoom.users.filter(user &#x3D;&gt; user.id !&#x3D;&#x3D; Number(userId));
-    return this.chatRoomRepository.save(chatRoom);
+  if (chatRoom.type &#x3D;&#x3D;&#x3D; ChatRoomType.PRIVATE) {
+    throw new BadRequestException(&#x27;Cannot remove users from private chat rooms&#x27;);
   }
+
+  // Check if user is the owner
+  if (chatRoom.ownerId &#x3D;&#x3D;&#x3D; userId) {
+    throw new BadRequestException(&#x27;Cannot remove the owner from the chat room&#x27;);
+  }
+
+  const initialUserCount &#x3D; chatRoom.users.length;
+  chatRoom.users &#x3D; chatRoom.users.filter(user &#x3D;&gt; user.id !&#x3D;&#x3D; userId);
+
+  if (chatRoom.users.length &#x3D;&#x3D;&#x3D; initialUserCount) {
+    throw new NotFoundException(&#x60;User with ID ${userId} not found in chat room ${chatRoomId}&#x60;);
+  }
+
+  return this.chatRoomRepository.save(chatRoom);
+}
 }</code></pre>
     </div>
 
