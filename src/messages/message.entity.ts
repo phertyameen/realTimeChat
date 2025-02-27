@@ -23,6 +23,9 @@ export class Message {
   @Column({ type: 'enum', enum: MessageType, default: MessageType.TEXT })
   messageType: MessageType;
 
+  @Column({type: 'text', nullable: true})
+  text: string
+  
   @Column({ type: 'text', nullable: true }) 
   fileUrl?: string;
 
