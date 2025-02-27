@@ -8,13 +8,13 @@ export class CreateMessageDto {
   @IsString()
   @IsNotEmpty()
   text?: string;
-
+  
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   audio?: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   fileUrl?: string;
 
   @IsOptional()
