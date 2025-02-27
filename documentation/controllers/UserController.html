@@ -142,6 +142,8 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#createUsers" >createUsers</a>
                             </li>
@@ -184,6 +186,8 @@
                     <a name="createUsers"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>createUsers</b></span>
                         <a href="#createUsers"><span class="icon ion-ios-link"></span></a>
@@ -201,14 +205,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@Auth(authTypes.None)<br />@UseInterceptors(ClassSerializerInterceptor)<br />@Post()<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/users/user.controller.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/users/user.controller.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -284,8 +288,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/users/user.controller.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/users/user.controller.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -361,8 +365,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/users/user.controller.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/users/user.controller.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -438,8 +442,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/users/user.controller.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/users/user.controller.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -513,18 +517,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, DefaultValuePipe, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from &quot;@nestjs/common&quot;;
-import { UserService } from &quot;./provider/user.service&quot;;
-import { CreateUserDto } from &quot;./DTOs/create-user.dto&quot;;
-import { EditUserDto } from &quot;./DTOs/patch-user.dto&quot;;
-import { GetuserParamDto } from &quot;./DTOs/getUserparamdto&quot;;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  DefaultValuePipe,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+  UseInterceptors,
+} from &#x27;@nestjs/common&#x27;;
+import { UserService } from &#x27;./provider/user.service&#x27;;
+import { CreateUserDto } from &#x27;./DTOs/create-user.dto&#x27;;
+import { EditUserDto } from &#x27;./DTOs/patch-user.dto&#x27;;
+import { GetuserParamDto } from &#x27;./DTOs/getUserparamdto&#x27;;
+import { Auth } from &#x27;src/auth/decorators/auth.decorator&#x27;;
+import { authTypes } from &#x27;src/auth/enums/authTypes.enum&#x27;;
 
 @Controller(&#x27;users&#x27;)
 export class UserController {
-    constructor(private readonly userService:UserService) {}
+  constructor(private readonly userService: UserService) {}
 
-    @Get(&#x27;/:id?&#x27;)
+  @Get(&#x27;/:id?&#x27;)
   public getUsers(
     @Param() getuserParamDto: GetuserParamDto,
     @Query(&#x27;limit&#x27;, new DefaultValuePipe(20), ParseIntPipe) limit: number,
@@ -534,26 +552,24 @@ export class UserController {
     return this.userService.findAll(getuserParamDto, limit, page);
   }
 
-@Post()
+  @Auth(authTypes.None)
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Post()
   public createUsers(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUsers(createUserDto);
   }
-  
 
   @Delete()
-  public deleteUser(@Query(&#x27;id&#x27;, ParseIntPipe) id:number)  {
-      return this.userService.deleteUser(id)
-
+  public deleteUser(@Query(&#x27;id&#x27;, ParseIntPipe) id: number) {
+    return this.userService.deleteUser(id);
   }
-
 
   @Patch()
   public editedPost(@Body() edituserDto: EditUserDto) {
     return this.userService.editUser(edituserDto);
   }
-
-
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

@@ -123,6 +123,13 @@
             </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>message routes</p>
+
+            </p>
 
 
 
@@ -141,6 +148,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
@@ -184,6 +192,7 @@
                     <a name="create"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
@@ -193,7 +202,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(body: literal type)</code>
+                    <code>create(user: <a href="../interfaces/ActiveUserData.html" target="_self">ActiveUserData</a>, createMessageDto: <a href="../classes/CreateMessageDto.html" target="_self">CreateMessageDto</a>, file?: Express.Multer.File)</code>
                 </td>
             </tr>
 
@@ -201,20 +210,22 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@Post()<br />@UseInterceptors(undefined)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="10"
-                                    class="link-to-prism">src/messages/messages.controller.ts:10</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/messages/messages.controller.ts:30</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Send a new message with the active user as the sender</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -229,13 +240,37 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>body</td>
+                                                <td>user</td>
                                             <td>
-                                                        <code>literal type</code>
+                                                            <code><a href="../interfaces/ActiveUserData.html" target="_self" >ActiveUserData</a></code>
                                             </td>
 
                                             <td>
                                                     No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>createMessageDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateMessageDto.html" target="_self" >CreateMessageDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                        <code>Express.Multer.File</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
                                             </td>
 
 
@@ -284,14 +319,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/messages/messages.controller.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/messages/messages.controller.ts:53</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Delete a message by ID</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -361,14 +398,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/messages/messages.controller.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/messages/messages.controller.ts:45</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Get all messages in a chat room</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -424,7 +463,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(messageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, body: literal type)</code>
+                    <code>update(messageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateMessageDto: <a href="../classes/UpdateMessageDto.html" target="_self">UpdateMessageDto</a>)</code>
                 </td>
             </tr>
 
@@ -438,14 +477,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/messages/messages.controller.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/messages/messages.controller.ts:61</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Update a message text by ID</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -472,9 +513,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>body</td>
+                                                <td>updateMessageDto</td>
                                             <td>
-                                                        <code>literal type</code>
+                                                            <code><a href="../classes/UpdateMessageDto.html" target="_self" >UpdateMessageDto</a></code>
                                             </td>
 
                                             <td>
@@ -501,36 +542,71 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Post, Get, Delete, Patch, Body, Param } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Controller,
+  Post,
+  Get,
+  Delete,
+  Patch,
+  Body,
+  Param,
+  UploadedFile, UseInterceptors 
+} from &#x27;@nestjs/common&#x27;;
 import { MessageService } from &#x27;./provider/message.service&#x27;;
+import { ActiveUserData } from &#x27;src/auth/interface/activeInterface&#x27;;
+import { ActiveUser } from &#x27;src/auth/decorators/activeUser.decorator&#x27;;
+import { CreateMessageDto } from &#x27;./dtos/create-message.dto&#x27;;
+import { UpdateMessageDto } from &#x27;./dtos/update-message.dto&#x27;;
+import { FileInterceptor } from &#x27;@nestjs/platform-express&#x27;;
 
+/**
+ * message routes
+ */
 @Controller(&#x27;message&#x27;)
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
 
-  //  POST: Send a new message
+  /**
+   * Send a new message with the active user as the sender
+   */
   @Post()
-  async create(@Body() body: { chatRoomId: string; senderId: string; text: string }) {
-    return await this.messageService.create(body.chatRoomId, body.senderId, body.text);
+  @UseInterceptors(FileInterceptor(&#x27;file&#x27;))
+  async create(
+    @ActiveUser() user: ActiveUserData,
+    @Body() createMessageDto: CreateMessageDto,
+    @UploadedFile() file?: Express.Multer.File,
     
+  ) {
+    // Override senderId from payload using the active user&#x27;s sub property.
+    console.log(user);
+    return await this.messageService.create(createMessageDto, user, file);
   }
 
-  //  GET: Get all messages in a chat room
+  /**
+   * Get all messages in a chat room
+   */
   @Get(&#x27;:chatRoomId&#x27;)
   async findAll(@Param(&#x27;chatRoomId&#x27;) chatRoomId: string) {
     return await this.messageService.findAll(chatRoomId);
   }
 
-  //  DELETE: Delete a message by ID
+  /**
+   * Delete a message by ID
+   */
   @Delete(&#x27;:messageId&#x27;)
   async delete(@Param(&#x27;messageId&#x27;) messageId: string) {
     return await this.messageService.delete(messageId);
   }
 
-  //  PATCH: Update a message text by ID
+  /**
+   * Update a message text by ID
+   */
   @Patch(&#x27;:messageId&#x27;)
-  async update(@Param(&#x27;messageId&#x27;) messageId: string, @Body() body: { text: string }) {
-    return await this.messageService.update(messageId, body.text);
+  async update(
+    @Param(&#x27;messageId&#x27;) messageId: string,
+    @Body() updateMessageDto: UpdateMessageDto,
+  ) {
+    return await this.messageService.update(messageId, updateMessageDto);
   }
 }
 </code></pre>
