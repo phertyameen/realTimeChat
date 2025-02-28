@@ -13,7 +13,6 @@ import { CreateMessageDto } from '../dtos/create-message.dto';
 import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
 import { CloudinaryService } from 'src/cloudinary-provider/cloudinary.service';
-// import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 @Injectable()
 export class MessageService {
@@ -40,43 +39,24 @@ export class MessageService {
     private readonly cloudinaryService: CloudinaryService,
   ) {}
 
-  // async create(createMessageDto: CreateMessageDto, @ActiveUser() user: ActiveUserData): Promise<Message> {
-  //   const { chatRoomId, text } = createMessageDto;
-
-  //   // Find the chat room
-  //   const chatRoom = await this.chatRoomsRepo.findOne({ where: { id: chatRoomId as any } });
-  //   if (!chatRoom) {
-  //     throw new NotFoundException('Chat room not found');
-  //   }
-
-  //   // Directly use the active user as the sender
-  //   const message = this.messagesRepo.create({ ...createMessageDto, sender: user });
-  //   return await this.messagesRepo.save(message);
-  // }
-
-  // Find all messages in a chat room
-
-  /**
-   * Create a new message and save it in the DB
-   */
   async create(
     createMessageDto: CreateMessageDto,
     user: ActiveUserData,
-    file?: Express.Multer.File
+    file?: Express.Multer.File,
   ): Promise<Message> {
     const { chatRoomId, text } = createMessageDto;
-  
+
     //  Find the chat room
     const chatRoom = await this.chatRoomsRepo.findOne({
-      where: { id: chatRoomId as any },
+      where: { id: createMessageDto.chatRoomId },
     });
     if (!chatRoom) throw new NotFoundException('Chat room not found');
-  
+
     //  Find the sender
     const sender = await this.usersRepo.findOne({ where: { id: user.sub } });
-    console.log(sender)
+    console.log(sender);
     if (!sender) throw new NotFoundException('Sender not found');
-  
+
     //  Handle file upload if provided
     let fileUrl: string | undefined;
     if (file) {
@@ -90,23 +70,21 @@ export class MessageService {
         throw new BadRequestException('File upload failed');
       }
     }
-  
-    //  Create message with correct TypeORM structure
+
+    //  Create message
     const message = this.messagesRepo.create({
       chatRoom,
       sender,
-      text,
+      text: createMessageDto.text,
       fileUrl,
-      
     } as DeepPartial<Message>);
     console.log('Message Before Save:', message);
-  
+
     //Save message correctly
     const savedMessage = await this.messagesRepo.save(message);
     console.log('Saved Message:', savedMessage);
     return savedMessage; // Ensure returning a single object
   }
-  
 
   /**
    * find all messages in a chatroom

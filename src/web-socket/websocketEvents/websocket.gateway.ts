@@ -1,8 +1,11 @@
-/**websocket to handle file upload */
-
-import { WebSocketGateway, WebSocketServer, SubscribeMessage, OnGatewayConnection, OnGatewayDisconnect } from '@nestjs/websockets';
+import {
+  WebSocketGateway,
+  WebSocketServer,
+  SubscribeMessage,
+  OnGatewayConnection,
+  OnGatewayDisconnect,
+} from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-// import { MessageService } from './message.service';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
 import { MessageType } from 'src/messages/enum/message-type ';
 import { MessageService } from 'src/messages/provider/message.service';
@@ -11,10 +14,12 @@ import { MessageService } from 'src/messages/provider/message.service';
  * WebSocket gateway handling real-time message exchanges.
  */
 @WebSocketGateway({ cors: true })
-export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
-
+export class WebsocketGateway
+  implements OnGatewayConnection, OnGatewayDisconnect
+{
   /**websocket server instance */
-  @WebSocketServer() server: Server;
+  @WebSocketServer()
+  server: Server;
 
   constructor(private readonly messageService: MessageService) {}
   /**
@@ -39,12 +44,24 @@ export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnec
    * @param payload The message payload containing text, file URL, chat room ID, and user details.
    */
   @SubscribeMessage('sendMessage')
-  async handleMessage(client: Socket, payload: { text?: string; fileUrl?: string; chatRoomId: string; user: ActiveUserData }) {
+  async handleMessage(
+    client: Socket,
+    payload: {
+      text?: string;
+      fileUrl?: string;
+      chatRoomId: number;
+      user: ActiveUserData;
+    },
+  ) {
     console.log('Received message:', payload);
 
     // Save the message to the database
     const savedMessage = await this.messageService.create(
-      { text: payload.text, chatRoomId: payload.chatRoomId, messageType: MessageType.FILE },
+      {
+        text: payload.text,
+        chatRoomId: payload.chatRoomId,
+        messageType: MessageType.FILE,
+      },
       payload.user,
       undefined,
     );

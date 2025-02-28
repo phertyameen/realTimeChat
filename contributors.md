@@ -11,9 +11,9 @@
                     -
                     -
 
-3. Rukayat Zakari   - 
-                    -
-                    -
+3. Rukayat Zakari   - Create the setup for the swagger 
+                    - Creates the functions for messages, and files upload
+                    - Documentation using compodoc
                     -
 
 4. Musa             -

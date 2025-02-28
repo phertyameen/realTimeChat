@@ -3,7 +3,7 @@ import { MessageType } from '../enum/message-type ';
 
 export class CreateMessageDto {
   @IsNotEmpty()
-  chatRoomId: string;
+  chatRoomId: number;
 
   @IsString()
   @IsNotEmpty()
