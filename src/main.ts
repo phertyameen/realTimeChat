@@ -15,6 +15,7 @@ async function bootstrap() {
       enableImplicitConversion: true
     }
   }))
+  
   /**Swagger Configuration */
   const config = new DocumentBuilder()
     .setTitle('REAL TIME CHAT - Chat-app-api')

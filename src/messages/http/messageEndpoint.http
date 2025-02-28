@@ -12,3 +12,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpb
 
 GET http://localhost:3000/users/33
 GET http://localhost:3000/users/33
+
+
+WS ws://localhost:3000/message
+
+// {
+//   "type": "auth",
+//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQwNzQ2MTQ5LCJleHAiOjE3NDA3NDk3NDksImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.W0pSoakb3CjqAGsdgpVm-YcmM2v40sO6wI5kUElHlfU"
+// }
+
+### Send message
+{
+  "type": "message",
+  "chatRoomId": 9,
+  "text": "Hello, this is my fourth message!"
+}

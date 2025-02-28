@@ -24,7 +24,7 @@ export class Message {
   messageType: MessageType;
 
   @Column({type: 'text', nullable: true})
-  text: string
+  text?: string
   
   @Column({ type: 'text', nullable: true }) 
   fileUrl?: string;
