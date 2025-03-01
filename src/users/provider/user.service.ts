@@ -17,7 +17,7 @@ import { Paginated } from 'src/common/pagination/Interfaces/paginatedInterface';
 @Injectable()
 export class UserService {
   constructor(
-    /*
+    /**
      *inject User entity
      */
     @InjectRepository(User)

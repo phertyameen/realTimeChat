@@ -20,6 +20,8 @@ import { MessageModule } from './messages/messages.module';
 import { WebSocketModule } from './web-socket/web-socket.module';
 import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway';
 import { PaginationProvider } from './common/pagination/Provider/pagination.provider';
+import jwtConfig from './auth/authConfig/jwt.config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -43,6 +45,8 @@ import { PaginationProvider } from './common/pagination/Provider/pagination.prov
         autoLoadEntities: configService.get('database.autoload'),
       }),
     }),
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule.registerAsync(jwtConfig.asProvider()),
     AuthModule,
     UserModule,
     PaginationModule,
@@ -57,16 +61,15 @@ import { PaginationProvider } from './common/pagination/Provider/pagination.prov
     AppService,
     WebsocketGateway,
     PaginationProvider,
-
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: AuthGuardGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuardGuard,
+    },
     // {
     //   provide: APP_INTERCEPTOR,
     //   useClass: DataResponseInterceptor
     // },
-    // AccessTokenGuard,
+    AccessTokenGuard,
   ],
 })
 export class AppModule {}
