@@ -16,6 +16,9 @@ import { UserService } from './provider/user.service';
 import { CreateUserDto } from './DTOs/create-user.dto';
 import { EditUserDto } from './DTOs/patch-user.dto';
 import { GetuserParamDto } from './DTOs/getUserparamdto';
+import { PaginationQueryDto } from 'src/common/pagination/pagination-query.dto';
+import { Paginated } from 'src/common/pagination/Interfaces/paginatedInterface';
+import { User } from './user.entitly';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { authTypes } from 'src/auth/enums/authTypes.enum';
 
@@ -25,12 +28,15 @@ export class UserController {
 
   @Get('/:id?')
   public getUsers(
-    @Param() getuserParamDto: GetuserParamDto,
-    @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number,
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
-  ) {
-    console.log(getuserParamDto);
-    return this.userService.findAll(getuserParamDto, limit, page);
+    @Query() paginationQueryDto: PaginationQueryDto,
+  ): Promise<Paginated<User>> {
+    return this.userService.findAll(paginationQueryDto);
+  }
+
+  // Route to fetch a single user by ID
+  @Get(':id')
+  public getUserById(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.findOneById(id);
   }
 
   @Auth(authTypes.None)

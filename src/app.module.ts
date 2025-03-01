@@ -19,9 +19,9 @@ import { ChatModule } from './chatrooms/chatrooms.module';
 import { MessageModule } from './messages/messages.module';
 import { WebSocketModule } from './web-socket/web-socket.module';
 import { WebsocketGateway } from './web-socket/websocketEvents/websocket.gateway';
+import { PaginationProvider } from './common/pagination/Provider/pagination.provider';
 import jwtConfig from './auth/authConfig/jwt.config';
 import { JwtModule } from '@nestjs/jwt';
-
 
 @Module({
   imports: [
@@ -54,12 +54,13 @@ import { JwtModule } from '@nestjs/jwt';
     MessageModule,
     // MessagesModule,
     ChatModule,
-    WebSocketModule
+    WebSocketModule,
   ],
   controllers: [AppController, AuthController, UserController],
   providers: [
     AppService,
     WebsocketGateway,
+    PaginationProvider,
     {
       provide: APP_GUARD,
       useClass: AuthGuardGuard,

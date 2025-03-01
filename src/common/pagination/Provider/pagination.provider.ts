@@ -1,76 +1,82 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { PaginationQueryDto } from "../pagination-query.dto";
-import { ObjectLiteral, Repository } from "typeorm";
-import { Request } from "express";
-import { REQUEST } from "@nestjs/core"
-import { Paginated } from "../Interfaces/paginatedInterface";
-
+import { Inject, Injectable } from '@nestjs/common';
+import { PaginationQueryDto } from '../pagination-query.dto';
+import { ObjectLiteral, Repository } from 'typeorm';
+import { Request } from 'express';
+import { REQUEST } from '@nestjs/core';
+import { Paginated } from '../Interfaces/paginatedInterface';
 
 @Injectable()
 export class PaginationProvider {
+  constructor(
+    @Inject(REQUEST)
+    private readonly request: Request,
+  ) {}
 
-    constructor (
-        @Inject(REQUEST)
-        private readonly request:Request,
-    ) {}
-    
+  public async paginatedQuery<T extends ObjectLiteral>(
+    paginationQueryDto: PaginationQueryDto,
+    repository: Repository<T>,
+  ): Promise<Paginated<T>> {
+    const result = await repository.find({
+      //skip: number of post
+      //take: number of post to show per page
+      skip: paginationQueryDto.limit * (paginationQueryDto.page - 1),
+      take: paginationQueryDto.limit,
+    });
 
-    public async paginatedQuery<T extends ObjectLiteral> (paginationQueryDto:PaginationQueryDto, repository:Repository<T>,): Promise<Paginated<T>> {
+    // // create a requestUrl
+    // // i.e http://localhost:3000/resource
+    // // the http is this.requestprotocol
+    // const baseUrl = this.request.protocol; + "://" + this.request.headers.host + "/"
 
-        const result = await repository.find({
+    // const newUrl = new URL(this.request.url, baseUrl)
 
-            //skip: number of post
-            //take: number of post to show per page
-            skip: paginationQueryDto.limit * (paginationQueryDto.page - 1),
-            take: paginationQueryDto.limit,
-        })
+    // console.log(baseUrl);
+    // // line 34 give u http://localhost:3000/resource  as result on your terminal
+    // console.log(newUrl)
 
+    // Construct the base URL
+    const baseUrl = `${this.request.protocol}://${this.request.get('host')}/`;
+    console.log('Base URL:', baseUrl);
 
-        // create a requestUrl 
-        // i.e http://localhost:3000/resource 
-        // the http is this.requestprotocol
-        const baseUrl = this.request.protocol; + "://" + this.request.headers.host + "/"
+    // Construct the new URL
+    const newUrl = new URL(this.request.url, baseUrl);
+    console.log('New URL:', newUrl.toString());
 
-        const newUrl = new URL(this.request.url, baseUrl)
+    const totalItems = await repository.count();
 
-        console.log(baseUrl);
-        // line 34 give u http://localhost:3000/resource  as result on your terminal
-        console.log(newUrl)
+    const totalpage = Math.ceil(totalItems / paginationQueryDto.limit);
 
-       const totalItems = await repository.count()
+    const nextpage =
+      paginationQueryDto.page === 1
+        ? paginationQueryDto.page
+        : paginationQueryDto.page + 1;
 
-       const totalpage = Math.ceil(totalItems / paginationQueryDto.limit)
+    const prevpage =
+      paginationQueryDto.page === 1
+        ? paginationQueryDto.page
+        : paginationQueryDto.page - 1;
 
-       const nextpage = paginationQueryDto.page === 1 ? paginationQueryDto.page: paginationQueryDto.page +1
+    const finalResponse: Paginated<T> = {
+      data: result,
+      meta: {
+        itemsPerPage: paginationQueryDto.limit,
+        totalItems: totalItems,
+        currentPage: paginationQueryDto.page,
+        totalPage: totalpage,
+      },
+      link: {
+        first: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=1`,
 
-       const prevpage = paginationQueryDto.page === 1 ? paginationQueryDto.page: paginationQueryDto.page -1
+        last: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&${totalpage}`,
 
+        current: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=${paginationQueryDto.page}`,
 
-        const finalResponse: Paginated<T> = {
-            data: result,
-            meta: {
-                itemsPerPage: paginationQueryDto.limit,
-                totalItems: totalItems,
-                currentPage: paginationQueryDto.page,
-                totalPage : totalpage
-            }, 
-            link: {
-                first: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=1`,
+        next: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=${nextpage}`,
 
-                last: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&${totalpage}`,
-   
-               current: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=${paginationQueryDto.page}`,
-   
-               next: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=${nextpage}`,
-   
-               previous: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=${prevpage}`
-   
-            }
-        }
+        previous: `${newUrl.origin}${newUrl.pathname}?limit=${paginationQueryDto.limit}&page=${prevpage}`,
+      },
+    };
 
-        return finalResponse
-
-
-    }
-
+    return finalResponse;
+  }
 }
