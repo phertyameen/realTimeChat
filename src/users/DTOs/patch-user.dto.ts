@@ -1,5 +1,5 @@
 
-import { IsEmail, IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsInt, IsNotEmpty } from "class-validator";
 import { PartialType } from "@nestjs/mapped-types";
 import { CreateUserDto } from "./create-user.dto";
 

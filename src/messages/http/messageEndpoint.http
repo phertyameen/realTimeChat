@@ -1,13 +1,18 @@
 
-GET http://localhost:3000/messages
-POST http://localhost:3000/message
+POST http://localhost:3000/messages 
 Content-Type: application/json
 {
-  "chatRoomId": 1,
-  "senderId": 1,
+  "chatRoomId": 2,
+  "senderId": 2,
+  "type": "text",
   "text": "Hello, this is my first message!"
 }
 
 
-GET http://localhost:3000/users/33
-GET http://localhost:3000/users/33
+
+
+GET http://localhost:3000/messages/1
+
+
+
+
