@@ -119,6 +119,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service for handling user-related operations.</p>
+
+            </p>
 
 
 
@@ -136,39 +143,59 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#createGoogleUser" >createGoogleUser</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#createUsers" >createUsers</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteUser" >deleteUser</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#editUser" >editUser</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#findOneByGoogleId" >findOneByGoogleId</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOneById" >findOneById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#FindOneById" >FindOneById</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#GetOneByEmail" >GetOneByEmail</a>
@@ -191,12 +218,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, createUserProvider: <a href="../injectables/CreateUserProvider.html" target="_self">CreateUserProvider</a>, findOneByemail: <a href="../injectables/FindOneByEmail.html" target="_self">FindOneByEmail</a>, findOneByGoogleIdProvider: <a href="../injectables/FindOneByGoogleIdProvider.html" target="_self">FindOneByGoogleIdProvider</a>, createGoogleUserProvider: <a href="../injectables/CreateGoogleUserProvider.html" target="_self">CreateGoogleUserProvider</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, createUserProvider: <a href="../injectables/CreateUserProvider.html" target="_self">CreateUserProvider</a>, findOneByemail: <a href="../injectables/FindOneByEmail.html" target="_self">FindOneByEmail</a>, findOneByGoogleIdProvider: <a href="../injectables/FindOneByGoogleIdProvider.html" target="_self">FindOneByGoogleIdProvider</a>, createGoogleUserProvider: <a href="../injectables/CreateGoogleUserProvider.html" target="_self">CreateGoogleUserProvider</a>, paginationProvider: <a href="../injectables/PaginationProvider.html" target="_self">PaginationProvider</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/users/provider/user.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/users/provider/user.service.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -273,6 +300,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>paginationProvider</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PaginationProvider.html" target="_self" >PaginationProvider</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -293,6 +332,7 @@
                 <td class="col-md-4">
                     <a name="createGoogleUser"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>createGoogleUser</b></span>
@@ -307,17 +347,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Create a new Google user&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="75"
-                                    class="link-to-prism">src/users/provider/user.service.ts:75</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/users/provider/user.service.ts:134</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Create a new Google user.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -363,6 +412,8 @@
                 <td class="col-md-4">
                     <a name="createUsers"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>createUsers</b></span>
@@ -377,17 +428,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Create a new user&#x27;})<br />@ApiResponse({status: 201, description: &#x27;User created successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/users/provider/user.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/users/provider/user.service.ts:75</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Create a new user.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -433,6 +493,8 @@
                 <td class="col-md-4">
                     <a name="deleteUser"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>deleteUser</b></span>
@@ -447,17 +509,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Delete a user&#x27;})<br />@ApiResponse({status: 200, description: &#x27;User deleted successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/users/provider/user.service.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/users/provider/user.service.ts:100</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Delete a user by ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -503,6 +574,7 @@
                 <td class="col-md-4">
                     <a name="editUser"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>editUser</b></span>
@@ -517,17 +589,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Edit user details&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/users/provider/user.service.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/users/provider/user.service.ts:109</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Edit user details.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -573,7 +654,10 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -582,21 +666,30 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(getUserParamDto: <a href="../classes/GetuserParamDto.html" target="_self">GetuserParamDto</a>, limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAll(paginationQueryDto: <a href="../classes/PaginationQueryDto.html" target="_self">PaginationQueryDto</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Get all users with pagination&#x27;})<br />@ApiResponse({status: 200, description: &#x27;List of users returned successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/users/provider/user.service.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/users/provider/user.service.ts:47</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Fetch paginated users.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -611,33 +704,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>getUserParamDto</td>
+                                                <td>paginationQueryDto</td>
                                             <td>
-                                                            <code><a href="../classes/GetuserParamDto.html" target="_self" >GetuserParamDto</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>limit</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>page</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                            <code><a href="../classes/PaginationQueryDto.html" target="_self" >PaginationQueryDto</a></code>
                                             </td>
 
                                             <td>
@@ -650,7 +719,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User[]&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../classes/Paginated.html" target="_self" >Promise&lt;Paginated&lt;User&gt;&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -666,6 +735,7 @@
                 <td class="col-md-4">
                     <a name="findOneByGoogleId"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>findOneByGoogleId</b></span>
@@ -680,17 +750,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Find a user by Google ID&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/users/provider/user.service.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/users/provider/user.service.ts:126</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Find a user by Google ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -734,8 +813,91 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneById"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>findOneById</b></span>
+                        <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Get a user by ID&#x27;})<br />@ApiResponse({status: 200, description: &#x27;User found&#x27;})<br />@ApiResponse({status: 404, description: &#x27;User not found&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/users/provider/user.service.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Fetch a single user by ID.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="FindOneById"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>FindOneById</b></span>
                         <a href="#FindOneById"><span class="icon ion-ios-link"></span></a>
@@ -749,17 +911,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Find a user by ID&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/users/provider/user.service.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/users/provider/user.service.ts:83</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Find one user by ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -805,6 +976,7 @@
                 <td class="col-md-4">
                     <a name="GetOneByEmail"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>GetOneByEmail</b></span>
@@ -819,17 +991,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Get a user by email&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/users/provider/user.service.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/users/provider/user.service.ts:91</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Get user by email.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -875,7 +1056,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { User } from &#x27;../user.entitly&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
@@ -887,12 +1068,20 @@ import { GetuserParamDto } from &#x27;../DTOs/getUserparamdto&#x27;;
 import { FindOneByGoogleIdProvider } from &#x27;./find-one-by-googleId&#x27;;
 import { CreateGoogleUserProvider } from &#x27;./googleUserProvider&#x27;;
 import { GoogleInterface } from &#x27;src/auth/social/interfaces/user.interface&#x27;;
+import { PaginationProvider } from &#x27;src/common/pagination/Provider/pagination.provider&#x27;;
+import { PaginationQueryDto } from &#x27;src/common/pagination/pagination-query.dto&#x27;;
+import { Paginated } from &#x27;src/common/pagination/Interfaces/paginatedInterface&#x27;;
+import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
+/**
+ * Service for handling user-related operations.
+ */
+@ApiTags(&#x27;Users&#x27;)
 @Injectable()
 export class UserService {
   constructor(
     /**
-     *inject User entity
+     * Inject User repository.
      */
     @InjectRepository(User)
     private userRepository: Repository&lt;User&gt;,
@@ -904,34 +1093,77 @@ export class UserService {
     private readonly findOneByGoogleIdProvider: FindOneByGoogleIdProvider,
 
     private readonly createGoogleUserProvider: CreateGoogleUserProvider,
+
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public findAll(
-    getUserParamDto: GetuserParamDto,
-    limit: number,
-    page: number,
-  ): Promise&lt;User[]&gt; {
-    return this.userRepository.find();
+  /**
+   * Fetch paginated users.
+   */
+  @ApiOperation({ summary: &#x27;Get all users with pagination&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;List of users returned successfully&#x27; })
+  public async findAll(
+    paginationQueryDto: PaginationQueryDto,
+  ): Promise&lt;Paginated&lt;User&gt;&gt; {
+    return this.paginationProvider.paginatedQuery(
+      paginationQueryDto,
+      this.userRepository,
+    );
   }
 
+  /**
+   * Fetch a single user by ID.
+   */
+  @ApiOperation({ summary: &#x27;Get a user by ID&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;User found&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;User not found&#x27; })
+  public async findOneById(id: number): Promise&lt;User&gt; {
+    const user &#x3D; await this.userRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException(&#x60;User with ID ${id} not found&#x60;);
+    }
+    return user;
+  }
+
+  /**
+   * Create a new user.
+   */
+  @ApiOperation({ summary: &#x27;Create a new user&#x27; })
+  @ApiResponse({ status: 201, description: &#x27;User created successfully&#x27; })
   public async createUsers(createUserDto: CreateUserDto) {
     return this.createUserProvider.createUsers(createUserDto);
   }
 
+  /**
+   * Find one user by ID.
+   */
+  @ApiOperation({ summary: &#x27;Find a user by ID&#x27; })
   public FindOneById(id: number): Promise&lt;User | null&gt; {
     return this.userRepository.findOneBy({ id });
   }
 
+  /**
+   * Get user by email.
+   */
+  @ApiOperation({ summary: &#x27;Get a user by email&#x27; })
   public async GetOneByEmail(email: string) {
     return await this.findOneByemail.findOneByEmail(email);
   }
 
+  /**
+   * Delete a user by ID.
+   */
+  @ApiOperation({ summary: &#x27;Delete a user&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;User deleted successfully&#x27; })
   public async deleteUser(id: number) {
     await this.userRepository.delete(id);
-
     return { deleted: true, id };
   }
 
+  /**
+   * Edit user details.
+   */
+  @ApiOperation({ summary: &#x27;Edit user details&#x27; })
   public async editUser(edituserDto: EditUserDto) {
     let edit &#x3D; await this.userRepository.findOneBy({
       id: edituserDto.id,
@@ -945,10 +1177,18 @@ export class UserService {
     return this.userRepository.save(edit);
   }
 
+  /**
+   * Find a user by Google ID.
+   */
+  @ApiOperation({ summary: &#x27;Find a user by Google ID&#x27; })
   public async findOneByGoogleId(googleId: string) {
     return this.findOneByGoogleIdProvider.findOneByGoogleId(googleId);
   }
 
+  /**
+   * Create a new Google user.
+   */
+  @ApiOperation({ summary: &#x27;Create a new Google user&#x27; })
   public async createGoogleUser(googleUser: GoogleInterface) {
     return this.createGoogleUserProvider.createGoogleUser(googleUser);
   }

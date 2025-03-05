@@ -39,6 +39,7 @@ export class MessageService {
     private readonly cloudinaryService: CloudinaryService,
   ) {}
 
+  /**Create method */
   async create(
     createMessageDto: CreateMessageDto,
     user: ActiveUserData,

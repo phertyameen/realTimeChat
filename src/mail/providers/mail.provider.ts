@@ -3,15 +3,16 @@ import { Injectable } from '@nestjs/common';
 import { name } from 'ejs';
 import { User } from 'src/users/user.entitly';
 
-
+/**Mail provider class */
 @Injectable()
 export class MailProvider {
     constructor (
-        //inject the mailer Service
+        /**inject the mailer Service*/
         private readonly mailerService:MailerService,
     ) {}
 
 
+    /**Welcome email class that takes a user as parameter */
     public async WelcomeEmail (user:User):Promise<void> {
         await this.mailerService.sendMail({
          to: user.email,

@@ -10,23 +10,35 @@ import { User } from '../user.entitly';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../DTOs/create-user.dto';
 import { HashingProvider } from 'src/auth/providers/hashing';
+import { ApiTags } from '@nestjs/swagger';
 
+/**
+ * Service provider for creating users
+ */
+@ApiTags('Users')
 @Injectable()
 export class CreateUserProvider {
   constructor(
-    /*
+    /**
      * Inject userRepository
      */
     @InjectRepository(User) private userRepository: Repository<User>,
 
-    /*
+    /**
      * Inject hashingProvider
      */
     @Inject(forwardRef(() => HashingProvider))
     private readonly hashingProvider: HashingProvider,
   ) {}
+
+  /**
+   * Creates a new user in the system.
+   * @param createUserDto - The DTO containing user creation data.
+   * @returns A Promise resolving to the created User entity.
+   * @throws BadRequestException if the user already exists.
+   * @throws RequestTimeoutException if a database connection issue occurs.
+   */
   public async createUsers(createUserDto: CreateUserDto): Promise<User> {
-    // check if user already exits
     let existingUser = undefined;
 
     try {
@@ -34,7 +46,6 @@ export class CreateUserProvider {
         where: { email: createUserDto.email },
       });
     } catch (error) {
-      // you might save/log your  error
       throw new RequestTimeoutException(
         'Unable to process your request at the moment, Please try later',
         {
@@ -43,7 +54,7 @@ export class CreateUserProvider {
         },
       );
     }
-    // Handle Error
+
     if (existingUser) {
       throw new BadRequestException('User already exist');
     }
@@ -57,7 +68,6 @@ export class CreateUserProvider {
       password: hashedPassword,
     });
 
-    // Create the user
     try {
       this.userRepository.save(newUser);
     } catch (error) {

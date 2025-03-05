@@ -5,10 +5,11 @@ import { authTypes } from './enums/authTypes.enum';
 import { RefreshTokenDto } from './dtos/refreshTokenDto';
 import { Auth } from './decorators/auth.decorator';
 
+/**auth controller */
 @Controller('auth')
 export class AuthController {
     constructor(
-        // injecting auth service
+        /**injecting auth service*/
         private readonly authservice: AuthService,
     ) {}
     @Post('/signIn')

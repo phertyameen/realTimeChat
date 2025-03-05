@@ -123,6 +123,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>using the patch to edit part of the data, the partialtype makes everything optional</p>
+
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -223,7 +230,7 @@ import { PartialType } from &quot;@nestjs/mapped-types&quot;;
 import { CreateUserDto } from &quot;./create-user.dto&quot;;
 
  
-// using the patch to edit part of the data, the partialtype makes everything optional
+/**using the patch to edit part of the data, the partialtype makes everything optional */ 
 export class EditUserDto extends PartialType(CreateUserDto) {
     @IsInt()
     @IsNotEmpty()

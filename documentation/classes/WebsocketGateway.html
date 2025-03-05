@@ -123,6 +123,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>WebSocket gateway handling real-time message exchanges.</p>
+
+            </p>
 
 
             <p class="comment">
@@ -198,7 +205,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -270,10 +277,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:22</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>websocket server instance</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -306,14 +319,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:29</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles a new client connection.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -324,6 +339,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -338,6 +354,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The connected client socket.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -375,14 +395,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:37</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles client disconnection.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -393,6 +415,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -407,6 +430,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The disconnected client socket.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -452,14 +479,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/web-socket/websocketEvents/websocket.gateway.ts:47</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles an incoming message from a client.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -470,6 +499,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -484,6 +514,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The client socket sending the message.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>payload</td>
@@ -496,6 +530,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The message payload containing text, file URL, chat room ID, and user details.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -521,34 +559,70 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { WebSocketGateway, WebSocketServer, SubscribeMessage, OnGatewayConnection, OnGatewayDisconnect } from &#x27;@nestjs/websockets&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  WebSocketGateway,
+  WebSocketServer,
+  SubscribeMessage,
+  OnGatewayConnection,
+  OnGatewayDisconnect,
+} from &#x27;@nestjs/websockets&#x27;;
 import { Server, Socket } from &#x27;socket.io&#x27;;
-// import { MessageService } from &#x27;./message.service&#x27;;
 import { ActiveUserData } from &#x27;src/auth/interface/activeInterface&#x27;;
 import { MessageType } from &#x27;src/messages/enum/message-type &#x27;;
 import { MessageService } from &#x27;src/messages/provider/message.service&#x27;;
 
+/**
+ * WebSocket gateway handling real-time message exchanges.
+ */
 @WebSocketGateway({ cors: true })
-export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  @WebSocketServer() server: Server;
+export class WebsocketGateway
+  implements OnGatewayConnection, OnGatewayDisconnect
+{
+  /**websocket server instance */
+  @WebSocketServer()
+  server: Server;
 
   constructor(private readonly messageService: MessageService) {}
-
+  /**
+   * Handles a new client connection.
+   * @param client The connected client socket.
+   */
   async handleConnection(client: Socket) {
     console.log(&#x60;Client connected: ${client.id}&#x60;);
   }
 
+  /**
+   * Handles client disconnection.
+   * @param client The disconnected client socket.
+   */
   async handleDisconnect(client: Socket) {
     console.log(&#x60;Client disconnected: ${client.id}&#x60;);
   }
 
+  /**
+   * Handles an incoming message from a client.
+   * @param client The client socket sending the message.
+   * @param payload The message payload containing text, file URL, chat room ID, and user details.
+   */
   @SubscribeMessage(&#x27;sendMessage&#x27;)
-  async handleMessage(client: Socket, payload: { text?: string; fileUrl?: string; chatRoomId: string; user: ActiveUserData }) {
+  async handleMessage(
+    client: Socket,
+    payload: {
+      text?: string;
+      fileUrl?: string;
+      chatRoomId: number;
+      user: ActiveUserData;
+    },
+  ) {
     console.log(&#x27;Received message:&#x27;, payload);
 
     // Save the message to the database
     const savedMessage &#x3D; await this.messageService.create(
-      { text: payload.text, chatRoomId: payload.chatRoomId, messageType: MessageType.FILE },
+      {
+        text: payload.text,
+        chatRoomId: payload.chatRoomId,
+        messageType: MessageType.FILE,
+      },
       payload.user,
       undefined,
     );
@@ -556,7 +630,8 @@ export class WebsocketGateway implements OnGatewayConnection, OnGatewayDisconnec
     // Emit the saved message to all connected clients
     this.server.emit(&#x27;receiveMessage&#x27;, savedMessage);
   }
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

@@ -229,14 +229,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/users/provider/find-one-by-googleId.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="17"
+                                    class="link-to-prism">src/users/provider/find-one-by-googleId.ts:17</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>find one by googleid class with googleid as parameter of type string</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -296,6 +298,8 @@ export class FindOneByGoogleIdProvider {
     @InjectRepository(User)
     private userRepository: Repository&lt;User&gt;,
   ) {}
+
+  /**find one by googleid class with googleid as parameter of type string */
   public async findOneByGoogleId(googleId: string) {
     return await this.userRepository.findOneBy({ googleId })
   }

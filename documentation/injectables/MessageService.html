@@ -174,7 +174,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/messages/provider/message.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/messages/provider/message.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -275,15 +275,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:43</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Create a new message and save it in the DB</p>
+                        <div class="io-description"><p>Create method</p>
 </div>
 
                             <div class="io-description">
@@ -370,8 +370,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -441,8 +441,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -512,8 +512,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -594,7 +594,6 @@ import { CreateMessageDto } from &#x27;../dtos/create-message.dto&#x27;;
 import { ActiveUser } from &#x27;src/auth/decorators/activeUser.decorator&#x27;;
 import { ActiveUserData } from &#x27;src/auth/interface/activeInterface&#x27;;
 import { CloudinaryService } from &#x27;src/cloudinary-provider/cloudinary.service&#x27;;
-// import { CloudinaryService } from &#x27;src/cloudinary/cloudinary.service&#x27;;
 
 @Injectable()
 export class MessageService {
@@ -621,43 +620,25 @@ export class MessageService {
     private readonly cloudinaryService: CloudinaryService,
   ) {}
 
-  // async create(createMessageDto: CreateMessageDto, @ActiveUser() user: ActiveUserData): Promise&lt;Message&gt; {
-  //   const { chatRoomId, text } &#x3D; createMessageDto;
-
-  //   // Find the chat room
-  //   const chatRoom &#x3D; await this.chatRoomsRepo.findOne({ where: { id: chatRoomId as any } });
-  //   if (!chatRoom) {
-  //     throw new NotFoundException(&#x27;Chat room not found&#x27;);
-  //   }
-
-  //   // Directly use the active user as the sender
-  //   const message &#x3D; this.messagesRepo.create({ ...createMessageDto, sender: user });
-  //   return await this.messagesRepo.save(message);
-  // }
-
-  // Find all messages in a chat room
-
-  /**
-   * Create a new message and save it in the DB
-   */
+  /**Create method */
   async create(
     createMessageDto: CreateMessageDto,
     user: ActiveUserData,
-    file?: Express.Multer.File
+    file?: Express.Multer.File,
   ): Promise&lt;Message&gt; {
     const { chatRoomId, text } &#x3D; createMessageDto;
-  
+
     //  Find the chat room
     const chatRoom &#x3D; await this.chatRoomsRepo.findOne({
-      where: { id: chatRoomId as any },
+      where: { id: createMessageDto.chatRoomId },
     });
     if (!chatRoom) throw new NotFoundException(&#x27;Chat room not found&#x27;);
-  
+
     //  Find the sender
     const sender &#x3D; await this.usersRepo.findOne({ where: { id: user.sub } });
-    console.log(sender)
+    console.log(sender);
     if (!sender) throw new NotFoundException(&#x27;Sender not found&#x27;);
-  
+
     //  Handle file upload if provided
     let fileUrl: string | undefined;
     if (file) {
@@ -671,23 +652,21 @@ export class MessageService {
         throw new BadRequestException(&#x27;File upload failed&#x27;);
       }
     }
-  
-    //  Create message with correct TypeORM structure
+
+    //  Create message
     const message &#x3D; this.messagesRepo.create({
       chatRoom,
       sender,
-      text,
+      text: createMessageDto.text,
       fileUrl,
-      
     } as DeepPartial&lt;Message&gt;);
     console.log(&#x27;Message Before Save:&#x27;, message);
-  
+
     //Save message correctly
     const savedMessage &#x3D; await this.messagesRepo.save(message);
     console.log(&#x27;Saved Message:&#x27;, savedMessage);
     return savedMessage; // Ensure returning a single object
   }
-  
 
   /**
    * find all messages in a chatroom

@@ -123,6 +123,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Get userParamdto  class</p>
+
+            </p>
 
 
 
@@ -140,6 +147,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
@@ -172,6 +180,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
@@ -189,16 +198,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsInt()<br />@Type(undefined)<br />
+                            @ApiProperty({type: &#x27;number&#x27;, example: 1})<br />@IsInt()<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/users/DTOs/getUserparamdto.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/users/DTOs/getUserparamdto.ts:14</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A unique id that is optional and of type number</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -214,11 +229,17 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional,IsInt } from &quot;class-validator&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsOptional, IsInt } from &#x27;class-validator&#x27;;
 import { Type } from &#x27;class-transformer&#x27;;
+import { ApiProperty } from &quot;@nestjs/swagger&quot;;
 
+/**Get userParamdto  class */
 export class GetuserParamDto {
-   
+
+    /**A unique id that is optional and of type number */
+   @ApiProperty({type:&#x27;number&#x27;,
+    example:1,
+   })
     @IsInt()
     @Type (() &#x3D;&gt; Number )
     id?:number

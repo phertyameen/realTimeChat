@@ -12,6 +12,8 @@ export class FindOneByGoogleIdProvider {
     @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
+
+  /**find one by googleid class with googleid as parameter of type string */
   public async findOneByGoogleId(googleId: string) {
     return await this.userRepository.findOneBy({ googleId })
   }

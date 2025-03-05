@@ -206,10 +206,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/messages/dtos/update-message.dto.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/messages/dtos/update-message.dto.ts:14</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The ID of the message to be updated.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -233,6 +239,9 @@ import { CreateMessageDto } from &quot;./create-message.dto&quot;;
    * update message dto
    */
 export class UpdateMessageDto extends PartialType(CreateMessageDto) {
+     /**
+   * The ID of the message to be updated.
+   */
     @IsInt()
     @IsNotEmpty()
     id: number;

@@ -6,6 +6,7 @@ import { ActiveUserData } from '../interface/activeInterface';
 import { UserService } from 'src/users/provider/user.service';
 import { User } from 'src/users/user.entitly';
 
+/**Generate token provider */
 @Injectable()
 export class GenerateTokensProvider {
   constructor(
@@ -27,6 +28,7 @@ export class GenerateTokensProvider {
     private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,
   ) {}
 
+  /**sign token class */
   public async signToken<T>(userId: number, expiresIn: number, payload?: T) {
     return await this.jwtService.signAsync(
       {
@@ -42,6 +44,7 @@ export class GenerateTokensProvider {
     );
   }
 
+  /**Generate tokens class */
   public async generateTokens(user: User) {
     const [accessToken, refreshToken] = await Promise.all([
     // generate access token

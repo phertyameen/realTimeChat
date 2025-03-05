@@ -14,6 +14,8 @@ export class CreateGoogleUserProvider {
     private readonly userRepository: Repository<User>,
   ) {}
 
+
+  /**Create googleuser class of type googleuser */
   public async createGoogleUser(googleUser: GoogleInterface) {
     try {
       const user = this.userRepository.create(googleUser);
