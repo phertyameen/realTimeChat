@@ -16,10 +16,13 @@ export class AuthController {
     @Auth(authTypes.None)
     @HttpCode(HttpStatus.OK)
     @UseInterceptors(ClassSerializerInterceptor)
+
+    /**signin class */
     public async SignIn(@Body() signInDto: SignInDto) {
        return await this.authservice.SignIn(signInDto)
     }
     @Post('/refreshToken')
+    /**refreshtoken class */
     public RefreshToken(@Body() refreshToken: RefreshTokenDto) {
         return this.authservice.refreshToken(refreshToken)
     }
