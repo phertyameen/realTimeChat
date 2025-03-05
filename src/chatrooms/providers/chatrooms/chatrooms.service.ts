@@ -1,4 +1,4 @@
-// src/chatrooms/providers/chatrooms/chatrooms.service.ts
+
 import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -7,8 +7,14 @@ import { CreateChatRoomDto } from '../../DTOs/create-chat-room.dto';
 import { UpdateChatRoomDto } from '../../DTOs/update-chat-room.dto';
 import { User } from 'src/users/user.entitly';
 import { ChatRoomType } from '../../enums/chatroomType';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+
+/**
+ * Service responsible for handling chat room operations.
+ */
 @Injectable()
+@ApiTags('ChatRooms')
 export class ChatRoomService {
   constructor(
     @InjectRepository(ChatRoom)
@@ -17,6 +23,14 @@ export class ChatRoomService {
     private userRepository: Repository<User>,
   ) {}
 
+  /**
+   * Creates a new chat room.
+   * @param createChatRoomDto Data transfer object containing chat room details.
+   * @param currentUserId ID of the current user.
+   * @returns The created chat room.
+   */
+  @ApiOperation({ summary: 'Create a new chat room' })
+  @ApiResponse({ status: 201, description: 'Chat room created successfully' })
   async create(createChatRoomDto: CreateChatRoomDto, currentUserId: number): Promise<ChatRoom> {
     // Find users
     const users = await this.userRepository.findByIds(
@@ -47,13 +61,27 @@ export class ChatRoomService {
     return await this.chatRoomRepository.save(chatRoom);
   }
 
+  /**
+   * Retrieves all chat rooms.
+   * @returns List of chat rooms.
+   */
+  @ApiOperation({ summary: 'Get all chat rooms' })
+  @ApiResponse({ status: 200, description: 'List of chat rooms retrieved successfully' })
   async findAll(): Promise<ChatRoom[]> {
     return this.chatRoomRepository.find({
       relations: ['users'],
     });
   }
 
-// Method for finding a chat room by ID
+/** Method for finding a chat room by ID*/
+/**
+   * Finds a chat room by ID.
+   * @param id Chat room ID.
+   * @returns The found chat room.
+   */
+@ApiOperation({ summary: 'Find a chat room by ID' })
+@ApiResponse({ status: 200, description: 'Chat room found' })
+@ApiResponse({ status: 404, description: 'Chat room not found' })
 async findOne(id: number): Promise<ChatRoom> {
   const chatRoom = await this.chatRoomRepository.findOne({
     where: { id: Number(id) },
@@ -68,6 +96,14 @@ async findOne(id: number): Promise<ChatRoom> {
 }
 
 // Method for updating a chat room
+/**
+   * Updates a chat room.
+   * @param id Chat room ID.
+   * @param updateChatRoomDto DTO containing updated data.
+   * @returns The updated chat room.
+   */
+@ApiOperation({ summary: 'Update a chat room' })
+@ApiResponse({ status: 200, description: 'Chat room updated successfully' })
 async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise<ChatRoom> {
   const chatRoom = await this.findOne(id);
   
@@ -94,6 +130,14 @@ async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise<ChatRoom
   return this.chatRoomRepository.save(chatRoom);
 }
 
+
+/**
+   * Deletes a chat room.
+   * @param id Chat room ID.
+   * @param userId Optional user ID for permission checks.
+   */
+@ApiOperation({ summary: 'Delete a chat room' })
+@ApiResponse({ status: 200, description: 'Chat room deleted successfully' })
 async remove(id: number, userId?: number): Promise<void> {
   const chatRoom = await this.chatRoomRepository.findOne({
     where: { id: Number(id) }
@@ -111,6 +155,14 @@ async remove(id: number, userId?: number): Promise<void> {
   // Remove the chat room
   await this.chatRoomRepository.remove(chatRoom);
 }
+
+  /**
+   * Add a user to the chat room.
+   * @param id user ID.
+   * @returns The found chat room.
+   */
+@ApiOperation({ summary: 'Find a user in the chat room by ID' })
+@ApiResponse({ status: 200, description: 'User added to the chat room successfully' })
 
   async addUserToChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
     const chatRoom = await this.findOne(chatRoomId);
@@ -131,6 +183,14 @@ async remove(id: number, userId?: number): Promise<void> {
   }
 
 // Method for removing a user from a chat room
+
+/**
+   * Deletes a user from chat room.
+   * @param id Chat room ID.
+   * @param userId Optional user ID for permission checks.
+   */
+@ApiOperation({ summary: 'Delete a user from a chat room' })
+@ApiResponse({ status: 200, description: 'user deleted from Chat room successfully' })
 async removeUserFromChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
   const chatRoom = await this.findOne(chatRoomId);
 

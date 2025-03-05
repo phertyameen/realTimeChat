@@ -225,6 +225,8 @@ import { ChatRoomService } from &#x27;./providers/chatrooms/chatrooms.service&#x
 import { CreateChatRoomDto } from &#x27;./DTOs/create-chat-room.dto&#x27;;
 import { UpdateChatRoomDto } from &#x27;./DTOs/update-chat-room.dto&#x27;;
 import { Request } from &#x27;express&#x27;;
+import { ApiTags, ApiOperation, ApiResponse } from &#x27;@nestjs/swagger&#x27;;
+
 // import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 
 interface RequestWithUser extends Request {
@@ -234,27 +236,64 @@ interface RequestWithUser extends Request {
   };
 }
 
+/**
+ * Controller for managing chat rooms.
+ */
+@ApiTags(&#x27;ChatRooms&#x27;)
 @Controller(&#x27;chat-rooms&#x27;)
 // @UseGuards(JwtAuthGuard)
 export class ChatRoomController {
   constructor(private readonly chatRoomService: ChatRoomService) {}
 
+  /**
+   * Creates a new chat room.
+   * @param createChatRoomDto DTO containing chat room details.
+   * @param req Request object containing the authenticated user.
+   * @returns The created chat room.
+   */
+  @ApiOperation({ summary: &#x27;Create a chat room&#x27; })
+  @ApiResponse({ status: 201, description: &#x27;Chat room created successfully.&#x27; })
+  @ApiResponse({ status: 400, description: &#x27;Invalid request data.&#x27; })
   @Post()
   create(@Body() createChatRoomDto: CreateChatRoomDto, @Req() req: RequestWithUser) {
     const userId &#x3D; req.user?.sub || 1; // Default to user ID 1 for now
     return this.chatRoomService.create(createChatRoomDto, userId);
   }
 
+  /**
+   * Retrieves all chat rooms.
+   * @returns An array of chat rooms.
+   */
+  @ApiOperation({ summary: &#x27;Get all chat rooms&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;List of chat rooms retrieved successfully.&#x27; })
   @Get()
   findAll() {
     return this.chatRoomService.findAll();
   }
 
+  /**
+   * Retrieves a chat room by ID.
+   * @param id Chat room ID.
+   * @returns The found chat room.
+   */
+  @ApiOperation({ summary: &#x27;Find a chat room by ID&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Chat room found.&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;Chat room not found.&#x27; })
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;, ParseIntPipe) id: number) {
     return this.chatRoomService.findOne(id);
   }
 
+  /**
+   * Updates a chat room.
+   * @param id Chat room ID.
+   * @param updateChatRoomDto DTO containing update details.
+   * @returns The updated chat room.
+   */
+  @ApiOperation({ summary: &#x27;Update a chat room&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Chat room updated successfully.&#x27; })
+  @ApiResponse({ status: 400, description: &#x27;Invalid request data.&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;Chat room not found.&#x27; })
   @Patch(&#x27;:id&#x27;)
   update(
     @Param(&#x27;id&#x27;, ParseIntPipe) id: number,
@@ -263,6 +302,16 @@ export class ChatRoomController {
     return this.chatRoomService.update(id, updateChatRoomDto);
   }
 
+  /**
+   * Deletes a chat room.
+   * @param id Chat room ID.
+   * @param req Request object containing the authenticated user.
+   * @returns A success message.
+   */
+  @ApiOperation({ summary: &#x27;Delete a chat room&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;Chat room deleted successfully.&#x27; })
+  @ApiResponse({ status: 403, description: &#x27;Permission denied.&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;Chat room not found.&#x27; })
   @Delete(&#x27;:id&#x27;)
   @HttpCode(HttpStatus.OK)
   async remove(@Param(&#x27;id&#x27;, ParseIntPipe) id: number, @Req() req: RequestWithUser) {
@@ -274,7 +323,15 @@ export class ChatRoomController {
     };
   }
 
-
+  /**
+   * Adds a user to a chat room.
+   * @param id Chat room ID.
+   * @param userId User ID to be added.
+   * @returns The updated chat room.
+   */
+  @ApiOperation({ summary: &#x27;Add a user to a chat room&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;User added successfully.&#x27; })
+  @ApiResponse({ status: 400, description: &#x27;Invalid request data.&#x27; })
   @Post(&#x27;:id/users/:userId&#x27;)
   addUser(
     @Param(&#x27;id&#x27;, ParseIntPipe) id: number,
@@ -283,6 +340,16 @@ export class ChatRoomController {
     return this.chatRoomService.addUserToChatRoom(id, userId);
   }
 
+  /**
+   * Removes a user from a chat room.
+   * @param id Chat room ID.
+   * @param userId User ID to be removed.
+   * @returns The updated chat room.
+   */
+  @ApiOperation({ summary: &#x27;Remove a user from a chat room&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;User removed successfully.&#x27; })
+  @ApiResponse({ status: 400, description: &#x27;Invalid request data.&#x27; })
+  @ApiResponse({ status: 404, description: &#x27;User not found in chat room.&#x27; })
   @Delete(&#x27;:id/users/:userId&#x27;)
   removeUser(
     @Param(&#x27;id&#x27;, ParseIntPipe) id: number,
@@ -290,7 +357,8 @@ export class ChatRoomController {
   ) {
     return this.chatRoomService.removeUserFromChatRoom(id, userId);
   }
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

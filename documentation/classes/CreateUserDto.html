@@ -123,6 +123,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>DTO for creating a user</p>
+
+            </p>
 
 
 
@@ -197,6 +204,7 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#userRole" >userRole</a>
                             </li>
@@ -247,16 +255,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;array&#x27;, required: true, items: undefined})<br />@IsOptional()<br />@IsArray()<br />@ValidateNested({each: true})<br />@Type(undefined)<br />
+                            @ApiProperty({type: &#x27;array&#x27;, items: undefined})<br />@IsOptional()<br />@IsArray()<br />@ValidateNested({each: true})<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/users/DTOs/create-user.dto.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/users/DTOs/create-user.dto.ts:144</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of chatrooms associated with the user</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -287,16 +301,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;@Password123&#x27;, description: &#x27;password should containg number, alphabets and uppercase and should be same as the password&#x27;})<br />@IsString()<br />@MaxLength(225)<br />@Validate(MatchPasswordsConstraint)<br />
+                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;@Password123&#x27;})<br />@IsString()<br />@MaxLength(225)<br />@Validate(MatchPasswordsConstraint)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/users/DTOs/create-user.dto.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/users/DTOs/create-user.dto.ts:107</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Password confirmation field</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -326,16 +346,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;fatimaaminu@mail.com&#x27;, description: &#x27;email field&#x27;})<br />@IsEmail()<br />@MaxLength(150)<br />@Column({unique: true, length: 150})<br />
+                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;fatimaaminu@mail.com&#x27;})<br />@IsEmail()<br />@MaxLength(150)<br />@Column({unique: true, length: 150})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/users/DTOs/create-user.dto.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/users/DTOs/create-user.dto.ts:76</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Email field</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -365,16 +391,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;Fatima&#x27;, description: &#x27;first name field&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MaxLength(100)<br />
+                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;Fatima&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MaxLength(100)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/users/DTOs/create-user.dto.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/users/DTOs/create-user.dto.ts:52</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>First name field</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -405,16 +437,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;poiuytrdspoiuytrewazxcvbnmml;poiuytrdsdcvbnm]&#x27;, description: &#x27;this is autogenerated from google when you signup with google&#x27;})<br />@IsString()<br />@IsOptional()<br />@MaxLength(225)<br />
+                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;poiuytrdspoiuytrewazxcvbnmml;poiuytrdsdcvbnm]&#x27;})<br />@IsString()<br />@IsOptional()<br />@MaxLength(225)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/users/DTOs/create-user.dto.ts:108</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/users/DTOs/create-user.dto.ts:131</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Autogenerated from Google when signing up with Google</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -444,16 +482,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;Aminu&#x27;, description: &#x27;last name field&#x27;})<br />@IsString()<br />@IsOptional()<br />@MaxLength(100)<br />
+                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;Aminu&#x27;})<br />@IsString()<br />@IsOptional()<br />@MaxLength(100)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/users/DTOs/create-user.dto.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/users/DTOs/create-user.dto.ts:64</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Last name field</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -484,16 +528,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;@Password123&#x27;, description: &#x27;password should containg number, alphabets and uppercase&#x27;})<br />@IsString()<br />@MaxLength(225)<br />@Matches(/^(?&#x3D;.*[!@#$%^&amp;])(?&#x3D;.*[a-z])(?&#x3D;.*[A-Z])(?&#x3D;.*[0-9])[a-zA-Z0-9!@#$%^&amp;*]{8,16}$/, {message: &#x27;Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.&#x27;})<br />
+                            @ApiProperty({type: &#x27;string&#x27;, example: &#x27;@Password123&#x27;, description: &#x27;Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.&#x27;})<br />@IsString()<br />@MaxLength(225)<br />@Matches(/^(?&#x3D;.*[!@#$%^&amp;])(?&#x3D;.*[a-z])(?&#x3D;.*[A-Z])(?&#x3D;.*[0-9])[a-zA-Z0-9!@#$%^&amp;*]{8,16}$/, {message: &#x27;Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/users/DTOs/create-user.dto.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/users/DTOs/create-user.dto.ts:95</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Password should contain numbers, alphabets, and uppercase</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -503,6 +553,7 @@
                 <td class="col-md-4">
                     <a name="userRole"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
@@ -523,16 +574,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsEnum(userRole)<br />@IsOptional()<br />@Transform( &#x3D;&gt; )<br />
+                            @ApiProperty({enum: userRole, example: undefined})<br />@IsEnum(userRole)<br />@IsOptional()<br />@Transform( &#x3D;&gt; )<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/users/DTOs/create-user.dto.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/users/DTOs/create-user.dto.ts:119</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>User role</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -569,8 +626,9 @@ import { userRole } from &#x27;../Enums/userRole.enum&#x27;;
 import { Transform, Type } from &#x27;class-transformer&#x27;;
 import { ChatRoom } from &#x27;src/chatrooms/chatroom.entity&#x27;;
 
-// custum validation to compare passwords
-
+/**
+ * Custom validation to compare passwords
+ */
 @ValidatorConstraint({ name: &#x27;MatchPasswords&#x27;, async: false })
 class MatchPasswordsConstraint implements ValidatorConstraintInterface {
   validate(confirmPassword: string, args: ValidationArguments): boolean {
@@ -584,41 +642,53 @@ class MatchPasswordsConstraint implements ValidatorConstraintInterface {
   }
 }
 
+/**
+ * DTO for creating a user
+ */
 export class CreateUserDto {
+  /**
+   * First name field
+   */
   @ApiProperty({
     type: &#x27;string&#x27;,
     example: &#x27;Fatima&#x27;,
-    description: &#x27;first name field&#x27;,
   })
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)
   firstName: string;
 
+  /**
+   * Last name field
+   */
   @ApiProperty({
     type: &#x27;string&#x27;,
     example: &#x27;Aminu&#x27;,
-    description: &#x27;last name field&#x27;,
   })
   @IsString()
   @IsOptional()
   @MaxLength(100)
   lastName: string;
 
+  /**
+   * Email field
+   */
   @ApiProperty({
     type: &#x27;string&#x27;,
     example: &#x27;fatimaaminu@mail.com&#x27;,
-    description: &#x27;email field&#x27;,
   })
   @IsEmail()
   @MaxLength(150)
   @Column({ unique: true, length: 150 })
   email: string;
 
+  /**
+   * Password should contain numbers, alphabets, and uppercase
+   */
   @ApiProperty({
     type: &#x27;string&#x27;,
     example: &#x27;@Password123&#x27;,
-    description: &#x27;password should containg number, alphabets and uppercase&#x27;,
+    description: &#x27;Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.&#x27;,
   })
   @IsString()
   @MaxLength(225)
@@ -631,38 +701,48 @@ export class CreateUserDto {
   )
   password?: string;
 
+  /**
+   * Password confirmation field
+   */
   @ApiProperty({
     type: &#x27;string&#x27;,
     example: &#x27;@Password123&#x27;,
-    description:
-      &#x27;password should containg number, alphabets and uppercase and should be same as the password&#x27;,
   })
   @IsString()
   @MaxLength(225)
   @Validate(MatchPasswordsConstraint)
   confirmpassword?: string;
 
+  /**
+   * User role
+   */
+  @ApiProperty({
+    enum: userRole,
+    example: userRole.USER,
+  })
   @IsEnum(userRole)
   @IsOptional()
-  @Transform(({ value }) &#x3D;&gt; value ?? userRole.USER) // Set default if undefined
+  @Transform(({ value }) &#x3D;&gt; value ?? userRole.USER) 
   userRole?: userRole;
 
+  /**
+   * Autogenerated from Google when signing up with Google
+   */
   @ApiProperty({
     type: &#x27;string&#x27;,
-    example: &#x27;poiuytrdspoiuytrewa\zxcvbnmml;poiuytrdsdcvbnm]&#x27;,
-    description: &#x27;this is autogenerated from google when you signup with google&#x27;,
+    example: &#x27;poiuytrdspoiuytrewa\zxcvbnmml;poiuytrdsdcvbnm]&#x27;
   })
   @IsString()
   @IsOptional()
   @MaxLength(225)
   googleId?: string;
 
+  /**
+   * List of chatrooms associated with the user
+   */
   @ApiProperty({
     type: &#x27;array&#x27;,
-    required: true,
-    items: {
-      type: &#x27;Chatroom&#x27;,
-    },
+    items: { type: &#x27;Chatroom&#x27; },
   })
   @IsOptional()
   @IsArray()

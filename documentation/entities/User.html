@@ -117,6 +117,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Entity representing a user.</p>
+
+            </p>
 
 
             <section data-compodoc="block-index">
@@ -135,31 +142,38 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#chatRooms" >chatRooms</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#email" >email</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#firstName" >firstName</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#googleId" >googleId</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#lastName" >lastName</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
@@ -168,10 +182,12 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#password" >password</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#userRole" >userRole</a>
@@ -203,6 +219,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>chatRooms</b></span>
                         <a href="#chatRooms"><span class="icon ion-ios-link"></span></a>
@@ -220,16 +237,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsOptional()<br />@ManyToMany(undefined, chatRoom &#x3D;&gt; chatRoom.users)<br />@JoinTable()<br />
+                            @ApiProperty({type: () &#x3D;&gt; , description: &#x27;List of chat rooms the user is part of&#x27;, required: false})<br />@IsOptional()<br />@ManyToMany(undefined, chatRoom &#x3D;&gt; chatRoom.users)<br />@JoinTable()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/users/user.entitly.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/users/user.entitly.ts:71</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of chat rooms the user is part of.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -239,6 +262,7 @@
                 <td class="col-md-4">
                     <a name="email"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>email</b></span>
                         <a href="#email"><span class="icon ion-ios-link"></span></a>
@@ -256,16 +280,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;varchar&#x27;, {unique: true, nullable: false})<br />
+                            @ApiProperty({example: &#x27;johndoe@mail.com&#x27;, description: &#x27;Email address of the user&#x27;})<br />@Column(&#x27;varchar&#x27;, {unique: true, nullable: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/users/user.entitly.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/users/user.entitly.ts:40</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Email address of the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -275,6 +305,7 @@
                 <td class="col-md-4">
                     <a name="firstName"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>firstName</b></span>
                         <a href="#firstName"><span class="icon ion-ios-link"></span></a>
@@ -292,16 +323,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;varchar&#x27;, {length: 100, nullable: false})<br />
+                            @ApiProperty({example: &#x27;John&#x27;, description: &#x27;First name of the user&#x27;})<br />@Column(&#x27;varchar&#x27;, {length: 100, nullable: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/users/user.entitly.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/users/user.entitly.ts:26</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>First name of the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -311,6 +348,7 @@
                 <td class="col-md-4">
                     <a name="googleId"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>googleId</b></span>
@@ -329,16 +367,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;varchar&#x27;, {length: 225, nullable: true})<br />
+                            @ApiProperty({example: &#x27;google-unique-id&#x27;, description: &#x27;Google ID of the user&#x27;, required: false})<br />@Column(&#x27;varchar&#x27;, {length: 225, nullable: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/users/user.entitly.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/users/user.entitly.ts:62</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Google ID (if signed up with Google).</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -348,6 +392,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
@@ -365,16 +410,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @PrimaryGeneratedColumn()<br />
+                            @ApiProperty({example: 1, description: &#x27;Unique identifier for the user&#x27;})<br />@PrimaryGeneratedColumn()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/users/user.entitly.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/users/user.entitly.ts:19</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unique identifier for the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -384,6 +435,7 @@
                 <td class="col-md-4">
                     <a name="lastName"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>lastName</b></span>
                         <a href="#lastName"><span class="icon ion-ios-link"></span></a>
@@ -401,16 +453,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column(&#x27;varchar&#x27;, {length: 100})<br />
+                            @ApiProperty({example: &#x27;Doe&#x27;, description: &#x27;Last name of the user&#x27;})<br />@Column(&#x27;varchar&#x27;, {length: 100})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/users/user.entitly.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/users/user.entitly.ts:33</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Last name of the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -420,6 +478,7 @@
                 <td class="col-md-4">
                     <a name="messages"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier">Optional</span>
@@ -439,16 +498,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsOptional()<br />@OneToMany(undefined, message &#x3D;&gt; message.sender, {cascade: true})<br />
+                            @ApiProperty({type: () &#x3D;&gt; , description: &#x27;Messages sent by the user&#x27;, required: false})<br />@IsOptional()<br />@OneToMany(undefined, message &#x3D;&gt; message.sender, {cascade: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/users/user.entitly.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/users/user.entitly.ts:79</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Messages sent by the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -458,6 +523,7 @@
                 <td class="col-md-4">
                     <a name="password"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier">Optional</span>
@@ -477,16 +543,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Exclude()<br />@Column(&#x27;varchar&#x27;, {nullable: true})<br />
+                            @ApiProperty({example: &#x27;@Password123&#x27;, description: &#x27;Password of the user&#x27;, required: false})<br />@Exclude()<br />@Column(&#x27;varchar&#x27;, {nullable: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/users/user.entitly.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/users/user.entitly.ts:48</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Password of the user (excluded from serialization).</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -496,6 +568,7 @@
                 <td class="col-md-4">
                     <a name="userRole"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier">Optional</span>
                         <span ><b>userRole</b></span>
@@ -514,16 +587,22 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;enum&#x27;, enum: userRole, default: undefined})<br />
+                            @ApiProperty({enum: userRole, example: undefined, description: &#x27;Role of the user&#x27;})<br />@Column({type: &#x27;enum&#x27;, enum: userRole, default: undefined})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/users/user.entitly.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/users/user.entitly.ts:55</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Role of the user.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -538,42 +617,79 @@ import { userRole } from &#x27;./Enums/userRole.enum&#x27;;
 import { ChatRoom } from &#x27;../chatrooms/chatroom.entity&#x27;;
 import { Message } from &#x27;src/messages/message.entity&#x27;;
 import { IsOptional } from &#x27;class-validator&#x27;;
-// import { Message } from &#x27;src/messages/message.entity&#x27;;
+import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
 
+/**
+ * Entity representing a user.
+ */
 @Entity()
 export class User {
+  /**
+   * Unique identifier for the user.
+   */
+  @ApiProperty({ example: 1, description: &#x27;Unique identifier for the user&#x27; })
   @PrimaryGeneratedColumn()
   id: number;
 
+  /**
+   * First name of the user.
+   */
+  @ApiProperty({ example: &#x27;John&#x27;, description: &#x27;First name of the user&#x27; })
   @Column(&#x27;varchar&#x27;, { length: 100, nullable: false })
   firstName: string;
 
+  /**
+   * Last name of the user.
+   */
+  @ApiProperty({ example: &#x27;Doe&#x27;, description: &#x27;Last name of the user&#x27; })
   @Column(&#x27;varchar&#x27;, { length: 100 })
   lastName: string;
 
+  /**
+   * Email address of the user.
+   */
+  @ApiProperty({ example: &#x27;johndoe@mail.com&#x27;, description: &#x27;Email address of the user&#x27; })
   @Column(&#x27;varchar&#x27;, { unique: true, nullable: false })
   email: string;
 
+  /**
+   * Password of the user (excluded from serialization).
+   */
+  @ApiProperty({ example: &#x27;@Password123&#x27;, description: &#x27;Password of the user&#x27;, required: false })
   @Exclude()
   @Column(&#x27;varchar&#x27;, { nullable: true })
   password?: string;
 
+  /**
+   * Role of the user.
+   */
+  @ApiProperty({ enum: userRole, example: userRole.USER, description: &#x27;Role of the user&#x27; })
   @Column({ type: &#x27;enum&#x27;, enum: userRole, default: userRole.USER })
   userRole?: userRole;
 
+  /**
+   * Google ID (if signed up with Google).
+   */
+  @ApiProperty({ example: &#x27;google-unique-id&#x27;, description: &#x27;Google ID of the user&#x27;, required: false })
   @Column(&#x27;varchar&#x27;, { length: 225, nullable: true })
   googleId?: string;
 
-  // Many-to-Many relationship with ChatRoom
+  /**
+   * List of chat rooms the user is part of.
+   */
+  @ApiProperty({ type: () &#x3D;&gt; [ChatRoom], description: &#x27;List of chat rooms the user is part of&#x27;, required: false })
   @IsOptional()
   @ManyToMany(() &#x3D;&gt; ChatRoom, (chatRoom) &#x3D;&gt; chatRoom.users)
-  @JoinTable() // This creates a junction table to link users and chat rooms
+  @JoinTable()
   chatRooms?: ChatRoom[];
 
-  // One-to-Many relationship with Message
+  /**
+   * Messages sent by the user.
+   */
+  @ApiProperty({ type: () &#x3D;&gt; [Message], description: &#x27;Messages sent by the user&#x27;, required: false })
   @IsOptional()
   @OneToMany(() &#x3D;&gt; Message, (message) &#x3D;&gt; message.sender, { cascade: true })
-  messages?: Message[]; //
+  messages?: Message[];
 }
 </code></pre>
     </div>

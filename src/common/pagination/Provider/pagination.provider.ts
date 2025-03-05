@@ -5,13 +5,16 @@ import { Request } from 'express';
 import { REQUEST } from '@nestjs/core';
 import { Paginated } from '../Interfaces/paginatedInterface';
 
+/**Pagination provider class */
 @Injectable()
 export class PaginationProvider {
   constructor(
+    /**injecting request */
     @Inject(REQUEST)
     private readonly request: Request,
   ) {}
 
+  /**pagination query class */
   public async paginatedQuery<T extends ObjectLiteral>(
     paginationQueryDto: PaginationQueryDto,
     repository: Repository<T>,

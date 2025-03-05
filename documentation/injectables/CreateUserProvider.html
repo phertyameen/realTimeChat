@@ -119,6 +119,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service provider for creating users</p>
+
+            </p>
 
 
 
@@ -163,7 +170,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/users/provider/create-user.provider.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/users/provider/create-user.provider.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -241,14 +248,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/users/provider/create-user.provider.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/users/provider/create-user.provider.ts:41</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new user in the system.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -259,6 +268,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -273,6 +283,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The DTO containing user creation data.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -282,7 +298,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>A Promise resolving to the created User entity.</p>
+
                             </div>
                 </td>
             </tr>
@@ -306,23 +323,35 @@ import { User } from &#x27;../user.entitly&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { CreateUserDto } from &#x27;../DTOs/create-user.dto&#x27;;
 import { HashingProvider } from &#x27;src/auth/providers/hashing&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
+/**
+ * Service provider for creating users
+ */
+@ApiTags(&#x27;Users&#x27;)
 @Injectable()
 export class CreateUserProvider {
   constructor(
-    /*
+    /**
      * Inject userRepository
      */
     @InjectRepository(User) private userRepository: Repository&lt;User&gt;,
 
-    /*
+    /**
      * Inject hashingProvider
      */
     @Inject(forwardRef(() &#x3D;&gt; HashingProvider))
     private readonly hashingProvider: HashingProvider,
   ) {}
+
+  /**
+   * Creates a new user in the system.
+   * @param createUserDto - The DTO containing user creation data.
+   * @returns A Promise resolving to the created User entity.
+   * @throws BadRequestException if the user already exists.
+   * @throws RequestTimeoutException if a database connection issue occurs.
+   */
   public async createUsers(createUserDto: CreateUserDto): Promise&lt;User&gt; {
-    // check if user already exits
     let existingUser &#x3D; undefined;
 
     try {
@@ -330,7 +359,6 @@ export class CreateUserProvider {
         where: { email: createUserDto.email },
       });
     } catch (error) {
-      // you might save/log your  error
       throw new RequestTimeoutException(
         &#x27;Unable to process your request at the moment, Please try later&#x27;,
         {
@@ -339,7 +367,7 @@ export class CreateUserProvider {
         },
       );
     }
-    // Handle Error
+
     if (existingUser) {
       throw new BadRequestException(&#x27;User already exist&#x27;);
     }
@@ -353,7 +381,6 @@ export class CreateUserProvider {
       password: hashedPassword,
     });
 
-    // Create the user
     try {
       this.userRepository.save(newUser);
     } catch (error) {
@@ -368,7 +395,8 @@ export class CreateUserProvider {
 
     return newUser;
   }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

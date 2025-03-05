@@ -163,7 +163,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/common/pagination/Provider/pagination.provider.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/common/pagination/Provider/pagination.provider.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -229,8 +229,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/common/pagination/Provider/pagination.provider.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/common/pagination/Provider/pagination.provider.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -302,82 +302,89 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &quot;@nestjs/common&quot;;
-import { PaginationQueryDto } from &quot;../pagination-query.dto&quot;;
-import { ObjectLiteral, Repository } from &quot;typeorm&quot;;
-import { Request } from &quot;express&quot;;
-import { REQUEST } from &quot;@nestjs/core&quot;
-import { Paginated } from &quot;../Interfaces/paginatedInterface&quot;;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;;
+import { PaginationQueryDto } from &#x27;../pagination-query.dto&#x27;;
+import { ObjectLiteral, Repository } from &#x27;typeorm&#x27;;
+import { Request } from &#x27;express&#x27;;
+import { REQUEST } from &#x27;@nestjs/core&#x27;;
+import { Paginated } from &#x27;../Interfaces/paginatedInterface&#x27;;
 
 @Injectable()
 export class PaginationProvider {
+  constructor(
+    @Inject(REQUEST)
+    private readonly request: Request,
+  ) {}
 
-    constructor (
-        @Inject(REQUEST)
-        private readonly request:Request,
-    ) {}
-    
+  public async paginatedQuery&lt;T extends ObjectLiteral&gt;(
+    paginationQueryDto: PaginationQueryDto,
+    repository: Repository&lt;T&gt;,
+  ): Promise&lt;Paginated&lt;T&gt;&gt; {
+    const result &#x3D; await repository.find({
+      //skip: number of post
+      //take: number of post to show per page
+      skip: paginationQueryDto.limit * (paginationQueryDto.page - 1),
+      take: paginationQueryDto.limit,
+    });
 
-    public async paginatedQuery&lt;T extends ObjectLiteral&gt; (paginationQueryDto:PaginationQueryDto, repository:Repository&lt;T&gt;,): Promise&lt;Paginated&lt;T&gt;&gt; {
+    // // create a requestUrl
+    // // i.e http://localhost:3000/resource
+    // // the http is this.requestprotocol
+    // const baseUrl &#x3D; this.request.protocol; + &quot;://&quot; + this.request.headers.host + &quot;/&quot;
 
-        const result &#x3D; await repository.find({
+    // const newUrl &#x3D; new URL(this.request.url, baseUrl)
 
-            //skip: number of post
-            //take: number of post to show per page
-            skip: paginationQueryDto.limit * (paginationQueryDto.page - 1),
-            take: paginationQueryDto.limit,
-        })
+    // console.log(baseUrl);
+    // // line 34 give u http://localhost:3000/resource  as result on your terminal
+    // console.log(newUrl)
 
+    // Construct the base URL
+    const baseUrl &#x3D; &#x60;${this.request.protocol}://${this.request.get(&#x27;host&#x27;)}/&#x60;;
+    console.log(&#x27;Base URL:&#x27;, baseUrl);
 
-        // create a requestUrl 
-        // i.e http://localhost:3000/resource 
-        // the http is this.requestprotocol
-        const baseUrl &#x3D; this.request.protocol; + &quot;://&quot; + this.request.headers.host + &quot;/&quot;
+    // Construct the new URL
+    const newUrl &#x3D; new URL(this.request.url, baseUrl);
+    console.log(&#x27;New URL:&#x27;, newUrl.toString());
 
-        const newUrl &#x3D; new URL(this.request.url, baseUrl)
+    const totalItems &#x3D; await repository.count();
 
-        console.log(baseUrl);
-        // line 34 give u http://localhost:3000/resource  as result on your terminal
-        console.log(newUrl)
+    const totalpage &#x3D; Math.ceil(totalItems / paginationQueryDto.limit);
 
-       const totalItems &#x3D; await repository.count()
+    const nextpage &#x3D;
+      paginationQueryDto.page &#x3D;&#x3D;&#x3D; 1
+        ? paginationQueryDto.page
+        : paginationQueryDto.page + 1;
 
-       const totalpage &#x3D; Math.ceil(totalItems / paginationQueryDto.limit)
+    const prevpage &#x3D;
+      paginationQueryDto.page &#x3D;&#x3D;&#x3D; 1
+        ? paginationQueryDto.page
+        : paginationQueryDto.page - 1;
 
-       const nextpage &#x3D; paginationQueryDto.page &#x3D;&#x3D;&#x3D; 1 ? paginationQueryDto.page: paginationQueryDto.page +1
+    const finalResponse: Paginated&lt;T&gt; &#x3D; {
+      data: result,
+      meta: {
+        itemsPerPage: paginationQueryDto.limit,
+        totalItems: totalItems,
+        currentPage: paginationQueryDto.page,
+        totalPage: totalpage,
+      },
+      link: {
+        first: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;1&#x60;,
 
-       const prevpage &#x3D; paginationQueryDto.page &#x3D;&#x3D;&#x3D; 1 ? paginationQueryDto.page: paginationQueryDto.page -1
+        last: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;${totalpage}&#x60;,
 
+        current: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${paginationQueryDto.page}&#x60;,
 
-        const finalResponse: Paginated&lt;T&gt; &#x3D; {
-            data: result,
-            meta: {
-                itemsPerPage: paginationQueryDto.limit,
-                totalItems: totalItems,
-                currentPage: paginationQueryDto.page,
-                totalPage : totalpage
-            }, 
-            link: {
-                first: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;1&#x60;,
+        next: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${nextpage}&#x60;,
 
-                last: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;${totalpage}&#x60;,
-   
-               current: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${paginationQueryDto.page}&#x60;,
-   
-               next: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${nextpage}&#x60;,
-   
-               previous: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${prevpage}&#x60;
-   
-            }
-        }
+        previous: &#x60;${newUrl.origin}${newUrl.pathname}?limit&#x3D;${paginationQueryDto.limit}&amp;page&#x3D;${prevpage}&#x60;,
+      },
+    };
 
-        return finalResponse
-
-
-    }
-
-}</code></pre>
+    return finalResponse;
+  }
+}
+</code></pre>
     </div>
 
 </div>

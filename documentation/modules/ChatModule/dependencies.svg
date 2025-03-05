@@ -24,13 +24,13 @@
 <title>cluster_ChatModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="150,-70 150,-268 346,-268 346,-70 150,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_ChatModule_providers</title>
-<polygon fill="none" stroke="black" points="158,-78 158,-130 338,-130 338,-78 158,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_ChatModule_exports</title>
 <polygon fill="none" stroke="black" points="179,-208 179,-260 317,-260 317,-208 179,-208"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_ChatModule_providers</title>
+<polygon fill="none" stroke="black" points="158,-78 158,-130 338,-130 338,-78 158,-78"/>
 </g>
 <!-- ChatRoomService  -->
 <g id="node1" class="node">

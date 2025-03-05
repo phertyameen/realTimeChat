@@ -119,6 +119,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Service responsible for handling chat room operations.</p>
+
+            </p>
 
 
 
@@ -136,30 +143,45 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#addUserToChatRoom" >addUserToChatRoom</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#remove" >remove</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#removeUserFromChatRoom" >removeUserFromChatRoom</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#update" >update</a>
                             </li>
@@ -186,7 +208,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -247,6 +269,8 @@
                 <td class="col-md-4">
                     <a name="addUserToChatRoom"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>addUserToChatRoom</b></span>
                         <a href="#addUserToChatRoom"><span class="icon ion-ios-link"></span></a>
@@ -260,17 +284,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Find a user in the chat room by ID&#x27;})<br />@ApiResponse({status: 200, description: &#x27;User added to the chat room successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="115"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:115</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:167</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Add a user to the chat room.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -316,7 +349,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The found chat room.</p>
+
                             </div>
                 </td>
             </tr>
@@ -328,6 +362,8 @@
                 <td class="col-md-4">
                     <a name="create"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
@@ -341,17 +377,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Create a new chat room&#x27;})<br />@ApiResponse({status: 201, description: &#x27;Chat room created successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:34</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new chat room.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -362,6 +407,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -376,6 +422,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Data transfer object containing chat room details.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>currentUserId</td>
@@ -388,6 +438,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>ID of the current user.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -397,7 +451,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The created chat room.</p>
+
                             </div>
                 </td>
             </tr>
@@ -409,6 +464,8 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
@@ -422,22 +479,35 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Get all chat rooms&#x27;})<br />@ApiResponse({status: 200, description: &#x27;List of chat rooms retrieved successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:70</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves all chat rooms.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="../entitys/ChatRoom.html" target="_self" >Promise&lt;ChatRoom[]&gt;</a></code>
 
                         </div>
+                            <div class="io-description">
+                                <p>List of chat rooms.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -448,6 +518,9 @@
                 <td class="col-md-4">
                     <a name="findOne"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
@@ -461,17 +534,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Find a chat room by ID&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Chat room found&#x27;})<br />@ApiResponse({status: 404, description: &#x27;Chat room not found&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:85</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Finds a chat room by ID.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -517,6 +599,8 @@
                 <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>remove</b></span>
                         <a href="#remove"><span class="icon ion-ios-link"></span></a>
@@ -530,17 +614,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Delete a chat room&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Chat room deleted successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:141</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Deletes a chat room.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -551,6 +644,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -565,6 +659,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Chat room ID.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>userId</td>
@@ -577,6 +675,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Optional user ID for permission checks.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -598,6 +700,8 @@
                 <td class="col-md-4">
                     <a name="removeUserFromChatRoom"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>removeUserFromChatRoom</b></span>
                         <a href="#removeUserFromChatRoom"><span class="icon ion-ios-link"></span></a>
@@ -611,17 +715,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Delete a user from a chat room&#x27;})<br />@ApiResponse({status: 200, description: &#x27;user deleted from Chat room successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:194</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Deletes a user from chat room.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -632,6 +745,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -646,6 +760,8 @@
                                             </td>
 
 
+                                            <td>
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>userId</td>
@@ -658,6 +774,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Optional user ID for permission checks.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -679,6 +799,8 @@
                 <td class="col-md-4">
                     <a name="update"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
@@ -692,17 +814,26 @@
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@ApiOperation({summary: &#x27;Update a chat room&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Chat room updated successfully&#x27;})<br /></code>
+                </td>
+            </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/chatrooms/providers/chatrooms/chatrooms.service.ts:107</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Updates a chat room.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -713,6 +844,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -727,6 +859,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>Chat room ID.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>updateChatRoomDto</td>
@@ -739,6 +875,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>DTO containing updated data.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -748,7 +888,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The updated chat room.</p>
+
                             </div>
                 </td>
             </tr>
@@ -768,8 +909,14 @@ import { CreateChatRoomDto } from &#x27;../../DTOs/create-chat-room.dto&#x27;;
 import { UpdateChatRoomDto } from &#x27;../../DTOs/update-chat-room.dto&#x27;;
 import { User } from &#x27;src/users/user.entitly&#x27;;
 import { ChatRoomType } from &#x27;../../enums/chatroomType&#x27;;
+import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
+
+/**
+ * Service responsible for handling chat room operations.
+ */
 @Injectable()
+@ApiTags(&#x27;ChatRooms&#x27;)
 export class ChatRoomService {
   constructor(
     @InjectRepository(ChatRoom)
@@ -778,6 +925,14 @@ export class ChatRoomService {
     private userRepository: Repository&lt;User&gt;,
   ) {}
 
+  /**
+   * Creates a new chat room.
+   * @param createChatRoomDto Data transfer object containing chat room details.
+   * @param currentUserId ID of the current user.
+   * @returns The created chat room.
+   */
+  @ApiOperation({ summary: &#x27;Create a new chat room&#x27; })
+  @ApiResponse({ status: 201, description: &#x27;Chat room created successfully&#x27; })
   async create(createChatRoomDto: CreateChatRoomDto, currentUserId: number): Promise&lt;ChatRoom&gt; {
     // Find users
     const users &#x3D; await this.userRepository.findByIds(
@@ -808,13 +963,27 @@ export class ChatRoomService {
     return await this.chatRoomRepository.save(chatRoom);
   }
 
+  /**
+   * Retrieves all chat rooms.
+   * @returns List of chat rooms.
+   */
+  @ApiOperation({ summary: &#x27;Get all chat rooms&#x27; })
+  @ApiResponse({ status: 200, description: &#x27;List of chat rooms retrieved successfully&#x27; })
   async findAll(): Promise&lt;ChatRoom[]&gt; {
     return this.chatRoomRepository.find({
       relations: [&#x27;users&#x27;],
     });
   }
 
-// Method for finding a chat room by ID
+/** Method for finding a chat room by ID*/
+/**
+   * Finds a chat room by ID.
+   * @param id Chat room ID.
+   * @returns The found chat room.
+   */
+@ApiOperation({ summary: &#x27;Find a chat room by ID&#x27; })
+@ApiResponse({ status: 200, description: &#x27;Chat room found&#x27; })
+@ApiResponse({ status: 404, description: &#x27;Chat room not found&#x27; })
 async findOne(id: number): Promise&lt;ChatRoom&gt; {
   const chatRoom &#x3D; await this.chatRoomRepository.findOne({
     where: { id: Number(id) },
@@ -829,6 +998,14 @@ async findOne(id: number): Promise&lt;ChatRoom&gt; {
 }
 
 // Method for updating a chat room
+/**
+   * Updates a chat room.
+   * @param id Chat room ID.
+   * @param updateChatRoomDto DTO containing updated data.
+   * @returns The updated chat room.
+   */
+@ApiOperation({ summary: &#x27;Update a chat room&#x27; })
+@ApiResponse({ status: 200, description: &#x27;Chat room updated successfully&#x27; })
 async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise&lt;ChatRoom&gt; {
   const chatRoom &#x3D; await this.findOne(id);
   
@@ -855,6 +1032,14 @@ async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise&lt;ChatR
   return this.chatRoomRepository.save(chatRoom);
 }
 
+
+/**
+   * Deletes a chat room.
+   * @param id Chat room ID.
+   * @param userId Optional user ID for permission checks.
+   */
+@ApiOperation({ summary: &#x27;Delete a chat room&#x27; })
+@ApiResponse({ status: 200, description: &#x27;Chat room deleted successfully&#x27; })
 async remove(id: number, userId?: number): Promise&lt;void&gt; {
   const chatRoom &#x3D; await this.chatRoomRepository.findOne({
     where: { id: Number(id) }
@@ -872,6 +1057,14 @@ async remove(id: number, userId?: number): Promise&lt;void&gt; {
   // Remove the chat room
   await this.chatRoomRepository.remove(chatRoom);
 }
+
+  /**
+   * Add a user to the chat room.
+   * @param id user ID.
+   * @returns The found chat room.
+   */
+@ApiOperation({ summary: &#x27;Find a user in the chat room by ID&#x27; })
+@ApiResponse({ status: 200, description: &#x27;User added to the chat room successfully&#x27; })
 
   async addUserToChatRoom(chatRoomId: number, userId: number): Promise&lt;ChatRoom&gt; {
     const chatRoom &#x3D; await this.findOne(chatRoomId);
@@ -892,6 +1085,14 @@ async remove(id: number, userId?: number): Promise&lt;void&gt; {
   }
 
 // Method for removing a user from a chat room
+
+/**
+   * Deletes a user from chat room.
+   * @param id Chat room ID.
+   * @param userId Optional user ID for permission checks.
+   */
+@ApiOperation({ summary: &#x27;Delete a user from a chat room&#x27; })
+@ApiResponse({ status: 200, description: &#x27;user deleted from Chat room successfully&#x27; })
 async removeUserFromChatRoom(chatRoomId: number, userId: number): Promise&lt;ChatRoom&gt; {
   const chatRoom &#x3D; await this.findOne(chatRoomId);
 
