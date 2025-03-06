@@ -10,6 +10,7 @@ import { HashingProvider } from './hashing';
 import { GenerateTokensProvider } from './generate-tokens.provider';
 import { UserService } from 'src/users/provider/user.service';
 
+/**Signin provider class */
 @Injectable()
 export class SignInProvider {
   constructor(
@@ -29,6 +30,8 @@ export class SignInProvider {
      */
     private readonly generateTokenProvider: GenerateTokensProvider,
   ) {}
+
+  /**signin class with signindto as parameter */
   public async SignIn(signInDto: SignInDto) {
     // check if user exist in db
     // throw error if user doesnt exist

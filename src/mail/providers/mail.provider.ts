@@ -5,6 +5,7 @@ import { User } from 'src/users/user.entitly';
 
 /**Mail provider class */
 @Injectable()
+/**Mail provider class */
 export class MailProvider {
     constructor (
         /**inject the mailer Service*/

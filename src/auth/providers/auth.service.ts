@@ -7,6 +7,7 @@ import { RefreshTokensProvider } from './refresh-tokens.provider';
 
 /**Auth service */
 @Injectable()
+/**Auth service class */
 export class AuthService {
     constructor(
         /* 
