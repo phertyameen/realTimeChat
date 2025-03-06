@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../user.entitly';
 
+/**find one by googleid provider class */
 @Injectable()
 export class FindOneByGoogleIdProvider {
   constructor(

@@ -14,6 +14,7 @@ import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
 import { CloudinaryService } from 'src/cloudinary-provider/cloudinary.service';
 
+/**message service class */
 @Injectable()
 export class MessageService {
   constructor(

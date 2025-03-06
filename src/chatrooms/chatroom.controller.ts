@@ -19,7 +19,7 @@ import { Request } from 'express';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 // import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-
+/**Request with user interface */
 interface RequestWithUser extends Request {
   user?: {
     sub: number;
@@ -33,6 +33,7 @@ interface RequestWithUser extends Request {
 @ApiTags('ChatRooms')
 @Controller('chat-rooms')
 // @UseGuards(JwtAuthGuard)
+/**chatroom controller class */
 export class ChatRoomController {
   constructor(private readonly chatRoomService: ChatRoomService) {}
 

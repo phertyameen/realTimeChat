@@ -23,6 +23,7 @@ import { ChatRoom } from 'src/chatrooms/chatroom.entity';
  * Custom validation to compare passwords
  */
 @ValidatorConstraint({ name: 'MatchPasswords', async: false })
+/**match passwordsconstraint class */
 class MatchPasswordsConstraint implements ValidatorConstraintInterface {
   validate(confirmPassword: string, args: ValidationArguments): boolean {
     const object = args.object as CreateUserDto;

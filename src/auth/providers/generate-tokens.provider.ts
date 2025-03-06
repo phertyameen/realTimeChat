@@ -8,6 +8,7 @@ import { User } from 'src/users/user.entitly';
 
 /**Generate token provider */
 @Injectable()
+/**generate tokens provider class */
 export class GenerateTokensProvider {
   constructor(
     /*
