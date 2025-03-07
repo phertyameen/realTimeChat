@@ -2,6 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { v2 as cloudinary } from 'cloudinary';
 import { UploadApiResponse } from 'cloudinary';
 
+/**
+ * CloudinaryService handles file uploads to Cloudinary.
+ * 
+ * @class CloudinaryService
+ */
 @Injectable()
 export class CloudinaryService {
   constructor() {
@@ -12,6 +17,32 @@ export class CloudinaryService {
     });
   }
 
+  /**
+   * Uploads a file to Cloudinary.
+   * 
+   * @param {Express.Multer.File} file - The file to upload.
+   * @returns {Promise<UploadApiResponse>} The upload response from Cloudinary.
+   * 
+   * @swagger
+   * /upload:
+   *   post:
+   *     summary: Upload a file to Cloudinary
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         multipart/form-data:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               file:
+   *                 type: string
+   *                 format: binary
+   *     responses:
+   *       200:
+   *         description: Successful upload
+   *       400:
+   *         description: Bad request
+   */
   async uploadFile(file: Express.Multer.File): Promise<UploadApiResponse> {
     return new Promise((resolve, reject) => {
       cloudinary.uploader

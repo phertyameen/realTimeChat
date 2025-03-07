@@ -6,45 +6,64 @@ import { GenerateTokensProvider } from 'src/auth/providers/generate-tokens.provi
 import { UserService } from 'src/users/provider/user.service';
 import { GoogleTokenDto } from '../dtos/google-token.dto';
 
+/**
+ * @class GoogleAuthenticationService
+ * @description Handles Google authentication using OAuth2.
+ */
 @Injectable()
+/**Google authentication service */
 export class GoogleAuthenticationService implements OnModuleInit {
   private oAuthClient: OAuth2Client;
   constructor(
     /**
-     * inject userService
+     * Injects the UserService for user-related operations.
      */
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
 
     /**
-     * inject jwtconfig
+     * Injects the JWT configuration.
      */
     @Inject(jwtConfig.KEY)
     private readonly jwtConfigurattion: ConfigType<typeof jwtConfig>,
+    
     /**
-     * inject generateTokensProvider
+     * Injects the GenerateTokensProvider to handle token generation.
      */
     private readonly generateTokensProvider: GenerateTokensProvider,
   ) {}
 
+  /**
+   * Initializes the OAuth2 client with Google credentials.
+   */
   onModuleInit() {
     const client_id = this.jwtConfigurattion.googleClient_id;
     const client_secret = this.jwtConfigurattion.googleClient_secret;
 
     this.oAuthClient = new OAuth2Client(client_id, client_secret);
   }
+
+  /**
+   * Authenticates a user with a Google token.
+   * 
+   * @param {GoogleTokenDto} googleTokenDto - The DTO containing the Google token.
+   * @returns {Promise<any>} Returns generated tokens if authentication is successful.
+   * @throws {UnauthorizedException} If authentication fails.
+   */
+
+  /**authenticate class with google tokendto as params */
   public async authenticate(googleTokenDto: GoogleTokenDto) {
     try {
       console.log("Received Token:", googleTokenDto.token);
 
-      // verify the google token sent by user
+      // Verify the Google token sent by user
       const loginTicket = await this.oAuthClient.verifyIdToken({
         idToken: googleTokenDto.token,
       });
 
       console.log("Google Token Payload:", loginTicket.getPayload());
 
-      // extract the payload from google jwt token
+      // Extract the payload from Google JWT token
       const {
         email,
         sub: googleId,
@@ -52,14 +71,15 @@ export class GoogleAuthenticationService implements OnModuleInit {
         family_name: lastName,
       } = loginTicket.getPayload();
 
-      // find the user in the database using googleId
+      // Find the user in the database using googleId
       const user = await this.userService.findOneByGoogleId(googleId);
 
-      // if user exist, generate token
+      // If user exists, generate token
       if (user) {
         return this.generateTokensProvider.generateTokens(user);
       }
-      // else generate the user and create the token
+      
+      // Else, create a new user and generate the token
       const newUser = await this.userService.createGoogleUser({
         email: email,
         firstName: firstName,
@@ -68,9 +88,9 @@ export class GoogleAuthenticationService implements OnModuleInit {
       });
       return this.generateTokensProvider.generateTokens(newUser);
     } catch (error) {
-      // if any of the step fails, send an unauthorised exception
+      // If any step fails, throw an UnauthorizedException
       console.error("Google Auth Error:", error);
-      throw new UnauthorizedException('failed to authenticate with google');
+      throw new UnauthorizedException('Failed to authenticate with Google');
     }
   }
 }

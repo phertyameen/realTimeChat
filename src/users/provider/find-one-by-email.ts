@@ -4,10 +4,15 @@ import { Repository } from 'typeorm';
 import { User } from '../user.entitly';
 
 
+/**find one by email class */
 @Injectable()
 export class FindOneByEmail {
+
+    /**inject user Repository */
     constructor(@InjectRepository(User) private userRepository: Repository<User>) {}
 
+
+    /**find one by email class that takes email as parameter */
     public async findOneByEmail(email: string): Promise<User> {
         let user: User | undefined;
 

@@ -6,6 +6,7 @@ import jwtConfig from '../authConfig/jwt.config';
 import { GenerateTokensProvider } from './generate-tokens.provider';
 import { UserService } from 'src/users/provider/user.service';
 
+/**Refresh token provider class */
 @Injectable()
 export class RefreshTokensProvider {
   constructor(
@@ -31,6 +32,8 @@ export class RefreshTokensProvider {
      */
     private readonly generateTokenProvider: GenerateTokensProvider
   ) {}
+
+  /**refresh tokens with refreshtoendto as parameter */
   public async refreshTokens(refreshTokenDto: RefreshTokenDto) {
     // validate the refresh token using jwt
    const { sub } = await this.jwtService.verifyAsync(

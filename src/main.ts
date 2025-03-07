@@ -5,6 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 import { ValidationPipe } from '@nestjs/common';
 import { DataResponseInterceptor } from './common/interceptor/data-response/data-response.interceptor';
 
+/**Entry point to the application */
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 

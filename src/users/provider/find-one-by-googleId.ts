@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../user.entitly';
 
+/**find one by googleid provider class */
 @Injectable()
 export class FindOneByGoogleIdProvider {
   constructor(
@@ -12,6 +13,8 @@ export class FindOneByGoogleIdProvider {
     @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
+
+  /**find one by googleid class with googleid as parameter of type string */
   public async findOneByGoogleId(googleId: string) {
     return await this.userRepository.findOneBy({ googleId })
   }

@@ -2,6 +2,8 @@
 
 GET http://localhost:3000/users
 
+GET http://localhost:3000/users?page=1&limit=2
+
 DELETE http://localhost:3000/users?id=33
 
 
