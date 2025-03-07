@@ -14,10 +14,12 @@ import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
 import { CreateMessageDto } from './dtos/create-message.dto';
 import { UpdateMessageDto } from './dtos/update-message.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger';
 
 /**
  * message routes
  */
+@ApiTags('messages')
 @Controller('message')
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}

@@ -30,11 +30,12 @@ interface RequestWithUser extends Request {
 /**
  * Controller for managing chat rooms.
  */
-@ApiTags('ChatRooms')
+@ApiTags('chatrooms')
 @Controller('chat-rooms')
 // @UseGuards(JwtAuthGuard)
 /**chatroom controller class */
 export class ChatRoomController {
+  /**inject chatroomservice */
   constructor(private readonly chatRoomService: ChatRoomService) {}
 
   /**
@@ -47,6 +48,7 @@ export class ChatRoomController {
   @ApiResponse({ status: 201, description: 'Chat room created successfully.' })
   @ApiResponse({ status: 400, description: 'Invalid request data.' })
   @Post()
+  /**create method */
   create(@Body() createChatRoomDto: CreateChatRoomDto, @Req() req: RequestWithUser) {
     const userId = req.user?.sub || 1; // Default to user ID 1 for now
     return this.chatRoomService.create(createChatRoomDto, userId);
@@ -59,6 +61,7 @@ export class ChatRoomController {
   @ApiOperation({ summary: 'Get all chat rooms' })
   @ApiResponse({ status: 200, description: 'List of chat rooms retrieved successfully.' })
   @Get()
+  /**find all method */
   findAll() {
     return this.chatRoomService.findAll();
   }
