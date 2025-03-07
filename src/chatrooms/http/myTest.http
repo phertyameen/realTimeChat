@@ -6,11 +6,11 @@ POST {{host}}/users
 Content-Type: application/json
 
 {
-    "firstName": "Chat",
-    "lastName": "Owner",
-    "email": "chatowner@example.com",
-    "password": "@Password123",
-    "confirmpassword": "@Password123"
+    "firstName": "testing",
+    "lastName": "interceptor",
+    "email": "datastructure765@gmail.com",
+    "password": "@Password23",
+    "confirmpassword": "@Password23"
 }
 
 ### Sign up user 2 (regular member)
@@ -32,10 +32,10 @@ POST {{host}}/auth/signIn
 Content-Type: application/json
 
 {
-    "email": "chatowner@example.com",
-    "password": "@Password123"
+    "email": "datastructure766@gmail.com",
+    "password": "@Password23"
 }
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiY2hhdG93bmVyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQwNDI0Njk3LCJleHAiOjE3NDA0MjgyOTcsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.b-1h0Oc0TvZ9pYNncAygP1HExv15z1rt_aS2tdgW3j8
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjI4LCJlbWFpbCI6ImRhdGFzdHJ1Y3R1cmU3NjZAZ21haWwuY29tIiwiaWF0IjoxNzQxMzQ0NTMyLCJleHAiOjE3NDEzNDgxMzIsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.Lj_sGXvKWNYgfHWLdbmUt4nWlnAF7bAjTzlcrRdDgmo"
 ### Store user 1's token and ID
 @user1Token = {{loginUser1.response.body.accessToken}}
 @user1Id = {{loginUser1.response.body.user.id}}

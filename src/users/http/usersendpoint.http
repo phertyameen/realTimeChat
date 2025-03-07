@@ -1,6 +1,6 @@
 
 
-GET http://localhost:3000/users/33
+GET http://localhost:3000/users
 
 GET http://localhost:3000/users?page=1&limit=2
 
@@ -10,11 +10,11 @@ DELETE http://localhost:3000/users?id=33
 POST http://localhost:3000/users
 Content-Type: application/json
 {
-    "firstName": "messagetotest",
-    "lastName" : "test",
-    "email": "passwordtest4@gmail.com",
-    "password": "@Ppassword2",
-    "confirmpassword": "@Ppassword2"
+    "firstName": "testing",
+    "lastName" : "interceptor",
+    "email": "datastructure766@gmail.com",
+    "password": "@Ppassword23",
+    "confirmpassword": "@Ppassword23"
 }
 
 PATCH http://localhost:3000/users

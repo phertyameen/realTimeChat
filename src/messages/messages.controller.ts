@@ -6,7 +6,8 @@ import {
   Patch,
   Body,
   Param,
-  UploadedFile, UseInterceptors 
+  UploadedFile, UseInterceptors, 
+  ClassSerializerInterceptor
 } from '@nestjs/common';
 import { MessageService } from './provider/message.service';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
@@ -29,6 +30,7 @@ export class MessageController {
    */
   @Post()
   @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(ClassSerializerInterceptor)
   async create(
     @ActiveUser() user: ActiveUserData,
     @Body() createMessageDto: CreateMessageDto,
