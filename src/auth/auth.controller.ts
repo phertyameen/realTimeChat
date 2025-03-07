@@ -7,6 +7,7 @@ import { Auth } from './decorators/auth.decorator';
 
 /**auth controller class */
 @Controller('auth')
+/**auth controller class */
 export class AuthController {
     constructor(
         /**injecting auth service*/

@@ -9,22 +9,22 @@ export class CreateMessageDto {
   /**
    * The ID of the chat room where the message is sent.
    */
-  @ApiProperty({ description: 'The id of the chatroom', example: [1, 2] })
+  @ApiProperty({ description: 'The ID of the chatroom', example: 1, type: Number })
   @IsNotEmpty()
   chatRoomId: number;
 
   /**
    * The text content of the message.
    */
-  @ApiProperty({ description: 'The text content of the message', example: 'hello', required:false })
+  @ApiProperty({ description: 'The text content of the message', example: 'hello', required: false })
   @IsString()
   @IsNotEmpty()
   text?: string;
-  
+
   /**
    * The URL of the audio file if the message contains an audio attachment.
    */
-  @ApiProperty({ description: 'The URL of the audio file if the message contains an audio attachment', required:false })
+  @ApiProperty({ description: 'The URL of the audio file if the message contains an audio attachment', required: false })
   @IsString()
   @IsOptional()
   audio?: string;
@@ -32,7 +32,7 @@ export class CreateMessageDto {
   /**
    * The URL of the file if the message contains an attachment.
    */
-  @ApiProperty({ description: 'The URL of the file if the message contains an attachment', required:false })
+  @ApiProperty({ description: 'The URL of the file if the message contains an attachment', required: false })
   @IsString()
   @IsOptional()
   fileUrl?: string;
@@ -40,8 +40,8 @@ export class CreateMessageDto {
   /**
    * The type of the message (e.g., text, audio, file, etc.).
    */
-  @ApiProperty({ description: 'The type of the message (e.g., text, audio, file, etc.)', example:'audio', required:false })
+  @ApiProperty({ description: 'The type of the message', example: MessageType.AUDIO, enum: MessageType, required: false })
   @IsOptional()
   @IsEnum(MessageType)
-  messageType: MessageType;
+  messageType?: MessageType;
 }

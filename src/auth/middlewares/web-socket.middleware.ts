@@ -8,18 +8,22 @@ import { WebSocketGuardGuard } from "../guard/web-socket-guard/web-socket-guard.
  * @param {(err?: Error) => void} next - Callback function to proceed to the next middleware or handle an error.
  */
 
-/**SocketIo middle ware type */
+/**
+ * Type definition for Socket.io middleware.
+ * @typedef {Function} SocketIoMiddleware
+ * @param {Socket} client - The client socket instance.
+ * @param {(err?: Error) => void} next - Callback function to proceed to the next middleware or handle an error.
+ */
 export type SocketIoMiddleware = {
     (client: Socket, next: (err?: Error) => void): void;
 };
 
 /**
- * @function SocketAuthMiddleware
- * @description Middleware to validate WebSocket authentication tokens.
+ * Middleware to validate WebSocket authentication tokens.
+ * @function
+ * @name SocketAuthMiddleware
  * @returns {SocketIoMiddleware} - The middleware function.
  */
-
-/**Socket auth middleware */
 export const SocketAuthMiddleware = (): SocketIoMiddleware => {
     return (client, next) => {
         try {
