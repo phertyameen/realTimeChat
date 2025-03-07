@@ -184,14 +184,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="9"
-                                    class="link-to-prism">src/app.controller.ts:9</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="11"
+                                    class="link-to-prism">src/app.controller.ts:11</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>get met</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -209,9 +211,11 @@
 import { AppService } from &#x27;./app.service&#x27;;
 
 @Controller()
+/**app controller class */
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  /**get met */
   @Get()
   getHello(): string {
     return this.appService.getHello();

@@ -6,12 +6,14 @@ import {
   Patch,
   Body,
   Param,
+  UploadedFile, UseInterceptors 
 } from '@nestjs/common';
 import { MessageService } from './provider/message.service';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
 import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
 import { CreateMessageDto } from './dtos/create-message.dto';
 import { UpdateMessageDto } from './dtos/update-message.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 /**
  * message routes
@@ -24,13 +26,16 @@ export class MessageController {
    * Send a new message with the active user as the sender
    */
   @Post()
+  @UseInterceptors(FileInterceptor('file'))
   async create(
     @ActiveUser() user: ActiveUserData,
     @Body() createMessageDto: CreateMessageDto,
+    @UploadedFile() file?: Express.Multer.File,
+    
   ) {
     // Override senderId from payload using the active user's sub property.
     console.log(user);
-    return await this.messageService.create(createMessageDto, user);
+    return await this.messageService.create(createMessageDto, user, file);
   }
 
   /**

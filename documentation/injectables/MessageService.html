@@ -169,12 +169,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(messagesRepo: <a href="../entitys/Message.html" target="_self">Repository&lt;Message&gt;</a>, chatRoomsRepo: <a href="../entitys/ChatRoom.html" target="_self">Repository&lt;ChatRoom&gt;</a>, usersRepo: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
+<code>constructor(messagesRepo: <a href="../entitys/Message.html" target="_self">Repository&lt;Message&gt;</a>, chatRoomsRepo: <a href="../entitys/ChatRoom.html" target="_self">Repository&lt;ChatRoom&gt;</a>, usersRepo: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, cloudinaryService: <a href="../injectables/CloudinaryService.html" target="_self">CloudinaryService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/messages/provider/message.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/messages/provider/message.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -227,6 +227,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>cloudinaryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CloudinaryService.html" target="_self" >CloudinaryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -256,21 +268,23 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(chatRoomId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, senderId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>create(createMessageDto: <a href="../classes/CreateMessageDto.html" target="_self">CreateMessageDto</a>, user: <a href="../interfaces/ActiveUserData.html" target="_self">ActiveUserData</a>, file?: Express.Multer.File)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:62</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Create a new message and save it in the DB</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -285,9 +299,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>chatRoomId</td>
+                                                <td>createMessageDto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/CreateMessageDto.html" target="_self" >CreateMessageDto</a></code>
                                             </td>
 
                                             <td>
@@ -297,9 +311,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>senderId</td>
+                                                <td>user</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../interfaces/ActiveUserData.html" target="_self" >ActiveUserData</a></code>
                                             </td>
 
                                             <td>
@@ -309,13 +323,13 @@
 
                                         </tr>
                                         <tr>
-                                                <td>text</td>
+                                                <td>file</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>Express.Multer.File</code>
                                             </td>
 
                                             <td>
-                                                    No
+                                                    Yes
                                             </td>
 
 
@@ -356,14 +370,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:41</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:124</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Delete a message</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -425,14 +441,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:114</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>find all messages in a chatroom</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -487,21 +505,23 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(messageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, newText: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>update(messageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateMessageDto: <a href="../classes/UpdateMessageDto.html" target="_self">UpdateMessageDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/messages/provider/message.service.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/messages/provider/message.service.ts:134</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Update a message text</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -528,9 +548,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>newText</td>
+                                                <td>updateMessageDto</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../classes/UpdateMessageDto.html" target="_self" >UpdateMessageDto</a></code>
                                             </td>
 
                                             <td>
@@ -559,46 +579,129 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { Repository } from &#x27;typeorm&#x27;;
+import { DeepPartial, Repository } from &#x27;typeorm&#x27;;
 import { Message } from &#x27;../message.entity&#x27;;
 import { ChatRoom } from &#x27;../../chatrooms/chatroom.entity&#x27;;
 import { User } from &#x27;src/users/user.entitly&#x27;;
+import { UpdateMessageDto } from &#x27;../dtos/update-message.dto&#x27;;
+import { CreateMessageDto } from &#x27;../dtos/create-message.dto&#x27;;
+import { ActiveUser } from &#x27;src/auth/decorators/activeUser.decorator&#x27;;
+import { ActiveUserData } from &#x27;src/auth/interface/activeInterface&#x27;;
+import { CloudinaryService } from &#x27;src/cloudinary-provider/cloudinary.service&#x27;;
+// import { CloudinaryService } from &#x27;src/cloudinary/cloudinary.service&#x27;;
 
 @Injectable()
 export class MessageService {
   constructor(
-    @InjectRepository(Message) private messagesRepo: Repository&lt;Message&gt;,
-    @InjectRepository(ChatRoom) private chatRoomsRepo: Repository&lt;ChatRoom&gt;,
-    @InjectRepository(User) private usersRepo: Repository&lt;User&gt;,
+    /**
+     * inject messageRepo
+     */
+    @InjectRepository(Message)
+    private messagesRepo: Repository&lt;Message&gt;,
+
+    /**
+     * inject chatRoomsRepo
+     */
+    @InjectRepository(ChatRoom)
+    private chatRoomsRepo: Repository&lt;ChatRoom&gt;,
+
+    /**
+     * inject usersRepo
+     */
+    @InjectRepository(User)
+    private usersRepo: Repository&lt;User&gt;,
+
+    /**inject cloudinary service */
+    private readonly cloudinaryService: CloudinaryService,
   ) {}
 
-  //  Create a new message and SAVE it in DB
-  async create(chatRoomId: string, senderId: string, text: string): Promise&lt;Message&gt; {
-    // 1️ Find the chat room
-    const chatRoom &#x3D; await this.chatRoomsRepo.findOne({ where: { id: chatRoomId as any } });
-    if (!chatRoom) {
-      throw new NotFoundException(&#x27;Chat room not found&#x27;);
-    }
+  // async create(createMessageDto: CreateMessageDto, @ActiveUser() user: ActiveUserData): Promise&lt;Message&gt; {
+  //   const { chatRoomId, text } &#x3D; createMessageDto;
 
-    // 2️ Find the sender
-    const sender &#x3D; await this.usersRepo.findOne({ where: { id: senderId as any } });
-    if (!sender) {
-      throw new NotFoundException(&#x27;Sender not found&#x27;);
-    }
+  //   // Find the chat room
+  //   const chatRoom &#x3D; await this.chatRoomsRepo.findOne({ where: { id: chatRoomId as any } });
+  //   if (!chatRoom) {
+  //     throw new NotFoundException(&#x27;Chat room not found&#x27;);
+  //   }
 
-    // 3️ Create and save the message in the DB
-    const message &#x3D; this.messagesRepo.create({ chatRoom, sender, text });
-    return await this.messagesRepo.save(message);
+  //   // Directly use the active user as the sender
+  //   const message &#x3D; this.messagesRepo.create({ ...createMessageDto, sender: user });
+  //   return await this.messagesRepo.save(message);
+  // }
+
+  // Find all messages in a chat room
+
+  /**
+   * Create a new message and save it in the DB
+   */
+  async create(
+    createMessageDto: CreateMessageDto,
+    user: ActiveUserData,
+    file?: Express.Multer.File
+  ): Promise&lt;Message&gt; {
+    const { chatRoomId, text } &#x3D; createMessageDto;
+  
+    //  Find the chat room
+    const chatRoom &#x3D; await this.chatRoomsRepo.findOne({
+      where: { id: chatRoomId as any },
+    });
+    if (!chatRoom) throw new NotFoundException(&#x27;Chat room not found&#x27;);
+  
+    //  Find the sender
+    const sender &#x3D; await this.usersRepo.findOne({ where: { id: user.sub } });
+    console.log(sender)
+    if (!sender) throw new NotFoundException(&#x27;Sender not found&#x27;);
+  
+    //  Handle file upload if provided
+    let fileUrl: string | undefined;
+    if (file) {
+      console.log(&#x27;Incoming File:&#x27;, file);
+      try {
+        const uploadResult &#x3D; await this.cloudinaryService.uploadFile(file);
+        console.log(&#x27;Cloudinary Upload Result:&#x27;, uploadResult);
+        fileUrl &#x3D; uploadResult.secure_url;
+      } catch (error) {
+        console.error(&#x27;File upload error:&#x27;, error);
+        throw new BadRequestException(&#x27;File upload failed&#x27;);
+      }
+    }
+  
+    //  Create message with correct TypeORM structure
+    const message &#x3D; this.messagesRepo.create({
+      chatRoom,
+      sender,
+      text,
+      fileUrl,
+      
+    } as DeepPartial&lt;Message&gt;);
+    console.log(&#x27;Message Before Save:&#x27;, message);
+  
+    //Save message correctly
+    const savedMessage &#x3D; await this.messagesRepo.save(message);
+    console.log(&#x27;Saved Message:&#x27;, savedMessage);
+    return savedMessage; // Ensure returning a single object
   }
+  
 
-  //  Find all messages in a chat room
+  /**
+   * find all messages in a chatroom
+   */
   async findAll(chatRoomId: string): Promise&lt;Message[]&gt; {
-    return await this.messagesRepo.find({ where: { chatRoom: { id: chatRoomId as any} }, relations: [&#x27;sender&#x27;] });
+    return await this.messagesRepo.find({
+      where: { chatRoom: { id: chatRoomId as any } },
+      relations: [&#x27;sender&#x27;],
+    });
   }
 
-  //  Delete a message
+  /**
+   * Delete a message
+   */
   async delete(messageId: string): Promise&lt;void&gt; {
     const result &#x3D; await this.messagesRepo.delete(messageId);
     if (result.affected &#x3D;&#x3D;&#x3D; 0) {
@@ -606,14 +709,25 @@ export class MessageService {
     }
   }
 
-  //  Update a message text
-  async update(messageId: string, newText: string): Promise&lt;Message&gt; {
-    const message &#x3D; await this.messagesRepo.findOne({ where: { id: messageId } });
+  /**
+   * Update a message text
+   */
+  async update(
+    messageId: string,
+    updateMessageDto: UpdateMessageDto,
+  ): Promise&lt;Message&gt; {
+    const message &#x3D; await this.messagesRepo.findOne({
+      where: { id: messageId },
+    });
     if (!message) {
       throw new NotFoundException(&#x27;Message not found&#x27;);
     }
 
-    message.text &#x3D; newText;
+    if (!updateMessageDto || !updateMessageDto.text) {
+      throw new BadRequestException(&#x27;No update values provided&#x27;);
+    }
+
+    message.text &#x3D; updateMessageDto.text;
     return await this.messagesRepo.save(message);
   }
 }

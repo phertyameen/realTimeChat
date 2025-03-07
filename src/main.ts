@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger"
 import { Request, Response, NextFunction } from 'express';
 import { ValidationPipe } from '@nestjs/common';
+import { DataResponseInterceptor } from './common/interceptor/data-response/data-response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
       enableImplicitConversion: true
     }
   }))
+  
   /**Swagger Configuration */
   const config = new DocumentBuilder()
     .setTitle('REAL TIME CHAT - Chat-app-api')
@@ -57,6 +59,9 @@ SwaggerModule.setup('api', app, document)
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     next();
   });
+
+   //making intwerceptor global
+   app.useGlobalInterceptors(new DataResponseInterceptor)
 
   await app.listen(process.env.PORT ?? 3000);
 }

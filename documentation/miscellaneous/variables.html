@@ -121,7 +121,13 @@
                             <a href="#AUTH_TYPE_KEY" title="src/auth/constants/auth.constant.ts" ><b>AUTH_TYPE_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../auth.constant.ts)</a>
                         </li>
                         <li>
+                            <a href="#CloudinaryProvider" title="src/cloudinary-provider/cloudinary-provider.ts" ><b>CloudinaryProvider</b>&nbsp;&nbsp;&nbsp;(src/.../cloudinary-provider.ts)</a>
+                        </li>
+                        <li>
                             <a href="#REQUEST_USER_KEY" title="src/auth/constants/auth.constant.ts" ><b>REQUEST_USER_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../auth.constant.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SocketAuthMiddleware" title="src/auth/middlewares/web-socket.middleware.ts" ><b>SocketAuthMiddleware</b>&nbsp;&nbsp;&nbsp;(src/.../web-socket.middleware.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -232,6 +238,76 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>&#x27;user&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/cloudinary-provider/cloudinary-provider.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CloudinaryProvider"></a>
+                    <span class="name">
+                        <span ><b>CloudinaryProvider</b></span>
+                        <a href="#CloudinaryProvider"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Provider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  provide: &#x27;Cloudinary&#x27;,
+  useFactory: (configService: ConfigService) &#x3D;&gt; {
+    return cloudinary.config({
+      cloud_name: configService.get(&#x27;CLOUDINARY_CLOUD_NAME&#x27;),
+      api_key: configService.get(&#x27;CLOUDINARY_API_KEY&#x27;),
+      api_secret: configService.get(&#x27;CLOUDINARY_API_SECRET&#x27;),
+    });
+  },
+  inject: [ConfigService],
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/auth/middlewares/web-socket.middleware.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SocketAuthMiddleware"></a>
+                    <span class="name">
+                        <span ><b>SocketAuthMiddleware</b></span>
+                        <a href="#SocketAuthMiddleware"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>():SocketIoMiddleware &#x3D;&gt; {
+    return (client, next) &#x3D;&gt; {
+        try {
+            WebSocketGuardGuard.validateToken(client)
+        } catch (error) {
+            next(error)
+        }
+    }
+}</code>
                     </td>
                 </tr>
 

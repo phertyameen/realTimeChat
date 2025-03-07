@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import { Message } from '../message.entity';
 import { ChatRoom } from '../../chatrooms/chatroom.entity';
 import { User } from 'src/users/user.entitly';
@@ -12,6 +12,7 @@ import { UpdateMessageDto } from '../dtos/update-message.dto';
 import { CreateMessageDto } from '../dtos/create-message.dto';
 import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
+import { CloudinaryService } from 'src/cloudinary-provider/cloudinary.service';
 
 @Injectable()
 export class MessageService {
@@ -33,59 +34,56 @@ export class MessageService {
      */
     @InjectRepository(User)
     private usersRepo: Repository<User>,
+
+    /**inject cloudinary service */
+    private readonly cloudinaryService: CloudinaryService,
   ) {}
 
-  // async create(createMessageDto: CreateMessageDto, @ActiveUser() user: ActiveUserData): Promise<Message> {
-  //   const { chatRoomId, text } = createMessageDto;
-
-  //   // Find the chat room
-  //   const chatRoom = await this.chatRoomsRepo.findOne({ where: { id: chatRoomId as any } });
-  //   if (!chatRoom) {
-  //     throw new NotFoundException('Chat room not found');
-  //   }
-
-  //   // Directly use the active user as the sender
-  //   const message = this.messagesRepo.create({ ...createMessageDto, sender: user });
-  //   return await this.messagesRepo.save(message);
-  // }
-
-  // Find all messages in a chat room
-
-  /**
-   * Create a new message and save it in the DB
-   */
   async create(
     createMessageDto: CreateMessageDto,
     user: ActiveUserData,
+    file?: Express.Multer.File,
   ): Promise<Message> {
     const { chatRoomId, text } = createMessageDto;
 
-    // Find the chat room
+    //  Find the chat room
     const chatRoom = await this.chatRoomsRepo.findOne({
-      where: { id: chatRoomId as any },
+      where: { id: createMessageDto.chatRoomId },
     });
-    if (!chatRoom) {
-      throw new NotFoundException('Chat room not found');
-    }
+    if (!chatRoom) throw new NotFoundException('Chat room not found');
 
-    /**
-     * Fetch the full user entity from the DB using the the JWT payload (user.sub)
-     */
+    //  Find the sender
     const sender = await this.usersRepo.findOne({ where: { id: user.sub } });
-    if (!sender) {
-      throw new NotFoundException('Sender not found');
+    console.log(sender);
+    if (!sender) throw new NotFoundException('Sender not found');
+
+    //  Handle file upload if provided
+    let fileUrl: string | undefined;
+    if (file) {
+      console.log('Incoming File:', file);
+      try {
+        const uploadResult = await this.cloudinaryService.uploadFile(file);
+        console.log('Cloudinary Upload Result:', uploadResult);
+        fileUrl = uploadResult.secure_url;
+      } catch (error) {
+        console.error('File upload error:', error);
+        throw new BadRequestException('File upload failed');
+      }
     }
 
-    /**
-     * Create the message, explicitly associating the chatRoom and sender entities
-     */
+    //  Create message
     const message = this.messagesRepo.create({
-      text,
       chatRoom,
       sender,
-    });
+      text: createMessageDto.text,
+      fileUrl,
+    } as DeepPartial<Message>);
+    console.log('Message Before Save:', message);
 
-    return await this.messagesRepo.save(message);
+    //Save message correctly
+    const savedMessage = await this.messagesRepo.save(message);
+    console.log('Saved Message:', savedMessage);
+    return savedMessage; // Ensure returning a single object
   }
 
   /**

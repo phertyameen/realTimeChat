@@ -1,12 +1,25 @@
 @host = http://localhost:3000
 
-
-### Successful Signup
-# @name signup
+### Sign up user 1 (will be the chat owner)
+# @name signupUser1
 POST {{host}}/users
 Content-Type: application/json
 
 {
+    "firstName": "Chat",
+    "lastName": "Owner",
+    "email": "chatowner@example.com",
+    "password": "@Password123",
+    "confirmpassword": "@Password123"
+}
+
+### Sign up user 2 (regular member)
+# @name signupUser2
+POST {{host}}/users
+Content-Type: application/json
+
+{
+
     "firstName": "QxFatima",
     "lastName": "QxAminu",
     "email": "qwa@mail.com",
@@ -14,55 +27,107 @@ Content-Type: application/json
     "confirmpassword": "qwa@xPassword123",
     "userRole": "admin"
 }
-# @name login
+
+### Login as user 1 (owner)
+# @name loginUser1
 POST {{host}}/auth/signIn
 Content-Type: application/json
 
 {
+
     "email": "qwa@mail.com",
     "password": "qwa@xPassword123"
 }
 
-###
+### Store user 1's token and ID
+@user1Token = {{loginUser1.response.body.accessToken}}
+@user1Id = {{loginUser1.response.body.user.id}}
 
-@authToken = {{login.response.body.access_token}}
+### Login as user 2 (member)
+# @name loginUser2
+POST {{host}}/auth/signIn
+Content-Type: application/json
 
-# Create a new chat room
+{
+    "email": "chatmember@example.com",
+    "password": "@Password123"
+}
+
+### Store user 2's token and ID
+@user2Token = {{loginUser2.response.body.accessToken}}
+@user2Id = {{loginUser2.response.body.user.id}}
+
+### 1. Create chat room as user 1 (owner)
+# @name createChatRoom
 POST {{host}}/chat-rooms
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM2LCJlbWFpbCI6InF3YUBtYWlsLmNvbSIsImlhdCI6MTczOTk3ODAzOCwiZXhwIjoxNzM5OTgxNjM4LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.BUK-ZZcz3TMM8VEUD8jcC5RWFtpub3jjHla8sXQQiJE
+
+Authorization: Bearer token
 Content-Type: application/json
 
 {
-    "name": "Test Group Chat",
+    "name": "Test Owner Permissions",
     "type": "group",
-    "userIds": [34, 35]
+    "userIds": [4, 5]
 }
 
-###
+### Store chat room ID
+@chatRoomId = {{createChatRoom.response.body.id}}
 
-# Get all chat rooms
+### 2. Get all chat rooms as user 1
 GET {{host}}/chat-rooms
-Authorization: Bearer {token}
+Authorization: Bearer {{user1Token}}
 
-###
+### 3. Get specific chat room as user 1
+GET {{host}}/chat-rooms/{{chatRoomId}}
+Authorization: Bearer {{user1Token}}
 
-# Get specific chat room
-GET {{host}}/chat-rooms/1
-Authorization: Bearer {token}
-
-###
-
-# Update chat room
-PATCH {{host}}/chat-rooms/1
-Authorization: Bearer {token}
+### 4. Update chat room as user 1 (owner)
+PATCH {{host}}/chat-rooms/{{chatRoomId}}
+Authorization: Bearer {{user1Token}}
 Content-Type: application/json
 
 {
-    "name": "Updated Chat Room Name -musa"
+    "name": "Updated Room Name"
 }
 
-###
+### 5. Sign up user 3 (to add to the chat)
+# @name signupUser3
+POST {{host}}/users
+Content-Type: application/json
 
-# Delete chat room
-DELETE {{host}}/chat-rooms/1
-Authorization: Bearer {token}
+{
+    "firstName": "New",
+    "lastName": "Member",
+    "email": "newmember@example.com",
+    "password": "@Password123",
+    "confirmpassword": "@Password123"
+}
+
+### 6. Get user 3's ID
+# @name loginUser3
+POST {{host}}/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "newmember@example.com",
+    "password": "@Password123"
+}
+
+### Store user 3's ID
+@user3Id = {{loginUser3.response.body.user.id}}
+
+### 7. Add user 3 to chat room
+POST {{host}}/chat-rooms/{{chatRoomId}}/users/{{user3Id}}
+Authorization: Bearer {{user1Token}}
+
+### 8. Remove user 3 from chat room
+DELETE {{host}}/chat-rooms/{{chatRoomId}}/users/{{user3Id}}
+Authorization: Bearer {{user1Token}}
+
+### 9. Try to delete chat room as user 2 (should fail)
+DELETE {{host}}/chat-rooms/{{chatRoomId}}
+Authorization: Bearer {{user2Token}}
+
+### 10. Delete chat room as user 1 (owner)
+DELETE {{host}}/chat-rooms/{{chatRoomId}}
+Authorization: Bearer {{user1Token}}

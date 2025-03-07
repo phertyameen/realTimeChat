@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
-import { WebSocketGateway } from '@nestjs/websockets';
+import { MessageModule } from 'src/messages/messages.module';
 import { WebsocketGateway } from './websocketEvents/websocket.gateway';
 
-
+/**web socket module */
 @Module({
-    imports:[],
-    controllers:[],
+    imports: [MessageModule],
     providers:[WebsocketGateway],
-    exports:[WebsocketGateway]
+    exports: [WebsocketGateway],
 })
+
+/**websocket class */
 export class WebSocketModule {}

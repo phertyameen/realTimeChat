@@ -30,7 +30,6 @@ export class UserService {
   ) {}
 
   public findAll(
-    getUserParamDto: GetuserParamDto,
     limit: number,
     page: number,
   ): Promise<User[]> {

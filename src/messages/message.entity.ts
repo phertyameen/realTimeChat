@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { ChatRoom } from '../chatrooms/chatroom.entity';
 import { User } from '../users/user.entitly';
+import { MessageType } from './enum/message-type ';
 
 @Entity()
 export class Message {
@@ -19,8 +20,14 @@ export class Message {
   @ManyToOne(() => User, (user) => user.messages, { onDelete: 'CASCADE' })
   sender: User;
 
-  @Column({ type: 'text' })
-  text: string;
+  @Column({ type: 'enum', enum: MessageType, default: MessageType.TEXT })
+  messageType: MessageType;
+
+  @Column({type: 'text', nullable: true})
+  text?: string
+  
+  @Column({ type: 'text', nullable: true }) 
+  fileUrl?: string;
 
   @CreateDateColumn()
   timestamp: Date;
