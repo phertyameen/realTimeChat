@@ -12,7 +12,7 @@ Content-Type: application/json
 {
     "firstName": "testing",
     "lastName" : "interceptor",
-    "email": "datastructure700@gmail.com",
+    "email": "datastructure766@gmail.com",
     "password": "@Ppassword23",
     "confirmpassword": "@Ppassword23"
 }
