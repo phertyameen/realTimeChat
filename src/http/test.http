@@ -9,7 +9,7 @@ Content-Type: application/json
 {
     "firstName": "QxFatima",
     "lastName": "QxAminu",
-    "email": "qw@mail.com",
+    "email": "qwss@mail.com",
     "password": "qw@xPassword123",
     "confirmpassword": "qw@xPassword123",
     "userRole": "admin"
@@ -19,7 +19,7 @@ POST {{host}}/auth/signIn
 Content-Type: application/json
 
 {
-    "email": "qw@mail.com",
+    "email": "qwss@mail.com",
     "password": "qw@xPassword123"
 }
 

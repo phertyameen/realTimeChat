@@ -1,6 +1,6 @@
 
 
-GET http://localhost:3000/users/33
+GET http://localhost:3000/users
 
 GET http://localhost:3000/users?page=1&limit=2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQxMzUxMDMxLCJleHAiOjE3NDEzNTQ2MzEsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.qtvDFe4Lm5GXAXFYi_ZPtS50Z2mA9X4vMNbz7STtS2I
@@ -11,11 +11,11 @@ DELETE http://localhost:3000/users?id=33
 POST http://localhost:3000/users
 Content-Type: application/json
 {
-    "firstName": "messagetotest",
-    "lastName" : "test",
-    "email": "passwordtest7@gmail.com",
-    "password": "@Ppassword2",
-    "confirmpassword": "@Ppassword2"
+    "firstName": "testing",
+    "lastName" : "interceptor",
+    "email": "datastructure766@gmail.com",
+    "password": "@Ppassword23",
+    "confirmpassword": "@Ppassword23"
 }
 
 PATCH http://localhost:3000/users
