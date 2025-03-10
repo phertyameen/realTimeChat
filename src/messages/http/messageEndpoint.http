@@ -3,7 +3,7 @@ GET http://localhost:3000/message/8
 
 POST http://localhost:3000/message
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQwNjUzOTUxLCJleHAiOjE3NDA2NTc1NTEsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.tHALWF6lK8PFJBJuefulLc8iIkhFnxwlO_T9FGaRUk4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQxNjA2Mjc2LCJleHAiOjE3NDE2MDk4NzYsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.kVlk7QGhtfKnWBfvqVpSGeLffzGR_Et9p45867DHMfo
 {
   "chatRoomId": 9,
   "text": "Hello, this is my fourth message!"

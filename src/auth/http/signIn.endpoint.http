@@ -1,5 +1,6 @@
 POST http://localhost:3000/auth/signIn
 Content-Type: application/JSON
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQxMzUxMDMxLCJleHAiOjE3NDEzNTQ2MzEsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.qtvDFe4Lm5GXAXFYi_ZPtS50Z2mA9X4vMNbz7STtS2I
 {
     "email": "datastructure766@gmail.com",
     "password": "@Ppassword23"

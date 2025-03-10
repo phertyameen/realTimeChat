@@ -58,17 +58,23 @@ export class WebsocketGateway
   ) {
     console.log('Received message:', payload);
 
+    // Emit an echo message before processing
+    const echoMessage = 'some message received';
+    console.log('Emitting message:', echoMessage);
+    client.emit('messageEcho', echoMessage);
+
     // Save the message to the database
     const savedMessage = await this.messageService.create(
       {
         text: payload.text,
+        fileUrl: payload.fileUrl,
         chatRoomId: payload.chatRoomId,
         messageType: MessageType.FILE,
       },
       payload.user,
-      undefined,
     );
 
+    console.log('saved message:', savedMessage)
     // Emit the saved message to all connected clients
     this.server.emit('receiveMessage', savedMessage);
   }
