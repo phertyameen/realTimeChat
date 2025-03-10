@@ -78,7 +78,7 @@ export class MessageService {
       chatRoom,
       sender,
       text: createMessageDto.text,
-      fileUrl,
+      fileUrl: createMessageDto.fileUrl,
     } as DeepPartial<Message>);
     console.log('Message Before Save:', message);
 
