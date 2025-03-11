@@ -1,9 +1,12 @@
 
 
 GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQxNjg0NDg0LCJleHAiOjE3NDE2ODgwODQsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.3K3SBkb2D7xku0xFpaQu63PeFGRIO_aClx_41v3qbcE
 
-GET http://localhost:3000/users?page=1&limit=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQxMzUxMDMxLCJleHAiOjE3NDEzNTQ2MzEsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.qtvDFe4Lm5GXAXFYi_ZPtS50Z2mA9X4vMNbz7STtS2I
+
+GET http://localhost:3000/users?page=1&limit=5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjM0LCJlbWFpbCI6InBhc3N3b3JkdGVzdDRAZ21haWwuY29tIiwiaWF0IjoxNzQxNjg0NDg0LCJleHAiOjE3NDE2ODgwODQsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.3K3SBkb2D7xku0xFpaQu63PeFGRIO_aClx_41v3qbcE
+
 
 DELETE http://localhost:3000/users?id=33
 
@@ -13,7 +16,7 @@ Content-Type: application/json
 {
     "firstName": "testing",
     "lastName" : "interceptor",
-    "email": "datastructure766@gmail.com",
+    "email": "datastructure7667@gmail.com",
     "password": "@Ppassword23",
     "confirmpassword": "@Ppassword23"
 }

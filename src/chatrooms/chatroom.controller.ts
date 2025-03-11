@@ -30,7 +30,7 @@ interface RequestWithUser extends Request {
 /**
  * Controller for managing chat rooms.
  */
-@ApiTags('chatrooms')
+@ApiTags('chat-rooms')
 @Controller('chat-rooms')
 // @UseGuards(JwtAuthGuard)
 /**chatroom controller class */

@@ -11,6 +11,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../DTOs/create-user.dto';
 import { HashingProvider } from 'src/auth/providers/hashing';
 import { ApiTags } from '@nestjs/swagger';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailProvider } from 'src/mail/providers/mail.provider';
 
 /**
  * Service provider for creating users
@@ -29,6 +31,11 @@ export class CreateUserProvider {
      */
     @Inject(forwardRef(() => HashingProvider))
     private readonly hashingProvider: HashingProvider,
+
+    /**
+     * Inject mailService
+     */
+    private readonly mailProvider: MailProvider,
   ) {}
 
   /**
@@ -78,6 +85,12 @@ export class CreateUserProvider {
           cause: 'the user is having network issues',
         },
       );
+    }
+
+    try {
+      await this.mailProvider.WelcomeEmail(newUser);
+    } catch (error) {
+      throw new RequestTimeoutException(error);
     }
 
     return newUser;
