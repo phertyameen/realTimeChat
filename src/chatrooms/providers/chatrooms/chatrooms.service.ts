@@ -1,113 +1,67 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { ChatRoom } from '../../../chatrooms/chatroom.entity'; 
-import { CreateChatRoomDto } from '../../../chatrooms/DTOs/create-chat-room.dto';
-import { UpdateChatRoomDto } from '../../../chatrooms/DTOs/update-chat-room.dto';
-import { User } from '../../../users/user.entitly'; 
-import { ChatRoomType } from 'src/chatrooms/enums/chatroomType';
+import { Injectable } from '@nestjs/common';
+import { ChatRoom } from '../../chatroom.entity';
+import { CreateChatRoomDto } from '../../DTOs/create-chat-room.dto';
+import { UpdateChatRoomDto } from '../../DTOs/update-chat-room.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateChatRoomUseCase } from './create-chatroom.service';
+import { FindChatRoomUseCase } from './find-chatroom.service';
+import { UpdateChatRoomUseCase } from './update-chatroom.service';
+import { DeleteChatRoomUseCase } from './delete-chatroom.service'; 
+import { AddUserToChatRoomUseCase } from './add-user-to-chatroom.service';
+import { RemoveUserFromChatRoomUseCase } from './remove-user-from-chatroom.service'; 
 
 @Injectable()
+@ApiTags('ChatRooms')
 export class ChatRoomService {
   constructor(
-    @InjectRepository(ChatRoom)
-    private chatRoomRepository: Repository<ChatRoom>,
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private readonly createChatRoomUseCase: CreateChatRoomUseCase,
+    private readonly findChatRoomUseCase: FindChatRoomUseCase,
+    private readonly updateChatRoomUseCase: UpdateChatRoomUseCase,
+    private readonly deleteChatRoomUseCase: DeleteChatRoomUseCase,
+    private readonly addUserToChatRoomUseCase: AddUserToChatRoomUseCase,
+    private readonly removeUserFromChatRoomUseCase: RemoveUserFromChatRoomUseCase,
   ) {}
 
-  
-  async create(createChatRoomDto: CreateChatRoomDto): Promise<ChatRoom> {
-    const users = await this.userRepository.findByIds(createChatRoomDto.userIds);
-    
-    if (users.length !== createChatRoomDto.userIds.length) {
-      throw new BadRequestException('One or more users not found');
-    }
-
-    if (createChatRoomDto.type === ChatRoomType.PRIVATE && users.length !== 2) {
-      throw new BadRequestException('Private chat rooms must have exactly 2 users');
-    }
-
-    const chatRoom = this.chatRoomRepository.create({
-      ...createChatRoomDto,
-      users,
-    });
-
-    return this.chatRoomRepository.save(chatRoom);
+  @ApiOperation({ summary: 'Create a new chat room' })
+  @ApiResponse({ status: 201, description: 'Chat room created successfully' })
+  async create(createChatRoomDto: CreateChatRoomDto, currentUserId: number): Promise<ChatRoom> {
+    return this.createChatRoomUseCase.execute(createChatRoomDto, currentUserId);
   }
 
+  @ApiOperation({ summary: 'Get all chat rooms' })
+  @ApiResponse({ status: 200, description: 'List of chat rooms retrieved successfully' })
   async findAll(): Promise<ChatRoom[]> {
-    return this.chatRoomRepository.find({
-      relations: ['users'],
-    });
+    return this.findChatRoomUseCase.findAll();
   }
 
-  async findOne(id: string): Promise<ChatRoom> {
-    const chatRoom = await this.chatRoomRepository.findOne({
-      where: { id },
-      relations: ['users'],
-    });
-
-    if (!chatRoom) {
-      throw new NotFoundException(`Chat room with ID ${id} not found`);
-    }
-
-    return chatRoom;
+  @ApiOperation({ summary: 'Find a chat room by ID' })
+  @ApiResponse({ status: 200, description: 'Chat room found' })
+  @ApiResponse({ status: 404, description: 'Chat room not found' })
+  async findOne(id: number): Promise<ChatRoom> {
+    return this.findChatRoomUseCase.findOne(id);
   }
 
-  async update(id: string, updateChatRoomDto: UpdateChatRoomDto): Promise<ChatRoom> {
-    const chatRoom = await this.findOne(id);
-    
-    if (updateChatRoomDto.userIds) {
-      const users = await this.userRepository.findByIds(updateChatRoomDto.userIds);
-      
-      if (users.length !== updateChatRoomDto.userIds.length) {
-        throw new BadRequestException('One or more users not found');
-      }
-
-      if (chatRoom.type === ChatRoomType.PRIVATE && users.length !== 2) {
-        throw new BadRequestException('Private chat rooms must have exactly 2 users');
-      }
-
-      chatRoom.users = users;
-    }
-
-    Object.assign(chatRoom, updateChatRoomDto);
-    return this.chatRoomRepository.save(chatRoom);
+  @ApiOperation({ summary: 'Update a chat room' })
+  @ApiResponse({ status: 200, description: 'Chat room updated successfully' })
+  async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise<ChatRoom> {
+    return this.updateChatRoomUseCase.execute(id, updateChatRoomDto);
   }
 
-  async remove(id: string): Promise<void> {
-    const result = await this.chatRoomRepository.delete(id);
-    
-    if (result.affected === 0) {
-      throw new NotFoundException(`Chat room with ID ${id} not found`);
-    }
+  @ApiOperation({ summary: 'Delete a chat room' })
+  @ApiResponse({ status: 200, description: 'Chat room deleted successfully' })
+  async remove(id: number, userId?: number): Promise<void> {
+    return this.deleteChatRoomUseCase.execute(id, userId);
   }
 
-  async addUserToChatRoom(chatRoomId: string, userId: string): Promise<ChatRoom> {
-    const chatRoom = await this.findOne(chatRoomId);
-    const user = await this.userRepository.findOne({ where: { id: Number(userId) }});
-
-    if (!user) {
-      throw new NotFoundException(`User with ID ${userId} not found`);
-    }
-
-    if (chatRoom.type === ChatRoomType.PRIVATE) {
-      throw new BadRequestException('Cannot add users to private chat rooms');
-    }
-
-    chatRoom.users.push(user);
-    return this.chatRoomRepository.save(chatRoom);
+  @ApiOperation({ summary: 'Add a user to the chat room' })
+  @ApiResponse({ status: 200, description: 'User added to the chat room successfully' })
+  async addUserToChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
+    return this.addUserToChatRoomUseCase.execute(chatRoomId, userId);
   }
 
-  async removeUserFromChatRoom(chatRoomId: string, userId: string): Promise<ChatRoom> {
-    const chatRoom = await this.findOne(chatRoomId);
-
-    if (chatRoom.type === ChatRoomType.PRIVATE) {
-      throw new BadRequestException('Cannot remove users from private chat rooms');
-    }
-
-    chatRoom.users = chatRoom.users.filter(user => user.id !== Number(userId));
-    return this.chatRoomRepository.save(chatRoom);
+  @ApiOperation({ summary: 'Delete a user from a chat room' })
+  @ApiResponse({ status: 200, description: 'User deleted from chat room successfully' })
+  async removeUserFromChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
+    return this.removeUserFromChatRoomUseCase.execute(chatRoomId, userId);
   }
 }

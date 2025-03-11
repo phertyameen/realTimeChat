@@ -1,0 +1,8 @@
+POST http://localhost:3000/chat-rooms
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQxLCJlbWFpbCI6ImNoYXRvd25lckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTY4NTQwMywiZXhwIjoxNzQxNjg5MDAzLCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.oieBakuUFG4RnBFxugqVnDcf64TJhKe2rTmkmHoQ0CI
+{
+    "name": "TestGroup",
+    "type": "private",
+    "userIds": [1,2,3]
+}

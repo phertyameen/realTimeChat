@@ -1,16 +1,15 @@
+import { IsOptional, IsPositive } from 'class-validator';
 
-
-import { IsOptional, IsPositive } from "class-validator";
-
-
+/**pagination dto class */
 export class PaginationQueryDto {
 
-    @IsOptional()
-    @IsPositive()
-    limit?:number = 2;
+  /**limit and optional property of type number */
+  @IsOptional()
+  @IsPositive()
+  limit?: number = 10;
 
-    @IsOptional()
-    @IsPositive()
-    page?:number = 1;
-
+  /**page and optional property of type number */
+  @IsOptional()
+  @IsPositive()
+  page?: number = 1;
 }

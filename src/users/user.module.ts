@@ -9,16 +9,22 @@ import { MailModule } from 'src/mail/mail.module';
 import { FindOneByGoogleIdProvider } from './provider/find-one-by-googleId';
 import { CreateGoogleUserProvider } from './provider/googleUserProvider';
 import { AuthModule } from 'src/auth/auth.module';
+import { PaginationProvider } from 'src/common/pagination/Provider/pagination.provider';
 
 @Module({
-  imports: [forwardRef(() => AuthModule), TypeOrmModule.forFeature([User]), MailModule],
+  imports: [
+    forwardRef(() => AuthModule),
+    TypeOrmModule.forFeature([User]),
+    MailModule,
+  ],
   controllers: [UserController],
   providers: [
     UserService,
     CreateUserProvider,
     FindOneByEmail,
     FindOneByGoogleIdProvider,
-    CreateGoogleUserProvider
+    CreateGoogleUserProvider,
+    PaginationProvider,
   ],
   exports: [UserService],
 })

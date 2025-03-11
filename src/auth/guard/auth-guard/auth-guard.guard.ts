@@ -1,64 +1,72 @@
 import {
-    CanActivate,
-    ExecutionContext,
-    Injectable,
-    UnauthorizedException,
-  } from '@nestjs/common';
-  import { Reflector } from '@nestjs/core';
-  import { Observable } from 'rxjs';
-  import { AccessTokenGuard } from '../access-token/access-token.guard';
-  import { authTypes } from 'src/auth/enums/authTypes.enum';
-  import { AUTH_TYPE_KEY } from 'src/auth/constants/auth.constant';
-  
-  @Injectable()
-  export class AuthGuardGuard implements CanActivate {
-  
-    private static readonly defaultAuthType = authTypes.Bearer;
-  
-    private readonly authTypeGuardMap: Record<
-      authTypes,
-      CanActivate | CanActivate[]
-    > = {
-      [authTypes.Bearer]: this.accessTokenGuard,
-      [authTypes.None]: { canActivate: () => true },
-    };
-  
-    constructor(
-      private readonly reflector: Reflector,
-      private readonly accessTokenGuard: AccessTokenGuard,
-    ) {}
-  
-    async canActivate(context: ExecutionContext): Promise<boolean> {
-      // get authTypes from the reflector
-      const authTypes = this.reflector.getAllAndOverride(AUTH_TYPE_KEY, [
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { AccessTokenGuard } from '../access-token/access-token.guard';
+import { authTypes } from 'src/auth/enums/authTypes.enum';
+import { AUTH_TYPE_KEY } from 'src/auth/constants/auth.constant';
+import { ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
+
+/**
+ * @description AuthGuardGuard is responsible for handling authentication using different strategies.
+ * It checks the authentication type and applies the corresponding guard.
+ */
+@Injectable()
+export class AuthGuardGuard implements CanActivate {
+  /**
+   * Default authentication type set to Bearer Token.
+   */
+  private static readonly defaultAuthType = authTypes.Bearer;
+
+  /**
+   * Maps authentication types to their corresponding guard implementations.
+   */
+  private readonly authTypeGuardMap: Record<
+    authTypes,
+    CanActivate | CanActivate[]
+  > = {
+    [authTypes.Bearer]: this.accessTokenGuard,
+    [authTypes.None]: { canActivate: () => true },
+  };
+
+  constructor(
+    private readonly reflector: Reflector,
+    private readonly accessTokenGuard: AccessTokenGuard,
+  ) {}
+
+  /**
+   * Determines whether the request can be processed based on the authentication type.
+   * @param context ExecutionContext - The execution context of the request.
+   * @returns Promise<boolean> - Returns true if authentication is successful; otherwise, throws UnauthorizedException.
+   */
+  @ApiBearerAuth() // Indicates that the endpoint requires Bearer authentication
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' }) // Documents the 401 response
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    // Retrieve authentication types from metadata or use the default
+    const authTypes =
+      this.reflector.getAllAndOverride(AUTH_TYPE_KEY, [
         context.getHandler(),
         context.getClass(),
-      ])  ?? [AuthGuardGuard.defaultAuthType];
-      // console.log('show all types', authTypes);
-  
-      // get array of guards
-      const guards = authTypes.map((type) => this.authTypeGuardMap[type])
-      // const guards = authTypes
-      //   .map((type) => {
-      //     const guard = this.authTypeGuardMap[type];
-      //     return Array.isArray(guard) ? guard : [guard]; // Normalize to an array
-      //   })
-      //   .flat();
-  
-      // loop through the guard and fire the can activate method
-      for (const instance of guards) {
-        // console.log("instance of", instance)
-        const canActivate = await Promise.resolve(
-          instance.canActivate(context),
-        ).catch((err) => {
-          error: err;
+      ]) ?? [AuthGuardGuard.defaultAuthType];
+
+    // Map auth types to their respective guards
+    const guards = authTypes.map((type) => this.authTypeGuardMap[type]);
+
+    // Iterate through the guards and invoke canActivate
+    for (const instance of guards) {
+      const canActivate = await Promise.resolve(instance.canActivate(context))
+        .catch((err) => {
+          throw new UnauthorizedException(err);
         });
-        // console.log(canActivate)
-  
-        if (canActivate) {
-          return true;
-        }
+
+      if (canActivate) {
+        return true;
       }
-      throw new UnauthorizedException();
     }
+
+    throw new UnauthorizedException();
   }
+}

@@ -3,24 +3,38 @@ import { GoogleInterface } from '../../auth/social/interfaces/user.interface';
 import { Repository } from 'typeorm';
 import { User } from 'src/users/user.entitly';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
+/**
+ * Service responsible for creating Google users.
+ */
+@ApiTags('Google Users')
 @Injectable()
 export class CreateGoogleUserProvider {
   constructor(
-    /*
-     * inject userRepository
+    /**
+     * Injects the User repository to handle database operations.
      */
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
 
-  public async createGoogleUser(googleUser: GoogleInterface) {
+  /**
+   * Creates a new Google user in the database.
+   * @param googleUser - Google user details.
+   * @returns The created user entity.
+   * @throws ConflictException if user creation fails.
+   */
+  @ApiOperation({ summary: 'Create a new Google user' })
+  @ApiResponse({ status: 201, description: 'User successfully created.' })
+  @ApiResponse({ status: 409, description: 'Conflict: Could not create a new user.' })
+  public async createGoogleUser(googleUser: GoogleInterface): Promise<User> {
     try {
       const user = this.userRepository.create(googleUser);
       return await this.userRepository.save(user);
     } catch (error) {
       throw new ConflictException(error, {
-        description: 'could not create a new user',
+        description: 'Could not create a new user',
       });
     }
   }

@@ -27,6 +27,7 @@ describe('userService', () => {
         lastName: createUserDto.lastName,
         email: createUserDto.email,
         password: createUserDto.password,
+        chatRooms: createUserDto.chatRooms,
         userRole: createUserDto.userRole ?? userRole.USER
       }),
   };
@@ -73,6 +74,7 @@ describe('userService', () => {
         lastName: 'ammen',
         email: 'fateeameen@gmail.com',
         password: 'passWord3',
+        chatRooms: []
       });
       expect(user.firstName).toEqual('fatee');
     });
