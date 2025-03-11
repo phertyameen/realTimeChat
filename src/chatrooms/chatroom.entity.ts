@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, CreateDateColumn } from 'typeorm';
 import { User } from 'src/users/user.entitly'; 
 import { ChatRoomType } from './enums/chatroomType';
