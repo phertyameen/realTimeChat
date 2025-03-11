@@ -6,8 +6,10 @@ import {
   Patch,
   Body,
   Param,
-  UploadedFile, UseInterceptors, 
-  ClassSerializerInterceptor
+  UploadedFile,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+  UseGuards,
 } from '@nestjs/common';
 import { MessageService } from './provider/message.service';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
@@ -16,6 +18,9 @@ import { CreateMessageDto } from './dtos/create-message.dto';
 import { UpdateMessageDto } from './dtos/update-message.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
+import { RoleDecorator } from 'src/auth/decorators/role-decorator';
+import { RolesGuard } from 'src/auth/guard/roles-guard/role-guard';
+import { Role } from 'src/auth/enums/role.enum';
 
 /**
  * message routes
@@ -35,7 +40,6 @@ export class MessageController {
     @ActiveUser() user: ActiveUserData,
     @Body() createMessageDto: CreateMessageDto,
     @UploadedFile() file?: Express.Multer.File,
-    
   ) {
     // Override senderId from payload using the active user's sub property.
     console.log(user);
@@ -53,6 +57,8 @@ export class MessageController {
   /**
    * Delete a message by ID
    */
+  @RoleDecorator(Role.User, Role.Admin)
+  @UseGuards(RolesGuard)
   @Delete(':messageId')
   async delete(@Param('messageId') messageId: string) {
     return await this.messageService.delete(messageId);

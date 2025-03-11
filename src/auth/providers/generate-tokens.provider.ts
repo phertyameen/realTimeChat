@@ -40,10 +40,11 @@ export class GenerateTokensProvider {
    * @returns A signed JWT token
    */
   @ApiOperation({ summary: 'Sign JWT Token' })
-  public async signToken<T>(userId: number, expiresIn: number, payload?: T) {
+  public async signToken<T>(userId: number, userRole, expiresIn: number, payload?: T) {
     return await this.jwtService.signAsync(
       {
         sub: userId,
+        userRole,
         ...payload,
       } as ActiveUserData,
       {
@@ -64,10 +65,10 @@ export class GenerateTokensProvider {
   public async generateTokens(user: User) {
     const [accessToken, refreshToken] = await Promise.all([
       // Generate access token
-      this.signToken(user.id, this.jwtConfiguration.ttl, { email: user.email }),
+      this.signToken(user.id, user.userRole, this.jwtConfiguration.ttl, { email: user.email }),
 
       // Generate refresh token
-      this.signToken(user.id, this.jwtConfiguration.ttl)
+      this.signToken(user.id, user.userRole, this.jwtConfiguration.ttl)
     ]);
     
     return { accessToken, refreshToken, user };
