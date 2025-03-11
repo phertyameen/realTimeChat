@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Post,
@@ -6,7 +7,8 @@ import {
   Patch,
   Body,
   Param,
-  UploadedFile, UseInterceptors 
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { MessageService } from './provider/message.service';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
@@ -31,7 +33,6 @@ export class MessageController {
     @ActiveUser() user: ActiveUserData,
     @Body() createMessageDto: CreateMessageDto,
     @UploadedFile() file?: Express.Multer.File,
-    
   ) {
     // Override senderId from payload using the active user's sub property.
     console.log(user);

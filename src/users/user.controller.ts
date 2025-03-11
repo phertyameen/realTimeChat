@@ -22,6 +22,7 @@ import { User } from './user.entitly';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { authTypes } from 'src/auth/enums/authTypes.enum';
 
+@Auth(authTypes.None)
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}

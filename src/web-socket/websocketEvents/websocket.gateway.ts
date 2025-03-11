@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   WebSocketGateway,
   WebSocketServer,
@@ -7,12 +8,9 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
-import { MessageType } from 'src/messages/enum/message-type ';
+import { CreateMessageDto } from 'src/messages/dtos/create-message.dto';
 import { MessageService } from 'src/messages/provider/message.service';
 
-/**
- * WebSocket gateway handling real-time message exchanges.
- */
 @WebSocketGateway({ cors: true })
 export class WebsocketGateway
   implements OnGatewayConnection, OnGatewayDisconnect
@@ -46,27 +44,18 @@ export class WebsocketGateway
   @SubscribeMessage('sendMessage')
   async handleMessage(
     client: Socket,
-    payload: {
-      text?: string;
-      fileUrl?: string;
-      chatRoomId: number;
-      user: ActiveUserData;
-    },
+    payload: { message: CreateMessageDto; user: ActiveUserData },
   ) {
-    console.log('Received message:', payload);
+    try {
+      const savedMessage = await this.messageService.create(
+        payload.message,
+        payload.user,
+      );
 
-    // Save the message to the database
-    const savedMessage = await this.messageService.create(
-      {
-        text: payload.text,
-        chatRoomId: payload.chatRoomId,
-        messageType: MessageType.FILE,
-      },
-      payload.user,
-      undefined,
-    );
-
-    // Emit the saved message to all connected clients
-    this.server.emit('receiveMessage', savedMessage);
+      // Broadcast the new message to all clients
+      this.server.emit('receiveMessage', savedMessage);
+    } catch (error) {
+      console.error('Message handling error:', error);
+    }
   }
 }

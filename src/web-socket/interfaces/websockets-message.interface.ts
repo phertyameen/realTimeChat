@@ -1,4 +1,5 @@
-import { Message } from "src/messages/message.entity";
+/* eslint-disable prettier/prettier */
+import { Message } from 'src/messages/message.entity';
 
 export interface ServerToClientEvents {
   Payload: Message;

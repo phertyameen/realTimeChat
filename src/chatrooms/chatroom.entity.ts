@@ -1,10 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable, ManyToOne, JoinColumn } from 'typeorm';
-import { User } from 'src/users/user.entitly'; 
+/* eslint-disable prettier/prettier */
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { User } from 'src/users/user.entitly';
 import { ChatRoomType } from './enums/chatroomType';
 
 @Entity('chat_rooms')
 export class ChatRoom {
-  @PrimaryGeneratedColumn() 
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column('varchar', { length: 100 })
@@ -13,12 +22,12 @@ export class ChatRoom {
   @Column({
     type: 'enum',
     enum: ChatRoomType,
-    default: ChatRoomType.GROUP
+    default: ChatRoomType.GROUP,
   })
   type: ChatRoomType;
 
   @ManyToMany(() => User, (user) => user.chatRooms, {
-    onDelete: 'CASCADE' // Automatically handles the relationship cleanup
+    onDelete: 'CASCADE', // Automatically handles the relationship cleanup
   })
   users: User[];
 

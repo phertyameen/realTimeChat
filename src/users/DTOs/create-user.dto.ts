@@ -75,14 +75,7 @@ export class CreateUserDto {
     description: 'Password should contain numbers, alphabets, and uppercase',
   })
   @IsString()
-  @MaxLength(225)
-  @Matches(
-    /^(?=.*[!@#$%^&])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
-    {
-      message:
-        'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
-    },
-  )
+  @MaxLength(6)
   password?: string;
 
   @ApiProperty({
@@ -92,13 +85,13 @@ export class CreateUserDto {
       'Password should contain numbers, alphabets, and uppercase, and should match the password',
   })
   @IsString()
-  @MaxLength(225)
+  @MaxLength(6)
   @Validate(MatchPasswordsConstraint)
   confirmpassword?: string;
 
   @IsEnum(userRole)
   @IsOptional()
-  @Transform(({ value }) => value ?? userRole.USER) 
+  @Transform(({ value }) => value ?? userRole.USER)
   userRole?: userRole;
 
   @ApiProperty({

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   BadRequestException,
   Injectable,
@@ -10,10 +11,11 @@ import { ChatRoom } from '../../chatrooms/chatroom.entity';
 import { User } from 'src/users/user.entitly';
 import { UpdateMessageDto } from '../dtos/update-message.dto';
 import { CreateMessageDto } from '../dtos/create-message.dto';
-import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
+
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
 import { CloudinaryService } from 'src/cloudinary-provider/cloudinary.service';
 
+/**message service class */
 @Injectable()
 export class MessageService {
   constructor(
@@ -39,6 +41,7 @@ export class MessageService {
     private readonly cloudinaryService: CloudinaryService,
   ) {}
 
+  /**Create method */
   async create(
     createMessageDto: CreateMessageDto,
     user: ActiveUserData,
@@ -76,7 +79,7 @@ export class MessageService {
       chatRoom,
       sender,
       text: createMessageDto.text,
-      fileUrl,
+      fileUrl: createMessageDto.fileUrl,
     } as DeepPartial<Message>);
     console.log('Message Before Save:', message);
 

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   forwardRef,
   Inject,
@@ -32,7 +33,7 @@ export class SignInProvider {
   public async SignIn(signInDto: SignInDto) {
     // check if user exist in db
     // throw error if user doesnt exist
-    let user = await this.userService.GetOneByEmail(signInDto.email);
+    const user = await this.userService.GetOneByEmail(signInDto.email);
 
     if (!user) {
       throw new UnauthorizedException('email or password is incorrect');
