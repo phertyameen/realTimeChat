@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, CreateDateColumn, JoinTable, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from 'src/users/user.entitly'; 
 import { ChatRoomType } from './enums/chatroomType';
+import { ApiProperty } from '@nestjs/swagger';
 
 /**
  * Represents a chat room entity.
@@ -11,22 +12,22 @@ import { ChatRoomType } from './enums/chatroomType';
 export class ChatRoom {
   /**
    * Unique identifier for the chat room.
-   * @type {number}
    */
+  @ApiProperty({ description: 'Unique identifier for the chat room' })
   @PrimaryGeneratedColumn() 
   id: number;
 
   /**
    * The name of the chat room.
-   * @type {string}
    */
+  @ApiProperty({ description: 'The name of the chat room', maxLength: 100 })
   @Column('varchar', { length: 100 })
   name: string;
 
   /**
    * The type of the chat room (e.g., GROUP or PRIVATE).
-   * @type {ChatRoomType}
    */
+  @ApiProperty({ description: 'The type of the chat room', enum: ChatRoomType, default: ChatRoomType.GROUP })
   @Column({
     type: 'enum',
     enum: ChatRoomType,
@@ -36,8 +37,8 @@ export class ChatRoom {
 
   /**
    * Users who are part of the chat room.
-   * @type {User[]}
    */
+  @ApiProperty({ description: 'Users who are part of the chat room', type: () => [User] })
   @ManyToMany(() => User, (user) => user.chatRooms, {
     onDelete: 'CASCADE'
   })
@@ -45,23 +46,23 @@ export class ChatRoom {
 
   /**
    * The owner of the chat room.
-   * @type {User}
    */
+  @ApiProperty({ description: 'The owner of the chat room', type: () => User })
   @ManyToOne(() => User)
   @JoinColumn({ name: 'owner_id' })
   owner: User;
 
   /**
    * The ID of the owner.
-   * @type {number}
    */
+  @ApiProperty({ description: 'The ID of the owner', nullable: true })
   @Column({ name: 'owner_id', nullable: true })
   ownerId: number;
 
   /**
    * The timestamp when the chat room was created.
-   * @type {Date}
    */
+  @ApiProperty({ description: 'The timestamp when the chat room was created' })
   @CreateDateColumn()
   createdAt: Date;
 }
