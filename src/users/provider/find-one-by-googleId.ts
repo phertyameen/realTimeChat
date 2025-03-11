@@ -2,20 +2,31 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../user.entitly';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
-/**find one by googleid provider class */
+/**
+ * Service provider for finding a user by Google ID.
+ */
+@ApiTags('Users')
 @Injectable()
 export class FindOneByGoogleIdProvider {
   constructor(
-    /*
-     *inject userRepository
+    /**
+     * Injects the User repository.
      */
     @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
   ) {}
 
-  /**find one by googleid class with googleid as parameter of type string */
-  public async findOneByGoogleId(googleId: string) {
-    return await this.userRepository.findOneBy({ googleId })
+  /**
+   * Finds a user by their Google ID.
+   * @param googleId The Google ID of the user.
+   * @returns The user entity if found, otherwise null.
+   */
+  @ApiOperation({ summary: 'Find a user by Google ID' })
+  @ApiResponse({ status: 200, description: 'User found', type: User })
+  @ApiResponse({ status: 404, description: 'User not found' })
+  public async findOneByGoogleId(googleId: string): Promise<User | null> {
+    return await this.userRepository.findOneBy({ googleId });
   }
 }
