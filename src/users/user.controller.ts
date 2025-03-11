@@ -9,6 +9,7 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiQuery, ApiParam, ApiBody } from '@nestjs/swagger';
@@ -20,6 +21,9 @@ import { Paginated } from 'src/common/pagination/Interfaces/paginatedInterface';
 import { User } from './user.entitly';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { authTypes } from 'src/auth/enums/authTypes.enum';
+import { RoleDecorator } from 'src/auth/decorators/role-decorator';
+import { Role } from 'src/auth/enums/role.enum';
+import { RolesGuard } from 'src/auth/guard/roles-guard/role-guard';
 
 /**
  * UserController handles all user-related operations.
@@ -38,6 +42,8 @@ export class UserController {
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
   @ApiResponse({ status: 200, description: 'List of users', type: [User] })
+  @RoleDecorator(Role.Admin)
+  @UseGuards(RolesGuard)
   @Get('/:id?')
   public getUsers(
     @Query() paginationQueryDto: PaginationQueryDto,
