@@ -17,6 +17,7 @@ export class MessageService {
     private readonly messageDeleteService: MessageDeleteService,
   ) {}
 
+  /**Create method */
   async create(
     createMessageDto: CreateMessageDto,
     user: ActiveUserData,

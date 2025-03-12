@@ -117,6 +117,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Entity representing a message in a chat room.</p>
+
+            </p>
 
 
             <section data-compodoc="block-index">
@@ -154,6 +161,7 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#text" >text</a>
                             </li>
                             <li>
@@ -207,10 +215,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/messages/message.entity.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/messages/message.entity.ts:27</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The chat room to which this message belongs.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -244,10 +258,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/messages/message.entity.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/messages/message.entity.ts:51</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The URL of an attached file (if applicable).</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -280,10 +300,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/messages/message.entity.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/messages/message.entity.ts:21</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unique identifier for the message.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -316,10 +342,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/messages/message.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/messages/message.entity.ts:39</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The type of the message (e.g., text, file, etc.).</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -352,10 +384,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/messages/message.entity.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/messages/message.entity.ts:33</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The user who sent the message.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -366,6 +404,7 @@
                     <a name="text"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
                         <span ><b>text</b></span>
                         <a href="#text"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -388,10 +427,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/messages/message.entity.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/messages/message.entity.ts:45</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The text content of the message (if applicable).</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -424,10 +469,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/messages/message.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/messages/message.entity.ts:57</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Timestamp when the message was created.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -447,26 +498,50 @@ import { ChatRoom } from &#x27;../chatrooms/chatroom.entity&#x27;;
 import { User } from &#x27;../users/user.entitly&#x27;;
 import { MessageType } from &#x27;./enum/message-type &#x27;;
 
+/**
+ * Entity representing a message in a chat room.
+ */
 @Entity()
 export class Message {
+  /**
+   * Unique identifier for the message.
+   */
   @PrimaryGeneratedColumn()
   id: string;
 
+  /**
+   * The chat room to which this message belongs.
+   */
   @ManyToOne(() &#x3D;&gt; ChatRoom, (chatRoom) &#x3D;&gt; chatRoom.id, { onDelete: &#x27;CASCADE&#x27; })
   chatRoom: ChatRoom;
 
+  /**
+   * The user who sent the message.
+   */
   @ManyToOne(() &#x3D;&gt; User, (user) &#x3D;&gt; user.messages, { onDelete: &#x27;CASCADE&#x27; })
   sender: User;
 
+  /**
+   * The type of the message (e.g., text, file, etc.).
+   */
   @Column({ type: &#x27;enum&#x27;, enum: MessageType, default: MessageType.TEXT })
   messageType: MessageType;
 
-  @Column({type: &#x27;text&#x27;, nullable: true})
-  text: string
+  /**
+   * The text content of the message (if applicable).
+   */
+  @Column({ type: &#x27;text&#x27;, nullable: true })
+  text?: string;
   
+  /**
+   * The URL of an attached file (if applicable).
+   */
   @Column({ type: &#x27;text&#x27;, nullable: true }) 
   fileUrl?: string;
 
+  /**
+   * Timestamp when the message was created.
+   */
   @CreateDateColumn()
   timestamp: Date;
 }

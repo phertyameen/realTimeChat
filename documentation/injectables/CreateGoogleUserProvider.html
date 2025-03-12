@@ -229,14 +229,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/users/provider/googleUserProvider.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/users/provider/googleUserProvider.ts:19</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Create googleuser class of type googleuser</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -298,6 +300,8 @@ export class CreateGoogleUserProvider {
     private readonly userRepository: Repository&lt;User&gt;,
   ) {}
 
+
+  /**Create googleuser class of type googleuser */
   public async createGoogleUser(googleUser: GoogleInterface) {
     try {
       const user &#x3D; this.userRepository.create(googleUser);

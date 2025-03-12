@@ -119,6 +119,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Mail provider class</p>
+
+            </p>
 
 
 
@@ -229,14 +236,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/mail/providers/mail.provider.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/mail/providers/mail.provider.ts:16</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Welcome email class that takes a user as parameter</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -287,15 +296,16 @@ import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { name } from &#x27;ejs&#x27;;
 import { User } from &#x27;src/users/user.entitly&#x27;;
 
-
+/**Mail provider class */
 @Injectable()
 export class MailProvider {
     constructor (
-        //inject the mailer Service
+        /**inject the mailer Service*/
         private readonly mailerService:MailerService,
     ) {}
 
 
+    /**Welcome email class that takes a user as parameter */
     public async WelcomeEmail (user:User):Promise&lt;void&gt; {
         await this.mailerService.sendMail({
          to: user.email,

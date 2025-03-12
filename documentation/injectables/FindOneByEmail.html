@@ -119,6 +119,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>find one by email class</p>
+
+            </p>
 
 
 
@@ -163,12 +170,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/users/provider/find-one-by-email.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/users/provider/find-one-by-email.ts:9</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>inject user Repository</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -229,14 +238,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/users/provider/find-one-by-email.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/users/provider/find-one-by-email.ts:16</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>find one by email class that takes email as parameter</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -288,10 +299,15 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { User } from &#x27;../user.entitly&#x27;;
 
 
+/**find one by email class */
 @Injectable()
 export class FindOneByEmail {
+
+    /**inject user Repository */
     constructor(@InjectRepository(User) private userRepository: Repository&lt;User&gt;) {}
 
+
+    /**find one by email class that takes email as parameter */
     public async findOneByEmail(email: string): Promise&lt;User&gt; {
         let user: User | undefined;
 

@@ -123,6 +123,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Sign in dto class</p>
+
+            </p>
 
 
 
@@ -198,10 +205,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/auth/dtos/userDto.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/auth/dtos/userDto.ts:8</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>email parameter this string</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -235,10 +248,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/auth/dtos/userDto.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/auth/dtos/userDto.ts:13</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>password parameter that is string</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -255,12 +274,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsEmail, IsNotEmpty, IsString } from &quot;class-validator&quot;;
-
+/**Sign in dto class */
 export class SignInDto {
+
+  /**email parameter this string */
   @IsEmail()
   @IsNotEmpty()
   email: string;
 
+  /**password parameter that is string */
   @IsString()
   @IsNotEmpty()
   password: string;
