@@ -7,7 +7,7 @@ import { MessageDeleteService } from '../provider/message-delete.service';
 import { CreateMessageDto } from '../dtos/create-message.dto';
 import { UpdateMessageDto } from '../dtos/update-message.dto';
 import { MessageType } from '../enum/message-type ';
-import { ActiveUserData } from '../../auth/interfaces/active-user-data.interface'; 
+import { ActiveUserData } from 'src/auth/interface/activeInterface';
 
 describe('MessageService', () => {
   let service: MessageService;
@@ -63,7 +63,7 @@ describe('MessageService', () => {
   describe('create', () => {
     it('should create a message', async () => {
       const createMessageDto: CreateMessageDto = { content: 'Test Message', chatRoomId: 1, messageType: MessageType.FILE};
-      const user: ActiveUserData = { sub: 1 }; 
+      const user: ActiveUserData = { sub: 1 }; // Mock user
       const result = await service.create(createMessageDto, user,  undefined);
       expect(result).toEqual({ ...createMessageDto, id: 1, user });
       expect(messageCreateService.create).toHaveBeenCalledWith(createMessageDto, user, undefined);
