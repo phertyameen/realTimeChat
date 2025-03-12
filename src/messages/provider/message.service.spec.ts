@@ -30,13 +30,13 @@ describe('MessageService', () => {
           },
         },
         {
-          provide: getRepositoryToken(ChatRoom), // ✅ Mocking ChatRoom Repository
+          provide: getRepositoryToken(ChatRoom), 
           useValue: {
             findOne: jest.fn(),
           },
         },
         {
-          provide: getRepositoryToken(User), // ✅ Mocking User Repository
+          provide: getRepositoryToken(User), 
           useValue: {
             findOne: jest.fn(),
           },

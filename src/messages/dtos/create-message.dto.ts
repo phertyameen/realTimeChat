@@ -42,7 +42,7 @@ export class CreateMessageDto {
    */
   @ApiProperty({ description: 'The full message content', required: false })
   @IsString()
-  @IsOptional() // ✅ Now optional to prevent errors
+  @IsOptional() 
   content?: string;
 
   /**

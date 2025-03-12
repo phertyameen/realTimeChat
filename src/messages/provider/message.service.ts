@@ -24,13 +24,13 @@ export class MessageService {
     private readonly messageDeleteService: MessageDeleteService,
 
     @InjectRepository(Message)
-    private readonly messagesRepo: Repository<Message>, // ✅ Correct injection
+    private readonly messagesRepo: Repository<Message>, 
 
     @InjectRepository(ChatRoom)
-    private readonly chatRoomsRepo: Repository<ChatRoom>, // ✅ Correct injection
+    private readonly chatRoomsRepo: Repository<ChatRoom>, 
 
     @InjectRepository(User)
-    private readonly usersRepo: Repository<User>, // ✅ Correct injection
+    private readonly usersRepo: Repository<User>, 
   ) {}
 
   /** Create method */
@@ -41,18 +41,18 @@ export class MessageService {
   ): Promise<Message> {
     const { chatRoomId, text } = createMessageDto;
 
-    // ✅ Find the chat room
+    //  Find the chat room
     const chatRoom = await this.chatRoomsRepo.findOne({
       where: { id: createMessageDto.chatRoomId },
     });
     if (!chatRoom) throw new NotFoundException('Chat room not found');
 
-    // ✅ Find the sender
+    //  Find the sender
     const sender = await this.usersRepo.findOne({ where: { id: user.sub } });
     console.log(sender);
     if (!sender) throw new NotFoundException('Sender not found');
 
-    // ✅ Handle file upload if provided
+    //  Handle file upload if provided
     let fileUrl: string | undefined;
     if (file) {
       console.log('Incoming File:', file);
@@ -66,7 +66,7 @@ export class MessageService {
       }
     }
 
-    // ✅ Create message
+    //  Create message
     const message = this.messagesRepo.create({
       chatRoom,
       sender,
@@ -75,7 +75,7 @@ export class MessageService {
     });
     console.log('Message Before Save:', message);
 
-    // ✅ Save message correctly
+    //  Save message correctly
     const savedMessage = await this.messagesRepo.save(message);
     console.log('Saved Message:', savedMessage);
     return savedMessage; // Ensure returning a single object
