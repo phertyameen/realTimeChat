@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger"
 import { Request, Response, NextFunction } from 'express';
 import { ValidationPipe } from '@nestjs/common';
+import { DataResponseInterceptor } from './common/interceptor/data-response/data-response.interceptor';
 
 /**Entry point to the application */
 async function bootstrap() {
@@ -59,6 +60,9 @@ SwaggerModule.setup('api', app, document)
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     next();
   });
+
+   //making intwerceptor global
+   app.useGlobalInterceptors(new DataResponseInterceptor)
 
   await app.listen(process.env.PORT ?? 3000);
 }

@@ -8,6 +8,7 @@ import { UpdateMessageDto } from '../dtos/update-message.dto';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
 import { Message } from '../message.entity';
 
+/**message service class */
 @Injectable()
 export class MessageService {
   constructor(
@@ -23,7 +24,46 @@ export class MessageService {
     user: ActiveUserData,
     file?: Express.Multer.File,
   ): Promise<Message> {
-    return await this.messageCreateService.create(createMessageDto, user, file);
+    const { chatRoomId, text } = createMessageDto;
+
+    //  Find the chat room
+    const chatRoom = await this.chatRoomsRepo.findOne({
+      where: { id: createMessageDto.chatRoomId },
+    });
+    if (!chatRoom) throw new NotFoundException('Chat room not found');
+
+    //  Find the sender
+    const sender = await this.usersRepo.findOne({ where: { id: user.sub } });
+    console.log(sender);
+    if (!sender) throw new NotFoundException('Sender not found');
+
+    //  Handle file upload if provided
+    let fileUrl: string | undefined;
+    if (file) {
+      console.log('Incoming File:', file);
+      try {
+        const uploadResult = await this.cloudinaryService.uploadFile(file);
+        console.log('Cloudinary Upload Result:', uploadResult);
+        fileUrl = uploadResult.secure_url;
+      } catch (error) {
+        console.error('File upload error:', error);
+        throw new BadRequestException('File upload failed');
+      }
+    }
+
+    //  Create message
+    const message = this.messagesRepo.create({
+      chatRoom,
+      sender,
+      text: createMessageDto.text,
+      fileUrl: createMessageDto.fileUrl,
+    } as DeepPartial<Message>);
+    console.log('Message Before Save:', message);
+
+    //Save message correctly
+    const savedMessage = await this.messagesRepo.save(message);
+    console.log('Saved Message:', savedMessage);
+    return savedMessage; // Ensure returning a single object
   }
 
   async findAll(chatRoomId: number): Promise<Message[]> {
