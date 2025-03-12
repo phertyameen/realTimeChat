@@ -13,7 +13,7 @@ describe('MessagesController', () => {
         {
           provide: MessageService,
           useValue: {
-            create: jest.fn(),  // Mock the service
+            create: jest.fn(),  
           },
         },
       ],

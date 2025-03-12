@@ -18,13 +18,13 @@ describe('MessageService', () => {
 
   const mockMessageCreateService = {
     create: jest.fn().mockImplementation((dto, user, file = undefined) => 
-      Promise.resolve({ ...dto, id: '1', user })
+      Promise.resolve({ ...dto, id: 1, user })
     ),
   };
 
   const mockMessageFetchService = {
     findAll: jest.fn().mockImplementation(() => 
-      Promise.resolve([{ id: '1', content: 'Hello' }])
+      Promise.resolve([{ id: 1, content: 'Hello' }])
     ),
   };
 
@@ -63,7 +63,7 @@ describe('MessageService', () => {
   describe('create', () => {
     it('should create a message', async () => {
       const createMessageDto: CreateMessageDto = { content: 'Test Message', chatRoomId: 1, messageType: MessageType.FILE};
-      const user: ActiveUserData = { sub: 1 }; // Mock user
+      const user: ActiveUserData = { sub: 1 }; 
       const result = await service.create(createMessageDto, user,  undefined);
       expect(result).toEqual({ ...createMessageDto, id: 1, user });
       expect(messageCreateService.create).toHaveBeenCalledWith(createMessageDto, user, undefined);
@@ -73,7 +73,7 @@ describe('MessageService', () => {
   describe('findAll', () => {
     it('should return an array of messages', async () => {
       const messages = await service.findAll(1); // Chat room ID
-      expect(messages).toEqual([{ id: '1', content: 'Hello' }]);
+      expect(messages).toEqual([{ id: 1, content: 'Hello' }]);
       expect(messageFetchService.findAll).toHaveBeenCalledWith(1);
     });
   });
