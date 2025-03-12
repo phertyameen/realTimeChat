@@ -5,40 +5,54 @@ import {
   RequestTimeoutException,
   UnauthorizedException,
 } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { SignInDto } from '../dtos/userDto';
 import { HashingProvider } from './hashing';
 import { GenerateTokensProvider } from './generate-tokens.provider';
 import { UserService } from 'src/users/provider/user.service';
 
+/**
+ * Signin provider class
+ */
+@ApiTags('Authentication')
 @Injectable()
 export class SignInProvider {
   constructor(
-    /*
-     * injecting userService repo
+    /**
+     * Injecting UserService repository
      */
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
 
-    /*
-     * injecting hashing dependency
+    /**
+     * Injecting hashing dependency
      */
     private readonly hashingProvider: HashingProvider,
 
-    /*
-     * injecting generateTokenProvider
+    /**
+     * Injecting GenerateTokensProvider
      */
     private readonly generateTokenProvider: GenerateTokensProvider,
   ) {}
+
+  /**
+   * Sign in method
+   * @param signInDto - User credentials
+   * @returns Access and refresh tokens
+   */
+  @ApiOperation({ summary: 'User sign-in' })
+  @ApiResponse({ status: 200, description: 'Successfully signed in' })
+  @ApiResponse({ status: 401, description: 'Invalid email or password' })
+  @ApiResponse({ status: 408, description: 'Database connection timeout' })
   public async SignIn(signInDto: SignInDto) {
-    // check if user exist in db
-    // throw error if user doesnt exist
-    let user = await this.userService.GetOneByEmail(signInDto.email);
+    // Check if user exists in database
+    const user = await this.userService.GetOneByEmail(signInDto.email);
 
     if (!user) {
       throw new UnauthorizedException('email or password is incorrect');
     }
 
-    // conpare password
+    // Compare password
     let isCheckedPassword: boolean = false;
 
     try {
@@ -48,14 +62,15 @@ export class SignInProvider {
       );
     } catch (error) {
       throw new RequestTimeoutException(error, {
-        description: 'error  connecting to the database',
+        description: 'error connecting to the database',
       });
     }
 
     if (!isCheckedPassword) {
       throw new UnauthorizedException('email or password is incorrect');
     }
-    // login
+    
+    // Generate tokens
     return await this.generateTokenProvider.generateTokens(user);
   }
 }

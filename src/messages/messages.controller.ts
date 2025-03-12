@@ -1,17 +1,39 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
-import { MessageService } from "./provider/message.service";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { ActiveUser } from "src/auth/decorators/activeUser.decorator";
-import { ActiveUserData } from "src/auth/interface/activeInterface";
-import { CreateMessageDto } from "./dtos/create-message.dto";
-import { UpdateMessageDto } from "./dtos/update-message.dto";
 
+import {
+  Controller,
+  Post,
+  Get,
+  Delete,
+  Patch,
+  Body,
+  Param,
+  UploadedFile,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+  UseGuards,
+} from '@nestjs/common';
+import { MessageService } from './provider/message.service';
+import { ActiveUserData } from 'src/auth/interface/activeInterface';
+import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
+import { CreateMessageDto } from './dtos/create-message.dto';
+import { UpdateMessageDto } from './dtos/update-message.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger';
+import { RoleDecorator } from 'src/auth/decorators/role-decorator';
+import { RolesGuard } from 'src/auth/guard/roles-guard/role-guard';
+import { Role } from 'src/auth/enums/role.enum';
+
+/**
+ * message routes
+ */
+@ApiTags('messages')
 @Controller('message')
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
 
   @Post()
   @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(ClassSerializerInterceptor)
   async create(
     @ActiveUser() user: ActiveUserData,
     @Body() createMessageDto: CreateMessageDto,
@@ -25,6 +47,13 @@ export class MessageController {
     const chatRoomIdNumber = parseInt(chatRoomId, 10);
     return await this.messageService.findAll(chatRoomIdNumber);
   }
+
+
+  /**
+   * Delete a message by ID
+   */
+  @RoleDecorator(Role.User, Role.Admin)
+  @UseGuards(RolesGuard)
 
   @Delete(':messageId')
   async delete(@Param('messageId') messageId: string) {

@@ -1,3 +1,4 @@
+import { UseGuards } from '@nestjs/common';
 import {
   WebSocketGateway,
   WebSocketServer,
@@ -6,6 +7,7 @@ import {
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { WebSocketGuardGuard } from 'src/auth/guard/web-socket-guard/web-socket-guard.guard';
 import { ActiveUserData } from 'src/auth/interface/activeInterface';
 import { MessageType } from 'src/messages/enum/message-type ';
 import { MessageService } from 'src/messages/provider/message.service';
@@ -13,6 +15,7 @@ import { MessageService } from 'src/messages/provider/message.service';
 /**
  * WebSocket gateway handling real-time message exchanges.
  */
+@UseGuards(WebSocketGuardGuard)
 @WebSocketGateway({ cors: true })
 export class WebsocketGateway
   implements OnGatewayConnection, OnGatewayDisconnect
@@ -55,17 +58,23 @@ export class WebsocketGateway
   ) {
     console.log('Received message:', payload);
 
+    // Emit an echo message before processing
+    const echoMessage = 'some message received';
+    console.log('Emitting message:', echoMessage);
+    client.emit('messageEcho', echoMessage);
+
     // Save the message to the database
     const savedMessage = await this.messageService.create(
       {
-        content: payload.text, // ✅ Correct property name
+        text: payload.text,
+        fileUrl: payload.fileUrl,
         chatRoomId: payload.chatRoomId,
         messageType: MessageType.FILE,
       },
       payload.user,
-      undefined,
     );
 
+    console.log('saved message:', savedMessage)
     // Emit the saved message to all connected clients
     this.server.emit('receiveMessage', savedMessage);
   }
