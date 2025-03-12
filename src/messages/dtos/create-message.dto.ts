@@ -2,9 +2,10 @@ import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { MessageType } from '../enum/message-type ';
 
 export class CreateMessageDto {
+  
   @IsNotEmpty()
   chatRoomId: number;
-
+  
   @IsString()
   @IsNotEmpty()
   text?: string;
@@ -16,6 +17,9 @@ export class CreateMessageDto {
   @IsString()
   @IsOptional()
   fileUrl?: string;
+
+  @IsNotEmpty()
+  content: string;
 
   @IsOptional()
   @IsEnum(MessageType)

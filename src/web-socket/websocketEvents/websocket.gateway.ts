@@ -58,7 +58,7 @@ export class WebsocketGateway
     // Save the message to the database
     const savedMessage = await this.messageService.create(
       {
-        text: payload.text,
+        content: payload.text, // ✅ Correct property name
         chatRoomId: payload.chatRoomId,
         messageType: MessageType.FILE,
       },
