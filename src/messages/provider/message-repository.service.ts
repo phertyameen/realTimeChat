@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DeleteResult } from 'typeorm';
 import { Message } from '../message.entity';
 
 @Injectable()
@@ -30,10 +30,7 @@ export class MessageRepositoryService {
     return await this.messageRepo.save(message);
   }
 
-  async delete(messageId: string): Promise<void> {
-    const result = await this.messageRepo.delete(messageId);
-    if (result.affected === 0) {
-      throw new NotFoundException('Message not found');
-    }
+  async deleteMessage(id: string): Promise<DeleteResult> {
+    return this.messageRepo.delete(id); 
   }
 }

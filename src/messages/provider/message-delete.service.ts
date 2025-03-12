@@ -5,7 +5,8 @@ import { MessageRepositoryService } from './message-repository.service';
 export class MessageDeleteService {
   constructor(private readonly messageRepo: MessageRepositoryService) {}
 
-  async delete(messageId: string): Promise<void> {
-    await this.messageRepo.delete(messageId);
+  async delete(id: string): Promise<boolean> {
+    const result = await this.messageRepo.deleteMessage(id); 
+    return result?.affected > 0; 
   }
 }
