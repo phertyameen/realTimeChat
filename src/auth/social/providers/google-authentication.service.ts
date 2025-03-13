@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable, OnModuleInit, UnauthorizedException } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, Logger, OnModuleInit, UnauthorizedException } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { OAuth2Client } from 'google-auth-library';
 import jwtConfig from 'src/auth/authConfig/jwt.config';
@@ -14,6 +14,8 @@ import { GoogleTokenDto } from '../dtos/google-token.dto';
 /**Google authentication service */
 export class GoogleAuthenticationService implements OnModuleInit {
   private oAuthClient: OAuth2Client;
+
+  private readonly logger = new Logger(GoogleAuthenticationService.name);
   constructor(
     /**
      * Injects the UserService for user-related operations.
@@ -56,12 +58,26 @@ export class GoogleAuthenticationService implements OnModuleInit {
     try {
       console.log("Received Token:", googleTokenDto.token);
 
+      this.logger.log('Initializing OAuth Client...');
+      try {
+        this.oAuthClient = new OAuth2Client(
+          process.env.GOOGLE_CLIENT_ID,
+          process.env.GOOGLE_CLIENT_SECRET,
+          process.env.GOOGLE_REDIRECT_URI
+        );
+  
+        if (!this.oAuthClient) {
+          throw new Error('OAuth Client is undefined after initialization');
+        }
+      } finally {
+        console.log('oAuth Ended')
+      }
       // Verify the Google token sent by user
       const loginTicket = await this.oAuthClient.verifyIdToken({
         idToken: googleTokenDto.token,
       });
 
-      console.log("Google Token Payload:", loginTicket.getPayload());
+      console.log("Google Token Payload:", loginTicket);
 
       // Extract the payload from Google JWT token
       const {

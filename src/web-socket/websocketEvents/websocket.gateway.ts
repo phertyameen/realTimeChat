@@ -56,7 +56,6 @@ export class WebsocketGateway
       user: ActiveUserData;
     },
   ) {
-    console.log('Received message:', payload);
 
     // Emit an echo message before processing
     const echoMessage = 'some message received';

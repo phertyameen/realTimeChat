@@ -5,14 +5,15 @@
                     - Authorisation and guards
                     - Social authentication
                     - Tests for auth and users module
+                    - Roles guard
 
 2. Kamal            - Authentication
                     - Websocket initialisation 
-                    - Data response model
+                    - Data response structure
 
 3. Rukayat Zakari   - Setup for the swagger documentation
                     - Creates the functions for messages, and files upload
-                    - Documentation using compodocg4fytut
+                    - Documentation using compodoc
 
 4. Musa             - Chat module service
                     - Frontend to test social auth
@@ -21,3 +22,8 @@
                     - Pagination usage in users method
 
 6. Godwin Ameh      - Message module services
+
+7. Mendy            - Test for messages
+
+8. Gebriel          - Test for mail service
+                    - Frontend demo screens
