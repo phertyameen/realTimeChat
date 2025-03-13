@@ -1,39 +1,46 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { MessageFetchService } from '../provider/message-fetch.service';
-import { MessageUpdateService } from '../provider/message-update.service';
-import { MessageDeleteService } from '../provider/message-delete.service';
-import { MessageCreateService } from '../provider/message-create.service';
-import { CreateMessageDto } from '../dtos/create-message.dto';
-import { UpdateMessageDto } from '../dtos/update-message.dto';
-import { ActiveUserData } from 'src/auth/interface/activeInterface';
+import { DeepPartial, Repository } from 'typeorm';
 import { Message } from '../message.entity';
-import { CloudinaryService } from 'src/cloudinary-provider/cloudinary.service';
-import { ChatRoom } from 'src/chatrooms/chatroom.entity';
+import { ChatRoom } from '../../chatrooms/chatroom.entity';
 import { User } from 'src/users/user.entitly';
+import { UpdateMessageDto } from '../dtos/update-message.dto';
+import { CreateMessageDto } from '../dtos/create-message.dto';
+import { ActiveUser } from 'src/auth/decorators/activeUser.decorator';
+import { ActiveUserData } from 'src/auth/interface/activeInterface';
+import { CloudinaryService } from 'src/cloudinary-provider/cloudinary.service';
 
-/** Message service class */
+/**message service class */
 @Injectable()
 export class MessageService {
   constructor(
-    private readonly messageCreateService: MessageCreateService,
-    private readonly messageFetchService: MessageFetchService,
-    private readonly messageUpdateService: MessageUpdateService,
-    private readonly cloudinaryService: CloudinaryService,
-    private readonly messageDeleteService: MessageDeleteService,
-
+    /**
+     * inject messageRepo
+     */
     @InjectRepository(Message)
-    private readonly messagesRepo: Repository<Message>, 
+    private messagesRepo: Repository<Message>,
 
+    /**
+     * inject chatRoomsRepo
+     */
     @InjectRepository(ChatRoom)
-    private readonly chatRoomsRepo: Repository<ChatRoom>, 
+    private chatRoomsRepo: Repository<ChatRoom>,
 
+    /**
+     * inject usersRepo
+     */
     @InjectRepository(User)
-    private readonly usersRepo: Repository<User>, 
+    private usersRepo: Repository<User>,
+
+    /**inject cloudinary service */
+    private readonly cloudinaryService: CloudinaryService,
   ) {}
 
-  /** Create method */
+  /**Create method */
   async create(
     createMessageDto: CreateMessageDto,
     user: ActiveUserData,
@@ -71,25 +78,55 @@ export class MessageService {
       chatRoom,
       sender,
       text: createMessageDto.text,
-      fileUrl: fileUrl || undefined,
-    });
+      fileUrl: createMessageDto.fileUrl,
+    } as DeepPartial<Message>);
     console.log('Message Before Save:', message);
 
-    //  Save message correctly
+    //Save message correctly
     const savedMessage = await this.messagesRepo.save(message);
     console.log('Saved Message:', savedMessage);
     return savedMessage; // Ensure returning a single object
   }
 
-  async findAll(chatRoomId: number): Promise<Message[]> {
-    return await this.messageFetchService.findAll(chatRoomId);
+  /**
+   * find all messages in a chatroom
+   */
+  async findAll(chatRoomId: string): Promise<Message[]> {
+    return await this.messagesRepo.find({
+      where: { chatRoom: { id: chatRoomId as any } },
+      relations: ['sender'],
+    });
   }
 
-  async update(messageId: string, updateMessageDto: UpdateMessageDto): Promise<Message> {
-    return await this.messageUpdateService.update(messageId, updateMessageDto);
-  }
-
+  /**
+   * Delete a message
+   */
   async delete(messageId: string): Promise<void> {
-    await this.messageDeleteService.delete(messageId);
+    const result = await this.messagesRepo.delete(messageId);
+    if (result.affected === 0) {
+      throw new NotFoundException('Message not found');
+    }
+  }
+
+  /**
+   * Update a message text
+   */
+  async update(
+    messageId: string,
+    updateMessageDto: UpdateMessageDto,
+  ): Promise<Message> {
+    const message = await this.messagesRepo.findOne({
+      where: { id: messageId },
+    });
+    if (!message) {
+      throw new NotFoundException('Message not found');
+    }
+
+    if (!updateMessageDto || !updateMessageDto.text) {
+      throw new BadRequestException('No update values provided');
+    }
+
+    message.text = updateMessageDto.text;
+    return await this.messagesRepo.save(message);
   }
 }
