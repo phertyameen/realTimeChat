@@ -18,7 +18,7 @@ export class CreateMessageDto {
    */
   @ApiProperty({ description: 'The text content of the message', example: 'hello', required: false })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   text?: string;
 
   /**
@@ -36,6 +36,14 @@ export class CreateMessageDto {
   @IsString()
   @IsOptional()
   fileUrl?: string;
+
+  /**
+   * The content of the message (optional, since 'text' might be used instead).
+   */
+  @ApiProperty({ description: 'The full message content', required: false })
+  @IsString()
+  @IsOptional() 
+  content?: string;
 
   /**
    * The type of the message (e.g., text, audio, file, etc.).
