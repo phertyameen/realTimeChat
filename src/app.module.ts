@@ -43,6 +43,7 @@ import { JwtModule } from '@nestjs/jwt';
         synchronize: configService.get('database.synchronize'),
         autoLoadEntities: configService.get('database.autoload'),
       }),
+
     }),
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync(jwtConfig.asProvider()),
