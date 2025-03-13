@@ -33,6 +33,6 @@ import { GoogleAuthenticationController } from './social/google-authentication.c
     RefreshTokensProvider,
     GoogleAuthenticationService,
   ],
-  exports: [AuthService, HashingProvider],
+  exports: [AuthService, HashingProvider, GoogleAuthenticationService],
 })
 export class AuthModule {}
