@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ChatRoom } from 'src/chatrooms/chatroom.entity';
@@ -16,8 +16,14 @@ export class AddUserToChatRoomUseCase {
     private findChatRoomUseCase: FindChatRoomUseCase
   ) {}
 
-  async execute(chatRoomId: number, userId: number): Promise<ChatRoom> {
+  async execute(chatRoomId: number, userId: number, currentUserId: number): Promise<ChatRoom> {
     const chatRoom = await this.findChatRoomUseCase.findOne(chatRoomId);
+    
+    // Check if the current user is the owner
+    if (chatRoom.ownerId !== currentUserId) {
+      throw new ForbiddenException('Only the chat room owner can add users');
+    }
+    
     const user = await this.userRepository.findOne({ 
       where: { id: Number(userId) }
     });
