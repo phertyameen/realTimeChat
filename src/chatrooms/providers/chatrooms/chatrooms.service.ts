@@ -43,25 +43,25 @@ export class ChatRoomService {
 
   @ApiOperation({ summary: 'Update a chat room' })
   @ApiResponse({ status: 200, description: 'Chat room updated successfully' })
-  async update(id: number, updateChatRoomDto: UpdateChatRoomDto): Promise<ChatRoom> {
-    return this.updateChatRoomUseCase.execute(id, updateChatRoomDto);
+  async update(id: number, updateChatRoomDto: UpdateChatRoomDto, currentUserId: number): Promise<ChatRoom> {
+    return this.updateChatRoomUseCase.execute(id, updateChatRoomDto, currentUserId);
   }
 
   @ApiOperation({ summary: 'Delete a chat room' })
   @ApiResponse({ status: 200, description: 'Chat room deleted successfully' })
-  async remove(id: number, userId?: number): Promise<void> {
+  async remove(id: number, userId: number): Promise<void> {
     return this.deleteChatRoomUseCase.execute(id, userId);
   }
 
   @ApiOperation({ summary: 'Add a user to the chat room' })
   @ApiResponse({ status: 200, description: 'User added to the chat room successfully' })
-  async addUserToChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
-    return this.addUserToChatRoomUseCase.execute(chatRoomId, userId);
+  async addUserToChatRoom(chatRoomId: number, userId: number, currentUserId: number): Promise<ChatRoom> {
+    return this.addUserToChatRoomUseCase.execute(chatRoomId, userId, currentUserId);
   }
 
   @ApiOperation({ summary: 'Delete a user from a chat room' })
   @ApiResponse({ status: 200, description: 'User deleted from chat room successfully' })
-  async removeUserFromChatRoom(chatRoomId: number, userId: number): Promise<ChatRoom> {
-    return this.removeUserFromChatRoomUseCase.execute(chatRoomId, userId);
+  async removeUserFromChatRoom(chatRoomId: number, userId: number, currentUserId: number): Promise<ChatRoom> {
+    return this.removeUserFromChatRoomUseCase.execute(chatRoomId, userId, currentUserId);
   }
 }
