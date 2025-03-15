@@ -92,9 +92,11 @@ export class ChatRoomController {
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateChatRoomDto: UpdateChatRoomDto
+    @Body() updateChatRoomDto: UpdateChatRoomDto,
+    @Req() req: RequestWithUser
   ) {
-    return this.chatRoomService.update(id, updateChatRoomDto);
+    const userId = req.user?.sub || 1; // Default to user ID 1 for testing
+    return this.chatRoomService.update(id, updateChatRoomDto, userId);
   }
 
   /**
@@ -130,9 +132,11 @@ export class ChatRoomController {
   @Post(':id/users/:userId')
   addUser(
     @Param('id', ParseIntPipe) id: number,
-    @Param('userId', ParseIntPipe) userId: number
+    @Param('userId', ParseIntPipe) userId: number,
+    @Req() req: RequestWithUser
   ) {
-    return this.chatRoomService.addUserToChatRoom(id, userId);
+    const currentUserId = req.user?.sub || 1; // Default to user ID 1 for testing
+    return this.chatRoomService.addUserToChatRoom(id, userId, currentUserId);
   }
 
   /**
@@ -141,15 +145,14 @@ export class ChatRoomController {
    * @param userId User ID to be removed.
    * @returns The updated chat room.
    */
-  @ApiOperation({ summary: 'Remove a user from a chat room' })
-  @ApiResponse({ status: 200, description: 'User removed successfully.' })
-  @ApiResponse({ status: 400, description: 'Invalid request data.' })
-  @ApiResponse({ status: 404, description: 'User not found in chat room.' })
   @Delete(':id/users/:userId')
+  @HttpCode(HttpStatus.OK)
   removeUser(
     @Param('id', ParseIntPipe) id: number,
-    @Param('userId', ParseIntPipe) userId: number
+    @Param('userId', ParseIntPipe) userId: number,
+    @Req() req: RequestWithUser
   ) {
-    return this.chatRoomService.removeUserFromChatRoom(id, userId);
+    const currentUserId = req.user?.sub || 1; // Default to user ID 1 for testing
+    return this.chatRoomService.removeUserFromChatRoom(id, userId, currentUserId);
   }
 }
