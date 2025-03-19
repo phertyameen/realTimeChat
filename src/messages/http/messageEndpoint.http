@@ -3,9 +3,8 @@ GET http://localhost:3000/message/8
 
 POST http://localhost:3000/message
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJSb2xlIjoidXNlciIsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzQxNzY1NzAzLCJleHAiOjE3NDE3NjkzMDMsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.5vj-ElRpyUtm7uyoLIymtgjvlDmCyGomcK5W6iUNndU
-{
-  "chatRoomId": 1,
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJSb2xlIjoidXNlciIsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwiaWF0IjoxNzQxODYyMzQ5LCJleHAiOjE3NDE4NjU5NDksImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.iDUTqxxndtha3JydRsmMBL4QIicnNuNTj2Snt1RrN4o
+{  "chatRoomId": 1,
   "text": "Hello, this is a test message!"
 }
 
@@ -24,6 +23,6 @@ WS ws://localhost:3000/message
 ### Send message
 {
   "type": "message",
-  "chatRoomId": 9,
-  "text": "Hello, this is my fourth message!"
+  "chatRoomId": 1,
+  "text": "Hello, this is a message from httpyac!"
 }

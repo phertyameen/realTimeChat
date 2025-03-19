@@ -34,7 +34,6 @@ POST {{host}}/auth/signIn
 Content-Type: application/json
 
 {
-
     "email": "qwa@mail.com",
     "password": "qwa@xPassword123"
 }

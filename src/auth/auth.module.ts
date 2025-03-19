@@ -6,8 +6,6 @@ import { SignInProvider } from './providers/sign-in.provider';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import jwtConfig from 'src/auth/authConfig/jwt.config';
-import { APP_GUARD } from '@nestjs/core';
-import { AccessTokenGuard } from './guard/access-token/access-token.guard';
 import { GenerateTokensProvider } from './providers/generate-tokens.provider';
 import { RefreshTokensProvider } from './providers/refresh-tokens.provider';
 import { UserModule } from 'src/users/user.module';
