@@ -87,11 +87,11 @@ export class CreateUserProvider {
       );
     }
 
-    try {
-      await this.mailProvider.WelcomeEmail(newUser);
-    } catch (error) {
-      throw new RequestTimeoutException(error);
-    }
+    // try {
+    //   await this.mailProvider.WelcomeEmail(newUser);
+    // } catch (error) {
+    //   throw new RequestTimeoutException(error);
+    // }
 
     return newUser;
   }

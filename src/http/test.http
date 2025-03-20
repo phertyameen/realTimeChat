@@ -6,3 +6,5 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQxLCJlbWFpb
     "type": "private",
     "userIds": [1,2,3]
 }
+
+GET http://localhost:3000/auth/google/test

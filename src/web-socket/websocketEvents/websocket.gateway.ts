@@ -5,6 +5,9 @@ import {
   SubscribeMessage,
   OnGatewayConnection,
   OnGatewayDisconnect,
+  MessageBody,
+  ConnectedSocket,
+  WsResponse,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { WebSocketGuardGuard } from 'src/auth/guard/web-socket-guard/web-socket-guard.guard';
@@ -48,20 +51,21 @@ export class WebsocketGateway
    */
   @SubscribeMessage('sendMessage')
   async handleMessage(
+    @ConnectedSocket()
     client: Socket,
+    @MessageBody()
     payload: {
       text?: string;
       fileUrl?: string;
       chatRoomId: number;
       user: ActiveUserData;
     },
-  ) {
-    console.log('Received message:', payload);
-
-    // Emit an echo message before processing
-    const echoMessage = 'some message received';
-    console.log('Emitting message:', echoMessage);
-    client.emit('messageEcho', echoMessage);
+    data: unknown
+  ): Promise<WsResponse<unknown>> {
+    // // Emit an echo message before processing
+    // const echoMessage = 'some message received';
+    // console.log('Emitting message:', echoMessage);
+    // client.emit('messageEcho', echoMessage);
 
     // Save the message to the database
     const savedMessage = await this.messageService.create(
@@ -73,9 +77,12 @@ export class WebsocketGateway
       },
       payload.user,
     );
-
-    console.log('saved message:', savedMessage)
+    
+    console.log('saved message:', savedMessage);
     // Emit the saved message to all connected clients
-    this.server.emit('receiveMessage', savedMessage);
+    
+    client.emit('sendMessage', { name: 'Nest' }, savedMessage);
+    const event = 'message acknoledged'
+    return {event, data}
   }
 }
